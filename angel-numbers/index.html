@@ -127,7 +127,7 @@ function combineReading(){
   const dayNum=reduceNum(d);
   const monthNum=reduceNum(m);
   const yearNum=reduceYear(y);
-  const angelData=DATA[currentNum];
+  const angelData=DATA[currentNum]||getBaseDigitData(currentNum);
 
   const de=NUM_ENERGY[dayNum]||NUM_ENERGY[1];
   const me=NUM_ENERGY[monthNum]||NUM_ENERGY[1];
@@ -149,7 +149,12 @@ function combineReading(){
 
   const card=document.getElementById('combinedCard');
   card.classList.add('show');
-  card.scrollIntoView({behavior:'smooth',block:'start'});
+  // Ensure date body is open
+  const body=document.getElementById('dateInlineBody');
+  const arrow=document.getElementById('dateArrow');
+  if(body){body.classList.add('open');}
+  if(arrow){arrow.classList.add('open');}
+  card.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function shareCombined(){
@@ -696,19 +701,7 @@ function getCrystalForNum(n){
   return map[n]||'Clear Quartz';
 }
 
-// ── Date selects populate ──
-(function(){
-  const dd=document.getElementById('d-dd');
-  const yy=document.getElementById('d-yy');
-  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
-  const yr=new Date().getFullYear();
-  for(let y=yr;y>=2010;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
-  // default today
-  const today=new Date();
-  dd.value=today.getDate();
-  document.getElementById('d-mm').value=today.getMonth()+1;
-  yy.value=today.getFullYear();
-})();
+
 
 function toggleDateInline(){
   const body=document.getElementById('dateInlineBody');
@@ -770,7 +763,7 @@ function combineReading(){
   const dayNum=reduceNum(d);
   const monthNum=reduceNum(m);
   const yearNum=reduceYear(y);
-  const angelData=DATA[currentNum];
+  const angelData=DATA[currentNum]||getBaseDigitData(currentNum);
 
   const de=NUM_ENERGY[dayNum]||NUM_ENERGY[1];
   const me=NUM_ENERGY[monthNum]||NUM_ENERGY[1];
@@ -792,7 +785,12 @@ function combineReading(){
 
   const card=document.getElementById('combinedCard');
   card.classList.add('show');
-  card.scrollIntoView({behavior:'smooth',block:'start'});
+  // Ensure date body is open
+  const body=document.getElementById('dateInlineBody');
+  const arrow=document.getElementById('dateArrow');
+  if(body){body.classList.add('open');}
+  if(arrow){arrow.classList.add('open');}
+  card.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function shareCombined(){
