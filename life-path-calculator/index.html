@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Path Number Calculator — Lumina Numbers</title>
+<meta name="description" content="Calculate your Life Path Number using the Pythagorean method with Master Numbers. Discover your personality, strengths, love style, and 2026 forecast.">
+<meta property="og:title" content="Life Path Number Calculator — Lumina Numbers">
+<meta property="og:description" content="Discover your Life Path Number and what it reveals about your purpose, strengths, and 2026 destiny.">
+<meta property="og:image" content="../og-image.jpg">
+<link rel="canonical" href="https://luminanumbers.com/life-path-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fdf8f2;--gold:#c9a96e;--gold-light:#e8d5b0;--peach:#f5c4a8;
+  --lavender:#d4bfe8;--rose:#e8a4b0;--mint:#a8e8d4;
+  --text-dark:#2d2418;--text-mid:#6b5744;--text-soft:#a08878;
+  --glass:rgba(255,255,255,0.6);--glass-border:rgba(201,169,110,0.22);
+  --shadow:0 8px 32px rgba(180,140,100,0.13);--shadow-lg:0 20px 60px rgba(180,140,100,0.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.bg-aura{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 70% 10%,rgba(232,213,176,.4) 0%,transparent 60%),
+  radial-gradient(ellipse 55% 50% at 15% 80%,rgba(212,191,232,.32) 0%,transparent 55%),
+  radial-gradient(ellipse 45% 40% at 85% 70%,rgba(232,164,176,.22) 0%,transparent 50%),var(--cream)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:64px;background:rgba(253,248,242,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,169,110,.13)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold-light),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.nav-logo-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--text-dark);letter-spacing:.07em}
+.nav-logo-sub{font-size:9px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.nav-back{font-size:13px;color:var(--text-soft);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s}
+.nav-back:hover{color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:88px 5vw 36px;text-align:center;max-width:720px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(8px);border-radius:99px;padding:6px 16px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);line-height:1.12;color:var(--text-dark);margin-bottom:10px}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--peach),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;color:var(--text-soft);line-height:1.65;max-width:520px;margin:0 auto 28px}
+
+/* CALC CARD */
+.calc-wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 5vw 20px}
+.calc-card{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(20px);border-radius:28px;padding:32px 28px 28px;box-shadow:var(--shadow)}
+
+.method-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);border-radius:8px;padding:5px 12px;font-size:11px;color:var(--gold);margin-bottom:20px}
+
+.input-label{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:8px;display:block}
+.date-row{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:10px;margin-bottom:18px}
+.date-field label{display:block;font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-soft);margin-bottom:5px}
+.date-field select{width:100%;padding:12px 14px;background:rgba(255,255,255,.75);border:1.5px solid rgba(201,169,110,.28);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text-dark);appearance:none;cursor:pointer;transition:border-color .2s,box-shadow .2s;outline:none}
+.date-field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.14)}
+
+/* Component preview */
+.component-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;opacity:0;transition:opacity .3s}
+.component-preview.show{opacity:1}
+.comp-box{background:rgba(255,255,255,.5);border:1px solid rgba(201,169,110,.2);border-radius:10px;padding:8px;text-align:center}
+.comp-label{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:3px}
+.comp-val{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);font-weight:600}
+.comp-arrow{font-size:14px;color:var(--text-soft);text-align:center;margin-bottom:12px;display:none}
+.comp-arrow.show{display:block}
+
+.btn-calc{width:100%;padding:15px 24px;background:linear-gradient(135deg,var(--peach),var(--gold));border:none;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 20px rgba(201,169,110,.4);transition:transform .15s,box-shadow .15s}
+.btn-calc:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,169,110,.5)}
+.btn-calc:active{transform:translateY(0)}
+.btn-calc .arrow{transition:transform .2s}
+.btn-calc:hover .arrow{transform:translateX(4px)}
+.calc-note{text-align:center;font-size:11.5px;color:var(--text-soft);margin-top:10px;display:flex;align-items:center;justify-content:center;gap:5px}
+
+/* RESULT */
+#result{display:none;position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 5vw 60px}
+#result.show{display:block}
+
+.result-header{background:linear-gradient(135deg,rgba(245,196,168,.35),rgba(212,191,232,.35));border:1px solid rgba(201,169,110,.2);border-radius:28px;padding:32px 28px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden}
+.result-header::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.2),transparent 70%)}
+.result-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px}
+.result-eyebrow::before,.result-eyebrow::after{content:'✦';font-size:9px}
+.result-number{font-family:'Playfair Display',serif;font-size:clamp(64px,15vw,96px);line-height:1;font-weight:700;color:var(--text-dark);margin-bottom:6px}
+.result-number.master{background:linear-gradient(135deg,#9b6bbf,#c4a0e0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.master-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,rgba(155,107,191,.15),rgba(196,160,224,.15));border:1px solid rgba(155,107,191,.3);border-radius:99px;padding:4px 12px;font-size:11px;color:#9b6bbf;font-weight:500;margin-bottom:8px}
+.result-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);font-weight:600;color:var(--text-dark);margin-bottom:6px}
+.result-subtitle{font-size:13.5px;color:var(--text-soft)}
+
+/* Trait pills */
+.color-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.color-dot{width:16px;height:16px;border-radius:50%;display:inline-block;border:2px solid rgba(255,255,255,.7);flex-shrink:0}
+.color-label{font-size:12px;color:var(--text-mid)}
+.day-pill{background:rgba(255,255,255,.6);border:1px solid rgba(201,169,110,.2);border-radius:99px;padding:4px 12px;font-size:12px;color:var(--text-mid)}
+
+/* Overview */
+.result-section{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.section-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:attr(data-icon);font-size:18px}
+.overview-text{font-size:14px;color:var(--text-mid);line-height:1.75}
+
+/* Strengths / Challenges */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.trait-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:20px}
+.trait-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.trait-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px;color:var(--text-mid);line-height:1.5}
+.trait-item::before{content:attr(data-bullet);flex-shrink:0;margin-top:1px}
+
+/* Love + Careers */
+.love-card{background:linear-gradient(135deg,rgba(232,164,176,.2),rgba(212,191,232,.2));border:1px solid rgba(232,164,176,.3);border-radius:20px;padding:22px;margin-bottom:16px}
+.careers-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.career-pill{background:rgba(255,255,255,.7);border:1px solid rgba(201,169,110,.2);border-radius:99px;padding:5px 14px;font-size:12.5px;color:var(--text-mid)}
+
+/* 2026 forecast */
+.forecast-card{background:linear-gradient(135deg,rgba(201,169,110,.15),rgba(245,196,168,.15));border:1px solid rgba(201,169,110,.25);border-radius:20px;padding:22px;margin-bottom:20px}
+.forecast-year{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:8px;letter-spacing:.06em}
+.forecast-text{font-size:14px;color:var(--text-mid);line-height:1.7}
+
+/* Compatibility */
+.compat-section{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:24px;margin-bottom:20px}
+.compat-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text-dark);margin-bottom:6px}
+.compat-sub{font-size:13px;color:var(--text-soft);margin-bottom:18px}
+.compat-input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.compat-date-group label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);display:block;margin-bottom:6px}
+.compat-date-group .mini-row{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:6px}
+.compat-date-group select{width:100%;padding:9px 10px;background:rgba(255,255,255,.7);border:1.5px solid rgba(201,169,110,.25);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-dark);appearance:none;cursor:pointer;outline:none;transition:border-color .2s}
+.compat-date-group select:focus{border-color:var(--gold)}
+.btn-compat{width:100%;padding:12px;background:linear-gradient(135deg,rgba(245,196,168,.6),rgba(201,169,110,.6));border:1px solid rgba(201,169,110,.3);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:var(--text-dark);cursor:pointer;transition:all .2s}
+.btn-compat:hover{background:linear-gradient(135deg,var(--peach),var(--gold));color:white}
+
+/* Compat result */
+#compat-result{display:none;margin-top:16px}
+#compat-result.show{display:block}
+.compat-score-wrap{text-align:center;margin-bottom:14px}
+.compat-score{font-family:'Playfair Display',serif;font-size:56px;font-weight:700;line-height:1}
+.compat-score-label{font-size:12px;color:var(--text-soft);margin-top:2px}
+.compat-bar-wrap{background:rgba(201,169,110,.15);border-radius:99px;height:8px;margin:10px 0 6px;overflow:hidden}
+.compat-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--peach),var(--gold));transition:width .8s cubic-bezier(.2,.8,.3,1)}
+.compat-label{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text-dark);text-align:center;margin-bottom:6px}
+.compat-desc{font-size:13.5px;color:var(--text-mid);line-height:1.65;text-align:center}
+.compat-nums{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px}
+.cn{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold)}
+.cn-label{font-size:11px;color:var(--text-soft);display:block;text-align:center;margin-top:2px}
+.cn-x{font-size:18px;color:var(--text-soft)}
+
+/* Actions */
+.action-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-share{flex:1;min-width:140px;padding:12px;background:linear-gradient(135deg,var(--peach),var(--gold));border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(201,169,110,.35);transition:transform .15s}
+.btn-share:hover{transform:translateY(-1px)}
+.btn-aura{flex:1;min-width:140px;padding:12px;background:transparent;border:1.5px solid var(--gold);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+.btn-aura:hover{background:var(--gold);color:white}
+
+/* Famous */
+.famous-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.famous-pill{background:rgba(255,255,255,.6);border:1px solid rgba(201,169,110,.18);border-radius:10px;padding:6px 12px;font-size:12px;color:var(--text-mid)}
+.famous-pill strong{color:var(--text-dark);display:block;margin-bottom:1px}
+
+/* All numbers bar */
+.all-numbers{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 5vw 60px}
+.all-title{font-family:'Playfair Display',serif;font-size:22px;text-align:center;color:var(--text-dark);margin-bottom:20px}
+.numbers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:10px}
+.num-chip{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.num-chip:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(201,169,110,.4)}
+.num-chip.master-chip{background:linear-gradient(135deg,rgba(155,107,191,.08),rgba(196,160,224,.08));border-color:rgba(155,107,191,.25)}
+.nc-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold)}
+.nc-title{font-size:10px;color:var(--text-soft);margin-top:3px;line-height:1.3}
+
+/* Rarity */
+.rarity-banner{background:linear-gradient(135deg,rgba(155,107,191,.15),rgba(212,191,232,.15));border:1px solid rgba(155,107,191,.25);border-radius:16px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.rarity-icon{font-size:24px;flex-shrink:0}
+.rarity-text strong{font-size:14px;font-weight:500;color:var(--text-dark);display:block}
+.rarity-text span{font-size:12px;color:var(--text-soft)}
+
+@media(max-width:600px){
+  .two-col{grid-template-columns:1fr}
+  .compat-input-row{grid-template-columns:1fr}
+  .date-row{grid-template-columns:1fr 1fr}
+  .date-row .date-field:last-child{grid-column:1/-1}
+  .compat-date-group .mini-row{grid-template-columns:1fr 1fr}
+  .compat-date-group .mini-row .date-field:last-child{grid-column:1/-1}
+  .action-row{flex-direction:column}
+  .calc-card{padding:22px 18px}
+  .result-header{padding:24px 18px}
+}
+</style>
+</head>
+<body>
+<div class="bg-aura"></div>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    <div>
+      <div class="nav-logo-name">LUMINA NUMBERS</div>
+      <div class="nav-logo-sub">Discover Your Divine Numbers</div>
+    </div>
+  </a>
+  <a href="/" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">✦ Free Calculator</div>
+  <h1>Your Life Path Number<br><em>Revealed</em></h1>
+  <p class="hero-sub">Enter your birth date below. We use the authentic Pythagorean Component Reduction method — preserving all Master Numbers (11, 22, 33).</p>
+</div>
+
+<div class="calc-wrap">
+  <div class="calc-card">
+    <div class="method-badge">✦ Pythagorean · Component Reduction · Master Numbers</div>
+
+    <span class="input-label">Your Birth Date</span>
+    <div class="date-row">
+      <div class="date-field">
+        <label>Day</label>
+        <select id="dd" onchange="preview()"><option value="">DD</option></select>
+      </div>
+      <div class="date-field">
+        <label>Month</label>
+        <select id="mm" onchange="preview()">
+          <option value="">MM</option>
+          <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+          <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+          <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+          <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+        </select>
+      </div>
+      <div class="date-field">
+        <label>Year</label>
+        <select id="yy" onchange="preview()"><option value="">YYYY</option></select>
+      </div>
+    </div>
+
+    <div class="component-preview" id="compPreview">
+      <div class="comp-box"><div class="comp-label">Day</div><div class="comp-val" id="cp-d">—</div></div>
+      <div class="comp-box"><div class="comp-label">Month</div><div class="comp-val" id="cp-m">—</div></div>
+      <div class="comp-box"><div class="comp-label">Year</div><div class="comp-val" id="cp-y">—</div></div>
+    </div>
+    <div class="comp-arrow" id="compArrow">↓ Sum: <strong id="compSum">—</strong> → Life Path: <strong id="compFinal" style="color:var(--gold)">—</strong></div>
+
+    <button class="btn-calc" onclick="calculate()">
+      Reveal My Life Path <span class="arrow">→</span>
+    </button>
+    <p class="calc-note">🔒 Private &amp; secure — no data stored</p>
+  </div>
+</div>
+
+<div id="result">
+  <!-- header -->
+  <div class="result-header" id="rHeader">
+    <div class="result-eyebrow">Your Life Path Number</div>
+    <div id="rMasterBadge" style="display:none" class="master-badge">✦ Master Number</div>
+    <div class="result-number" id="rNum">7</div>
+    <div class="result-title" id="rTitle">The Seeker</div>
+    <div class="result-subtitle" id="rSub">Born: <span id="rBirthDate">—</span></div>
+    <div class="color-row">
+      <div class="color-dot" id="rColorDot"></div>
+      <span class="color-label" id="rColorLabel">—</span>
+      <span class="cn-x">·</span>
+      <span class="day-pill" id="rDayPill">—</span>
+    </div>
+  </div>
+
+  <!-- rarity -->
+  <div class="rarity-banner" id="rRarity" style="max-width:720px;margin:0 auto 0;padding-left:5vw;padding-right:5vw;box-sizing:border-box">
+    <div class="rarity-icon">🌟</div>
+    <div class="rarity-text">
+      <strong id="rRarityTitle">—</strong>
+      <span id="rRarityDesc">—</span>
+    </div>
+  </div>
+
+  <!-- overview -->
+  <div class="result-section" style="margin-top:16px">
+    <div class="section-title" data-icon="✨">Overview</div>
+    <div class="overview-text" id="rOverview">—</div>
+  </div>
+
+  <!-- strengths + challenges -->
+  <div class="two-col">
+    <div class="trait-card">
+      <div class="trait-title">💪 Strengths</div>
+      <div id="rStrengths"></div>
+    </div>
+    <div class="trait-card">
+      <div class="trait-title">🌱 Challenges</div>
+      <div id="rChallenges"></div>
+    </div>
+  </div>
+
+  <!-- love -->
+  <div class="love-card">
+    <div class="section-title" data-icon="♡">Love &amp; Relationships</div>
+    <div class="overview-text" id="rLove"></div>
+  </div>
+
+  <!-- careers -->
+  <div class="result-section">
+    <div class="section-title" data-icon="💼">Ideal Careers</div>
+    <div class="careers-wrap" id="rCareers"></div>
+  </div>
+
+  <!-- famous -->
+  <div class="result-section">
+    <div class="section-title" data-icon="⭐">Famous Life Path <span id="rFamousNum"></span>s</div>
+    <div class="famous-row" id="rFamous"></div>
+  </div>
+
+  <!-- forecast -->
+  <div class="forecast-card">
+    <div class="forecast-year">✦ 2026 Numerology Forecast · Universal Year 1</div>
+    <div class="forecast-text" id="rForecast"></div>
+  </div>
+
+  <!-- compatibility -->
+  <div class="compat-section">
+    <div class="compat-title">💞 Compatibility Check</div>
+    <div class="compat-sub">Compare your Life Path with someone special</div>
+    <div class="compat-input-row">
+      <div class="compat-date-group">
+        <label>Partner's Birth Date</label>
+        <div class="mini-row">
+          <div class="date-field"><select id="cd" ><option value="">DD</option></select></div>
+          <div class="date-field"><select id="cm">
+            <option value="">MM</option>
+            <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+            <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+            <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+            <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+          </select></div>
+          <div class="date-field"><select id="cy"><option value="">YYYY</option></select></div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-compat" onclick="checkCompat()">Check Compatibility →</button>
+
+    <div id="compat-result">
+      <div class="compat-nums">
+        <div><div class="cn" id="cr-lp1">—</div><div class="cn-label">You</div></div>
+        <div class="cn-x">+</div>
+        <div><div class="cn" id="cr-lp2">—</div><div class="cn-label">Partner</div></div>
+        <div class="cn-x">=</div>
+        <div><div class="cn" id="cr-code" style="color:var(--lavender)">—</div><div class="cn-label">Combo Code</div></div>
+      </div>
+      <div class="compat-score-wrap">
+        <div class="compat-score" id="cr-score">—<span style="font-size:32px">%</span></div>
+        <div class="compat-score-label">Natural Compatibility</div>
+      </div>
+      <div class="compat-bar-wrap"><div class="compat-bar-fill" id="cr-bar" style="width:0%"></div></div>
+      <div class="compat-label" id="cr-label">—</div>
+      <div class="compat-desc" style="margin-top:8px" id="cr-desc">—</div>
+    </div>
+  </div>
+
+  <!-- actions -->
+  <div class="action-row">
+    <button class="btn-share" onclick="shareResult()">🔗 Share My Reading</button>
+    <button class="btn-aura" onclick="alert('Aura Wallpaper — coming soon! ✦')">✦ My Aura Wallpaper ($2.99)</button>
+  </div>
+</div>
+
+<!-- all numbers -->
+<div class="all-numbers" id="allNumbers" style="margin-top:40px">
+  <div class="all-title">Explore All Life Path Numbers</div>
+  <div class="numbers-grid" id="numGrid"></div>
+</div>
+
+<script>
+// ── Populate selects ──
+(function(){
+  const dd=document.getElementById('dd');
+  const cd=document.getElementById('cd');
+  for(let i=1;i<=31;i++){
+    const o=`<option value="${i}">${String(i).padStart(2,'0')}</option>`;
+    dd.insertAdjacentHTML('beforeend',o);
+    cd.insertAdjacentHTML('beforeend',o);
+  }
+  const yy=document.getElementById('yy');
+  const cy=document.getElementById('cy');
+  const yr=new Date().getFullYear();
+  for(let y=yr;y>=1930;y--){
+    const o=`<option value="${y}">${y}</option>`;
+    yy.insertAdjacentHTML('beforeend',o);
+    cy.insertAdjacentHTML('beforeend',o);
+  }
+})();
+
+// ── Numerology Engine ──
+function reduce(n,preserve=true){
+  if(preserve&&(n===11||n===22||n===33))return n;
+  if(n<10)return n;
+  return reduce(String(n).split('').reduce((a,c)=>a+ +c,0),preserve);
+}
+function reduceYear(y){
+  return reduce(String(y).split('').reduce((a,c)=>a+ +c,0));
+}
+function calcLP(d,m,y){
+  const rd=reduce(+d);
+  const rm=reduce(+m);
+  const ry=reduceYear(+y);
+  return reduce(rd+rm+ry);
+}
+
+// ── Full Data ──
+const DATA={
+  1:{title:"The Pioneer",planet:"Sun",color:"Gold, Orange, Red",colorHex:"#c9a96e",day:"Sunday",
+    overview:"Governed by the radiant energy of the Sun, Life Path 1 individuals are natural-born leaders destined to forge unprecedented trails and initiate progress. They must learn to balance fierce independence with collaboration, acting as the spark that illuminates the path for others without burning them.",
+    strengths:["Visionary and authoritative leadership","Unwavering self-reliance","Courageous entrepreneurial initiative","Creative and rapid problem-solving","Exceptional resilience against adversity"],
+    challenges:["Unchecked egotism and stubbornness","Impatience with those who process slowly","Tendency to dominate relationships"],
+    love:"Fiercely passionate and highly protective, they seek a robust partner who respects their absolute need for autonomy while matching their intense energy. They naturally assume the dominant role and require a deeply passionate, non-restrictive bond.",
+    careers:["Entrepreneur","CEO / Executive","Creative Director","Tech Founder","Military Leader","Independent Consultant"],
+    famous:[{name:"Steve Jobs",why:"Visionary who redefined personal computing"},{name:"Martin Luther King Jr.",why:"Fearless leader who forged a new path for civil rights"},{name:"Lady Gaga",why:"Constant artistic reinvention, unapologetic individuality"}],
+    forecast:"The universe has perfectly aligned your inherent vibration with 2026's energy, promising massive breakthroughs, rapid career advancement, and a powerful shift into supreme leadership. Fortune strictly favors bold action this year.",
+    rarity:"1-in-9 life paths share your number. But your exact combination of day, month and year? Uniquely yours.",
+    rarityLevel:"rare"},
+
+  2:{title:"The Diplomat",planet:"Moon",color:"White, Silver, Light Blue",colorHex:"#b8d4e8",day:"Monday",
+    overview:"Resonating intimately with lunar energy, Life Path 2s are the ultimate harmonizers of the world, gifted with profound near-psychic empathy and tactical diplomacy. Their core spiritual mission is to foster unity, though they must learn to ruthlessly assert their own boundaries to avoid being consumed by the pain of others.",
+    strengths:["Exceptional empathic resonance","Masterful diplomatic negotiation","Meticulous detail-orientation","Profound intuitive understanding","Unshakable loyalty in partnerships"],
+    challenges:["A pervasive tendency toward codependency","Chronic avoidance of necessary conflict","Over-sensitivity to constructive criticism"],
+    love:"Deeply devoted, highly romantic, and incredibly nurturing — they crave absolute emotional security and total spiritual union. They thrive in harmonious partnerships but must aggressively guard against losing their individual identity to their lover.",
+    careers:["Counselor / Therapist","Mediator","Human Resources Director","Diplomat","Collaborative Artist","Support Specialist"],
+    famous:[{name:"Barack Obama",why:"Diplomacy, dialogue, and unifying disparate groups"},{name:"Jennifer Aniston",why:"Deeply empathetic, loyal, and harmonious screen presence"},{name:"Kobe Bryant",why:"Deep dedication to team dynamics and long-term mentorship"}],
+    forecast:"The 2026 energy calls you to break free from past limitations, take bold emotional risks, and establish your own independent voice. Long-standing misunderstandings will find closure and partnerships will deepen significantly.",
+    rarity:"Guided by the Moon — intuitive, adaptive, and quietly powerful."},
+
+  3:{title:"The Communicator",planet:"Jupiter",color:"Yellow, Gold, Cream",colorHex:"#e8d070",day:"Thursday",
+    overview:"Infused with Jupiterian expansion, the Life Path 3 acts as a dynamic vessel for joy, unbounded creativity, and expressive art. They navigate existence as a vibrant canvas, utilizing natural charisma to uplift the collective while constantly striving to maintain disciplined focus amid their scattered brilliance.",
+    strengths:["Magnetic and radiant charisma","Boundless creative imagination","Natural gift for all forms of expression","Infectious, uplifting optimism","Exceptional social connection"],
+    challenges:["Scattered energy and procrastination","Difficulty completing long-term projects","Sensitivity to criticism"],
+    love:"Playful, highly affectionate, and easily bored — they absolutely require a partner who is intellectually stimulating and highly appreciative of their vibrant social life. Honest, open, and witty communication is their absolute non-negotiable.",
+    careers:["Writer / Author","Performer / Actor","Marketing Creative","Public Speaker","Content Creator","Graphic Designer"],
+    famous:[{name:"David Bowie",why:"Ultimate chameleon of creative self-expression"},{name:"Christina Aguilera",why:"Powerful vocal expression communicating deep emotion"},{name:"Snoop Dogg",why:"Natural gift for language, entertainment, and social connectivity"}],
+    forecast:"An incredible influx of creative opportunities in 2026. Ideas and projects that previously struggled will now find a receptive audience. The strategic imperative is absolute focus — channel your immense energy into one meaningful goal.",
+    rarity:"Jupiter's child — you radiate creative energy that others find irresistible."},
+
+  4:{title:"The Builder",planet:"Rahu",color:"Grey, Blue, Olive Green",colorHex:"#8899aa",day:"Wednesday",
+    overview:"Deeply grounded and highly disciplined, the Life Path 4 is the supreme architect of the numerological spectrum, possessing the unique ability to turn chaotic abstract ideas into lasting physical reality. Their karmic path requires mastering the material realm through meticulous hard work, though they are constantly challenged to remain flexible and open to systemic change.",
+    strengths:["Exceptional organizational discipline","Unwavering reliability and loyalty","Masterful long-term strategic planning","Superior financial prudence","Tireless, highly productive work ethic"],
+    challenges:["Rigid inflexibility and resistance to change","Pervasive pessimism under stress","Dangerous propensity for burnout"],
+    love:"They view romantic love as a vital stabilizing force and take commitment exceptionally seriously. Highly practical and fiercely protective, they express deep affection through acts of service and by building an impenetrable, secure foundation for their family.",
+    careers:["Architect / Engineer","Project Manager","Financial Analyst","Real Estate Professional","Systems Analyst","Legal Professional"],
+    famous:[{name:"Elon Musk",why:"Building systemic foundations for a multi-planetary future"},{name:"Oprah Winfrey",why:"Methodically constructed a media empire from nothing"},{name:"Bill Gates",why:"Disciplined, structured approach to building global systems"}],
+    forecast:"Your meticulous long-term hard work finally yields substantial rewards in 2026. The universe explicitly grants you cosmic permission to break the mold — unconventional new methodologies will open financial doors you didn't know existed.",
+    rarity:"The foundation upon which civilizations are built — rare, essential, and enduring."},
+
+  5:{title:"The Explorer",planet:"Mercury",color:"Green, Aqua Blue, White",colorHex:"#70c8b0",day:"Wednesday",
+    overview:"Intensely mercurial and constantly in kinetic motion, the Life Path 5 seeks absolute truth through lived experience, global travel, and varied sensory engagement. Their ultimate spiritual challenge is to find grounded discipline within their boundless freedom, acting as vital catalysts for progressive change without losing their own center of gravity.",
+    strengths:["Extremely high adaptability","Magnetic and persuasive charisma","Fearless and boundless curiosity","Exceptional resourcefulness in crisis","Highly persuasive quick communication"],
+    challenges:["Chronic restlessness and inconsistency","A deep-seated avoidance of commitment","Highly impulsive risky decision-making"],
+    love:"Exciting, highly unpredictable, and deeply passionate — they possess a core fear of being trapped and absolutely require a lover who is simultaneously an adventurous best friend. Relationships must continually evolve to survive the 5's desperate need for variety.",
+    careers:["Travel Journalist","Digital Nomad Entrepreneur","Marketing Strategist","Sales Professional","Event Producer","Tech Explorer"],
+    famous:[{name:"Angelina Jolie",why:"Fearless exploration of diverse roles, cultures, and causes"},{name:"Abraham Lincoln",why:"Resourceful adaptability in the face of massive societal change"},{name:"Mick Jagger",why:"Restless creative energy that refuses any form of containment"}],
+    forecast:"An exhilarating feast of unpredictable possibilities awaits you in 2026. Career prospects are incredibly favorable, particularly in digital and tech markets. The critical lesson is ruthless discernment — genuine opportunity vs. exciting distraction.",
+    rarity:"Mercury's messenger — you experience more in one year than most do in ten."},
+
+  6:{title:"The Nurturer",planet:"Venus",color:"Pink, Peach, Rose Gold",colorHex:"#f0a0b8",day:"Friday",
+    overview:"Bathed in Venusian harmony, the Life Path 6 is driven by an innate unshakeable sense of duty, emotional healing, and the creation of aesthetic beauty. They are the cosmic parents of the world, tasked with learning the incredibly delicate balance between unconditionally supporting others and fiercely maintaining their own energetic reserves.",
+    strengths:["Profound and unwavering compassion","Natural talent for creating beauty and harmony","Exceptional conflict mediation skills","Deeply reliable responsibility","Magnetic, community-building warmth"],
+    challenges:["Crippling martyrdom complex","Intrusive perfectionism about others' lives","Dangerous susceptibility to emotional exhaustion"],
+    love:"Fiercely devoted and highly romantic, they tirelessly seek the ultimate harmonious domestic haven. They offer unconditional, boundless support but possess exceptionally high expectations for mutual commitment, fidelity, and harmonious living.",
+    careers:["Counselor / Social Worker","Interior Designer","Hospitality Manager","Teacher / Educator","Healthcare Provider","Community Leader"],
+    famous:[{name:"John Lennon",why:"Unwavering advocacy for universal love, harmony, and peace"},{name:"Michael Jackson",why:"Devoted artistic nurturing and humanitarian philanthropy"},{name:"Eleanor Roosevelt",why:"Tireless service as the ultimate community caretaker"}],
+    forecast:"Your immense power as a reliable emotional anchor is globally recognized in 2026. Tremendous good fortune in family and community dynamics is heralded. The greatest challenge is the radical restructuring of old patterns and masterful boundary-setting.",
+    rarity:"Venus-blessed — wherever you go, you leave people feeling more whole."},
+
+  7:{title:"The Seeker",planet:"Ketu",color:"Purple, Indigo, Grey",colorHex:"#9b6bbf",day:"Monday",
+    overview:"Operating on a highly intellectual and intensely mystical frequency, the Life Path 7 relentlessly seeks the absolute truth hidden beneath the surface of reality. Their unique journey perfectly marries strict empirical analysis with deep esoteric spiritual intuition, often requiring significant periods of deep solitude to function at their highest level.",
+    strengths:["Unmatched analytical genius","Profound highly accurate intuition","Advanced research proficiency","Immense philosophical depth","Keen penetrating observation skills"],
+    challenges:["Chronic cynicism and skepticism","A tendency toward social isolation","Constantly over-intellectualizing emotions"],
+    love:"Intensely private and notoriously hard to truly know, they require a profoundly deep intellectual and spiritual connection long before opening their hearts. They absolutely must have a partner who respects and understands their requirement for extensive quiet solitude.",
+    careers:["Research Scientist","Philosopher / Academic","Spiritual Teacher","Investigative Journalist","Data Analyst","Psychologist"],
+    famous:[{name:"Nikola Tesla",why:"Relentless intellectual pursuit of hidden universal truths"},{name:"Princess Diana",why:"Deep, introspective empathy combined with intense spiritual seeking"},{name:"Stephen Hawking",why:"Unmatched analytical genius probing the fundamental laws of reality"}],
+    forecast:"A potent period of deep spiritual awakening in 2026 that demands you transform introspective wisdom into bold active leadership. You will be drawn heavily toward advanced metaphysics. Trust your highly refined intuition as an absolute infallible compass.",
+    rarity:"Only ~11% of the population shares your Life Path. You are among the rarest seekers.",
+    rarityLevel:"rare"},
+
+  8:{title:"The Powerhouse",planet:"Saturn",color:"Navy Blue, Black, Dark Grey",colorHex:"#334466",day:"Saturday",
+    overview:"Driven strictly by heavy Saturnian discipline, the Life Path 8 is the undisputed master of the material realm, uniquely tasked with navigating the ethical balanced use of massive power and wealth. They act as formidable karmic mirrors, manifesting vast societal-level success through relentless endurance, financial acumen, and highly strategic vision.",
+    strengths:["Extraordinary executive authority","Unparalleled financial acumen","Relentless endurance under pressure","Superior strategic long-term vision","Commanding and highly magnetic presence"],
+    challenges:["Destructive workaholism","Materialistic obsession","Dictatorial tendencies under stress"],
+    love:"Intense, highly demanding, and fiercely loyal, they approach romantic relationships with the exact same strategic seriousness as their corporate careers. They actively seek a powerful, highly competent equal partner with whom they can build and secure a formidable legacy.",
+    careers:["CEO / Business Owner","Investment Banker","Corporate Executive","Real Estate Developer","Attorney","Financial Strategist"],
+    famous:[{name:"Oprah Winfrey",why:"Built a formidable media empire through sheer Saturnian discipline"},{name:"Pablo Picasso",why:"Masterful, disciplined accumulation of artistic power and legacy"},{name:"Nelson Mandela",why:"Extraordinary endurance and strategic vision under immense pressure"}],
+    forecast:"An incredibly strong karmic year for financial and career dominance in 2026. Business investments, massive promotions, and unprecedented breakthroughs are highly indicated. Remain strategically adaptable and embrace novel opportunities that don't fit rigid plans.",
+    rarity:"Saturn's chosen — you carry the karmic weight of transformation and the power to match it."},
+
+  9:{title:"The Humanitarian",planet:"Mars",color:"Red, Maroon, Coral",colorHex:"#c84848",day:"Tuesday",
+    overview:"Embodying the absolute culmination of the human experience, the Life Path 9 operates on a highly elevated global consciousness, driven by raw martial energy to fiercely fight for the greater good. Their ultimate spiritual lesson involves mastering the art of total forgiveness, releasing deep attachment to the past, and embracing universal compassion.",
+    strengths:["Truly universal and expansive compassion","Profound philosophical and spiritual wisdom","Immense natural generosity","Powerful and inspiring global vision","Exceptional artistic and creative talent"],
+    challenges:["Deep resentment of the past","Emotional naivety regarding others' motives","Tendency to self-sacrifice to a destructive fault"],
+    love:"Deeply romantic, highly idealistic, and intensely giving — they love universally and occasionally struggle to focus their vast emotional energy solely on one person. They require a partner who shares their high idealism and humanitarian worldview.",
+    careers:["Non-profit Leader","Artist / Musician","Humanitarian Worker","Spiritual Teacher","Healer / Therapist","Social Activist"],
+    famous:[{name:"Mahatma Gandhi",why:"Embodied pure universal compassion and tireless humanitarian sacrifice"},{name:"Jim Carrey",why:"Used creative brilliance to explore profound existential and spiritual themes"},{name:"Morgan Freeman",why:"Wise, philosophical presence communicating universal human truths"}],
+    forecast:"A profound transformative period of karmic release and renewal in 2026. Old cycles — toxic relationships, stagnant jobs, outdated beliefs — will gracefully end. Once these heavy burdens are released, highly aligned new opportunities will flow in with startling ease.",
+    rarity:"The rarest and most evolved number. You carry the wisdom of all nine life paths within you.",
+    rarityLevel:"legendary"},
+
+  11:{title:"The Spiritual Messenger",planet:"Moon (Master)",color:"Silver, Pearl, Indigo",colorHex:"#a0a8c8",day:"Monday",
+    overview:"As the first Master Number, the 11 operates as a highly sensitive cosmic antenna, constantly receiving profound psychic and intuitive insights from higher realms. Their ultimate mission is to uplift humanity through visionary illumination, though they must actively manage the severe nervous tension and anxiety their extreme sensitivity creates.",
+    strengths:["Extraordinary psychic-level intuition","Highly elevated spiritual awareness","Visionary illumination for humanity","Immense creative inspiration","Deep empathic resonance"],
+    challenges:["Extreme nervous tension and severe anxiety","Crippling self-doubt","Frequent debilitating emotional overwhelm"],
+    love:"They desperately seek a transcendent soul-mate connection and feel love with agonizing consuming intensity. They require an incredibly patient, grounded partner who implicitly understands their sudden non-negotiable needs for complete isolation to discharge energetic overload.",
+    careers:["Spiritual Teacher","Healer / Energy Worker","Visionary Artist","Psychologist","Inspirational Speaker","Metaphysical Researcher"],
+    famous:[{name:"Barack Obama",why:"Illuminating visionary leadership bridging diverse human experiences"},{name:"Edgar Allan Poe",why:"Profoundly psychic creative vision exploring the darkest human depths"},{name:"Wolfgang Amadeus Mozart",why:"Divine musical channeling that transcended ordinary human perception"}],
+    forecast:"Your heightened intuition is your absolute compass in 2026. Astrologically empowered to unite disparate forces and orchestrate profound visionary changes. If you maintain your authentic frequency, others will naturally gravitate toward you, making real systemic change possible.",
+    rarity:"Master Number 11 — only ~0.5% of people carry this frequency. You are extraordinarily rare.",
+    rarityLevel:"legendary"},
+
+  22:{title:"The Master Builder",planet:"Rahu (Master)",color:"Coral, Copper, Gold",colorHex:"#c87848",day:"Sunday",
+    overview:"The Master Number 22 possesses the extraordinary unparalleled ability to ground immense ethereal spiritual visions into lasting highly functional material empires. Tasked with building complex systemic legacies that will vastly outlast them, they face immense internal pressure to execute their grand designs practically, ethically, and compassionately.",
+    strengths:["Unparalleled practical manifesting ability","Extraordinary large-scale visionary capacity","Supreme organizational and systemic mastery","Immense psychological endurance","Rare combination of idealism and pragmatism"],
+    challenges:["Crippling fear of failure","Severe inflexibility with subordinates","Autocratic behavior under extreme stress"],
+    love:"Fiercely loyal and profoundly protective, they demonstrate romantic love by providing an unshakeable highly secure material foundation. Their partners absolutely must be highly self-sufficient, as the 22 is often obsessively consumed by their massive professional undertakings.",
+    careers:["Visionary Architect","Global Non-Profit Leader","Tech Empire Founder","Political Reformer","Master Engineer","Transformational Business Builder"],
+    famous:[{name:"Bill Gates",why:"Built a global empire that systemically transformed human access to technology"},{name:"Dalai Lama",why:"Masterfully builds bridges of compassionate global understanding"},{name:"Paul McCartney",why:"Constructed a vast, enduring cultural legacy that outlasts individual fame"}],
+    forecast:"A monumental foundational year in 2026 where seemingly unrelated groundwork of the past perfectly aligns. You will begin to see unprecedented rewards for all your systemic efforts. Lead with deep compassion rather than ruthless mechanical efficiency to unlock full potential.",
+    rarity:"Master Number 22 — the most powerful manifesting number. Extraordinarily rare, cosmically significant.",
+    rarityLevel:"legendary"},
+
+  33:{title:"The Master Teacher",planet:"Venus (Master)",color:"White, Pale Yellow, Pearl",colorHex:"#f0e8c8",day:"Friday",
+    overview:"The extremely rare Master Number 33 vibrates with pure unconditional love and divine compassion, operating as an unwavering beacon of spiritual guidance for the masses. Their immense often crushing empathic burden requires them to master the art of radical self-preservation to avoid being entirely consumed by the world's endless pain.",
+    strengths:["Radiating unconditional divine love","Extraordinary selfless service capacity","Profound multi-generational healing wisdom","Natural beacon of spiritual guidance","Supreme compassionate empathy"],
+    challenges:["Extreme highly destructive self-sacrifice","Chronic severe energetic depletion","Assuming inappropriate responsibility for others' karma"],
+    love:"The ultimate selfless caregivers in romance, offering a love that is highly protective, deeply nurturing, and spiritually elevated. However, they must consciously avoid treating romantic partners as broken 'projects' that need to be saved or healed.",
+    careers:["Spiritual Healer","Master Teacher / Educator","Universal Compassion Activist","Holistic Health Practitioner","Sacred Arts Creator","Global Humanitarian"],
+    famous:[{name:"Albert Einstein",why:"Universal compassion through transformative contributions to collective human understanding"},{name:"Meryl Streep",why:"Profoundly empathetic artistic channeling of the full spectrum of human experience"},{name:"Francis of Assisi",why:"Embodied absolute selfless divine love and total compassionate sacrifice"}],
+    forecast:"As the global collective leans heavily on your spiritual guidance during this massive reset, rigorous radical self-care is absolutely non-negotiable in 2026. Prevent burnout by fiercely prioritizing yourself first, ensuring you seize your own emerging powerful doors of opportunity.",
+    rarity:"Master Number 33 — the rarest of all. Fewer than 0.1% of people carry this sacred frequency.",
+    rarityLevel:"legendary"}
+};
+
+// ── Compatibility Data ──
+const COMPAT={
+  "1-1":{score:65,label:"Twin Flames or Ego Clash",desc:"Two pioneers in one room — either you build an empire together or battle for the throne. Requires immense psychological maturity to avoid territorial disputes."},
+  "1-2":{score:62,label:"Leadership Meets Sensitivity",desc:"The 1's directness often feels abrasive to the 2's sensitive nature. Deep love is possible, but the 2 must assert their needs and the 1 must learn to listen."},
+  "1-3":{score:82,label:"Magnetic Spark",desc:"Sun meets Jupiter — a powerful, creative partnership. The 3's joyful expression perfectly complements the 1's bold vision. High energy, high compatibility."},
+  "1-4":{score:52,label:"Vision vs Structure",desc:"The 1's rapid forward motion clashes with the 4's methodical pace. Shared goals can bridge the gap, but patience is absolutely required from both sides."},
+  "1-5":{score:85,label:"Dynamic Freedom Partnership",desc:"Two fiercely independent souls who understand each other's need for space. Fast-moving, exciting, and mutually inspiring. One of the most naturally compatible pairings."},
+  "1-6":{score:68,label:"Leader & Nurturer",desc:"The 6's devotion beautifully supports the 1's ambitions. However, the 1 must be careful not to neglect the 6's deep need for reciprocal affection and appreciation."},
+  "1-7":{score:70,label:"Action Meets Contemplation",desc:"An intriguing pairing of opposite energies. The 1 acts while the 7 reflects. With mutual respect for each other's pace, this can be a deeply enriching connection."},
+  "1-8":{score:48,label:"Power Struggle",desc:"The Sun and Saturn are planetary enemies. Two dominant forces, both demanding ultimate authority. This pairing requires exceptional psychological maturity and shared purpose."},
+  "1-9":{score:75,label:"Warrior Alliance",desc:"Both are driven by purpose. The 1 pioneers the path; the 9 envisions the destination. A powerful partnership provided their specific humanitarian or entrepreneurial causes align."},
+  "2-2":{score:78,label:"Emotional Mirror",desc:"Deep mutual understanding and immense sensitivity. Beautiful harmony is possible, but both must work hard to avoid codependency and ensure decisions actually get made."},
+  "2-3":{score:84,label:"Harmony & Expression",desc:"The 2 provides a stable, appreciative audience for the 3's creative outpouring. A vibrant, emotionally rich, and socially engaging partnership."},
+  "2-4":{score:80,label:"Stable Foundation",desc:"The Moon and Rahu create a grounded, reliable union. The emotional diplomat is securely anchored by the pragmatic builder — a beautiful, enduring combination."},
+  "2-5":{score:52,label:"Stability vs Freedom",desc:"The 5's erratic adventure-seeking triggers the 2's deep abandonment fears. Requires constant negotiation and an exceptional amount of mutual patience and trust."},
+  "2-6":{score:88,label:"Divine Harmony",desc:"The absolute pinnacle of compatibility. Moon meets Venus — profound emotional understanding, mutual caretaking, and a gentleness that allows both partners to flourish fully."},
+  "2-7":{score:65,label:"Emotional vs Analytical",desc:"The 2 craves emotional merging while the 7 requires intellectual solitude. Can be deeply enriching if the 2 respects the 7's sacred need for independent space."},
+  "2-8":{score:55,label:"Heart vs Ambition",desc:"Saturn is a planetary enemy of the Moon. The 8's intense ambition often cools the 2's emotional warmth. The 2 may feel emotionally isolated by the 8's relentless focus."},
+  "2-9":{score:72,label:"Compassionate Souls",desc:"Both are deeply devoted to others. A loving, service-oriented partnership, though the 9's broad humanitarian focus may sometimes leave the 2 feeling personally neglected."},
+  "3-3":{score:74,label:"Creative Explosion",desc:"A spectacular burst of creative energy and social joy. However, both share the same scattered tendencies — grounding mechanisms are essential for long-term stability."},
+  "3-4":{score:48,label:"Freedom vs Structure",desc:"The 4's rigid need for predictable foundations feels like a psychological prison to the 3. The 3's scattered nature incites deep anxiety in the 4. Requires enormous mutual effort."},
+  "3-5":{score:80,label:"Adventure Partners",desc:"One of the most exciting and energetic combinations. Shared adventures, intellectual partnership, and rapid verbal exchange. An endlessly stimulating, highly compatible pairing."},
+  "3-6":{score:83,label:"Joyful Harmony",desc:"Both share a profound appreciation for aesthetics, pleasure, and social harmony. A joyful, family-creative unit with mutual appreciation for beauty and authentic expression."},
+  "3-7":{score:55,label:"Optimism vs Depth",desc:"The 3's extroverted optimism often rings hollow to the deeply introspective 7. An intellectually stimulating pairing if both can appreciate their fundamentally different processing styles."},
+  "3-8":{score:50,label:"Creativity vs Ambition",desc:"The 3's creative spontaneity frequently clashes with the 8's rigid, goal-oriented structure. Both must make significant intentional compromises to find a lasting middle ground."},
+  "3-9":{score:79,label:"Inspirational Union",desc:"Jupiter's expansion meets Mars's idealism. A deeply inspirational partnership focused on uplifting the collective. Both share a love for culture, expression, and global impact."},
+  "4-4":{score:76,label:"Solid Rock Partnership",desc:"Two builders building together — exceptional stability, shared values, and mutual respect for hard work. Watch for combined stubbornness creating an immovable stalemate."},
+  "4-5":{score:45,label:"Walls vs Wings",desc:"The lowest overall compatibility pairing. The 4 builds walls for security while the 5 views those exact walls as a threat to their autonomy. Requires ironclad conflict protocols."},
+  "4-6":{score:80,label:"Security & Devotion",desc:"The ultimate traditional family foundation. The 4 provides structure and security while the 6 transforms that stability into a warm, beautiful, and nurturing home."},
+  "4-7":{score:82,label:"Grounded Seeker",desc:"An excellent karmic axis. The practical builder successfully grounds the cerebral seeker, providing the 7 with the secure base needed to safely explore spiritual realms."},
+  "4-8":{score:90,label:"Power Couple",desc:"The single most compatible combination in all of numerological synastry. Both understand the intrinsic value of hard work, delayed gratification, and material foundations."},
+  "4-9":{score:52,label:"Pragmatism vs Idealism",desc:"The 4's pragmatic self-security focus clashes directly with the 9's willingness to sacrifice resources for the humanitarian collective. Profound value divergence requires active work."},
+  "5-5":{score:70,label:"Double Freedom",desc:"Two explorers exploring together — electrifying adventures and shared excitement. However, the combined lack of stability and commitment can make this feel like a perpetual vacation with no home base."},
+  "5-6":{score:52,label:"Freedom vs Home",desc:"The 6's intense nurturing duty feels suffocating to the 5, while the 5's unpredictability chronically triggers the 6's deep domestic anxieties. Requires constant renegotiation."},
+  "5-7":{score:73,label:"Independent Intellectuals",desc:"Both value non-traditional relationship structures and individual exploration. The 5 explores the external world while the 7 explores the internal — mutual respect creates depth."},
+  "5-8":{score:55,label:"Speed vs Control",desc:"Mercury's fast, erratic speed operates in direct opposition to Saturn's slow, methodical, and controlling nature. The 5's impulsivity deeply frustrates the 8's need for strategic order."},
+  "5-9":{score:72,label:"Freedom Seekers",desc:"Both value independence and resist being caged by convention. An exciting, adventurous partnership with shared appreciation for global exploration and unconventional lifestyles."},
+  "6-6":{score:80,label:"Twin Nurturers",desc:"Extraordinarily harmonious — two Venusian nurturers creating a beautiful home together. The risk is over-caretaking each other while neglecting individual growth and outside relationships."},
+  "6-7":{score:55,label:"Togetherness vs Solitude",desc:"The 6's desire for constant domestic intimacy deeply intrudes upon the 7's sacred need for psychological solitude. The 6 interprets the 7's withdrawal as rejection, creating a painful cycle."},
+  "6-8":{score:74,label:"Heart & Power",desc:"The 8 provides the material resources and ambitious drive while the 6 transforms those resources into a beautiful, nurturing home. A synergistic, complementary, and highly functional pairing."},
+  "6-9":{score:80,label:"Universal Love",desc:"The micro-caretaker meets the macro-caretaker. A partnership of immense compassion, shared ideals, and a beautiful home life that naturally becomes a beacon of light for others."},
+  "7-7":{score:72,label:"Twin Seekers",desc:"Two highly independent intellectuals and philosophical searchers. Deeply stimulating and profoundly understood by one another, but susceptible to emotional distance if neither makes vulnerability an active practice."},
+  "7-8":{score:60,label:"Spirit vs Matter",desc:"The 7's spiritual depth can feel alien to the 8's material focus. However, if the 8 values wisdom and the 7 appreciates ambition, this pairing can achieve an unusual and powerful balance."},
+  "7-9":{score:62,label:"Wisdom Seekers",desc:"The 9's extroverted collective-focused energy exhausts the 7's limited social battery. The 7 must consciously engage with the 9's broader social life while the 9 fiercely respects the 7's solitude."},
+  "8-8":{score:68,label:"Corporate Empire",desc:"Two powerful, highly ambitious forces. Can build extraordinary material success together, but must be vigilant against a cold, competitive atmosphere devoid of genuine emotional intimacy."},
+  "8-9":{score:52,label:"Material vs Spiritual",desc:"A collision of core values. The 8 accumulates wealth through logic while the 9 sacrifices it for ideals. To the 9 the 8 appears ruthless; to the 8 the 9 appears financially irresponsible."},
+  "9-9":{score:78,label:"Humanitarian Alliance",desc:"Two humanitarians on a shared world-saving mission. An inspiring, deeply purposeful partnership, though both must consciously ensure their vast love for the collective also flows generously toward each other."},
+  "11-2":{score:85,label:"Natural Harmony",desc:"The ultimate baseline harmony. The 2 provides grounded emotional support and practical stability without dismissing the 11's idealism. What the 2 lacks in amplified intuition, they compensate for with unshakeable stability."},
+  "11-6":{score:87,label:"Nurturing Foundation",desc:"Because the 11 constantly absorbs the world's pain, the 6 provides a necessary protective sanctuary. The 6 respects the spiritual practice without needing to participate, creating a deeply secure home base."},
+  "11-9":{score:90,label:"Spiritual Soulmates",desc:"Two old souls who share a humanitarian vision. This connection often feels karmically significant from inception, marked by shared depth, idealism, and a mutual pursuit of intangible meaning."},
+  "22-4":{score:88,label:"Master Builders Alliance",desc:"Two highly disciplined builders — a rare powerhouse combination. Together they can manifest almost anything through the perfect marriage of visionary scope and practical execution."},
+  "22-8":{score:85,label:"Empire Builders",desc:"An exceptional pairing of material mastery and visionary building. Both understand the language of ambition, discipline, and the creation of lasting systemic legacies."},
+  "33-6":{score:92,label:"Divine Love",desc:"Two Venusian nurturers operating at elevated frequencies. Together they create an extraordinarily compassionate sanctuary that heals everyone who enters their sphere."}
+};
+
+function getCompat(a,b){
+  const k1=`${a}-${b}`;
+  const k2=`${b}-${a}`;
+  return COMPAT[k1]||COMPAT[k2]||{score:65,label:"Unique Connection",desc:"Your combination is rare — not every pairing has a standard template. What matters most is the conscious effort both of you bring to understanding each other's deeply different energetic rhythms."};
+}
+
+// ── Color map ──
+const COLOR_MAP={
+  1:"#c9a96e",2:"#b8d4e8",3:"#e8d070",4:"#8899aa",5:"#70c8b0",
+  6:"#f0a0b8",7:"#9b6bbf",8:"#334466",9:"#c84848",
+  11:"#a0a8c8",22:"#c87848",33:"#f0e8c8"
+};
+
+let currentLP=null;
+
+function preview(){
+  const d=+document.getElementById('dd').value;
+  const m=+document.getElementById('mm').value;
+  const y=+document.getElementById('yy').value;
+  const prev=document.getElementById('compPreview');
+  const arrow=document.getElementById('compArrow');
+  if(!d&&!m&&!y){prev.classList.remove('show');arrow.classList.remove('show');return}
+  prev.classList.add('show');
+  const rd=d?reduce(d):'—';
+  const rm=m?reduce(m):'—';
+  const ry=y?reduceYear(y):'—';
+  document.getElementById('cp-d').textContent=rd;
+  document.getElementById('cp-m').textContent=rm;
+  document.getElementById('cp-y').textContent=ry;
+  if(d&&m&&y){
+    const lp=calcLP(d,m,y);
+    const sum=reduce(d)+reduce(m)+reduceYear(y);
+    document.getElementById('compSum').textContent=sum;
+    document.getElementById('compFinal').textContent=lp;
+    arrow.classList.add('show');
+  }
+}
+
+function calculate(){
+  const d=+document.getElementById('dd').value;
+  const m=+document.getElementById('mm').value;
+  const y=+document.getElementById('yy').value;
+  if(!d||!m||!y){alert('Please select your complete birth date.');return}
+
+  const lp=calcLP(d,m,y);
+  currentLP=lp;
+  const info=DATA[lp];
+  if(!info)return;
+
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const isMaster=[11,22,33].includes(lp);
+
+  document.getElementById('rNum').textContent=lp;
+  document.getElementById('rNum').className='result-number'+(isMaster?' master':'');
+  document.getElementById('rMasterBadge').style.display=isMaster?'inline-flex':'none';
+  document.getElementById('rTitle').textContent=info.title;
+  document.getElementById('rBirthDate').textContent=`${months[m-1]} ${d}, ${y}`;
+  document.getElementById('rColorDot').style.background=info.colorHex;
+  document.getElementById('rColorLabel').textContent=info.color;
+  document.getElementById('rDayPill').textContent='Lucky Day: '+info.day;
+
+  document.getElementById('rRarityTitle').textContent=info.title+' Energy — Life Path '+lp;
+  document.getElementById('rRarityDesc').textContent=info.rarity||'Your exact date combination is uniquely yours in the universe.';
+
+  document.getElementById('rOverview').textContent=info.overview;
+
+  const str=document.getElementById('rStrengths');
+  str.innerHTML=info.strengths.map(s=>`<div class="trait-item" data-bullet="✦">${s}</div>`).join('');
+  const chal=document.getElementById('rChallenges');
+  chal.innerHTML=info.challenges.map(c=>`<div class="trait-item" data-bullet="◦">${c}</div>`).join('');
+
+  document.getElementById('rLove').textContent=info.love;
+
+  const car=document.getElementById('rCareers');
+  car.innerHTML=info.careers.map(c=>`<span class="career-pill">${c}</span>`).join('');
+
+  document.getElementById('rFamousNum').textContent=lp;
+  const fam=document.getElementById('rFamous');
+  fam.innerHTML=info.famous.map(f=>`<div class="famous-pill"><strong>${f.name}</strong>${f.why}</div>`).join('');
+
+  document.getElementById('rForecast').textContent=info.forecast;
+  document.getElementById('result').className='show';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function checkCompat(){
+  const cd=+document.getElementById('cd').value;
+  const cm=+document.getElementById('cm').value;
+  const cy=+document.getElementById('cy').value;
+  if(!currentLP){alert('Please calculate your own Life Path first.');return}
+  if(!cd||!cm||!cy){alert('Please enter your partner\'s birth date.');return}
+
+  const lp2=calcLP(cd,cm,cy);
+  const c=getCompat(currentLP,lp2);
+  const combCode=reduce(currentLP+lp2);
+
+  document.getElementById('cr-lp1').textContent=currentLP;
+  document.getElementById('cr-lp2').textContent=lp2;
+  document.getElementById('cr-code').textContent=combCode;
+  document.getElementById('cr-score').innerHTML=c.score+'<span style="font-size:32px">%</span>';
+  document.getElementById('cr-label').textContent=c.label;
+  document.getElementById('cr-desc').textContent=c.desc;
+
+  const cr=document.getElementById('compat-result');
+  cr.className='show';
+  setTimeout(()=>{document.getElementById('cr-bar').style.width=c.score+'%'},100);
+}
+
+function shareResult(){
+  if(!currentLP)return;
+  const info=DATA[currentLP];
+  const text=`✦ I'm Life Path ${currentLP} — ${info.title} ✦\n\n${info.overview.substring(0,120)}...\n\nDiscover your divine numbers at luminanumbers.com`;
+  if(navigator.share){navigator.share({title:'My Life Path Number',text,url:'https://luminanumbers.com/life-path-calculator/'})}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Copied to clipboard! Share your reading ✦'))}
+}
+
+// ── Build all-numbers grid ──
+(function(){
+  const grid=document.getElementById('numGrid');
+  [1,2,3,4,5,6,7,8,9,11,22,33].forEach(n=>{
+    const info=DATA[n];
+    const isMaster=[11,22,33].includes(n);
+    const chip=document.createElement('div');
+    chip.className='num-chip'+(isMaster?' master-chip':'');
+    chip.innerHTML=`<div class="nc-num" style="color:${info.colorHex}">${n}</div><div class="nc-title">${info.title.replace('The ','')}</div>`;
+    chip.onclick=()=>quickView(n);
+    grid.appendChild(chip);
+  });
+})();
+
+function quickView(n){
+  const info=DATA[n];
+  alert(`Life Path ${n} — ${info.title}\n\n${info.overview.substring(0,200)}...\n\nEnter a birth date above to get your full reading.`);
+}
+</script>
+</body>
+</html>
