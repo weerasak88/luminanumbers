@@ -1,34 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
-  <url>
-    <loc>https://luminanumbers.com/</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Tools (เพิ่มทีหลังเมื่อพร้อม) -->
-  <!--
-  <url>
-    <loc>https://luminanumbers.com/life-path-calculator/</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://luminanumbers.com/destiny-calculator/</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://luminanumbers.com/angel-numbers/</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  -->
-
+<url><loc>https://luminanumbers.com/</loc><lastmod>2026-05-26</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://luminanumbers.com/life-path-calculator/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-7-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-8-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-9-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-11-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-22-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-33-meaning/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-1-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-2-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-3-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-4-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-5-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-6-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-7-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-1-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-2-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-3-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-4-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-5-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-6-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-7-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-2-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-3-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-4-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-5-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-6-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-7-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-3-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-4-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-5-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-6-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-7-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-4-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-5-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-6-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-7-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-5-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-and-6-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-and-7-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-6-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-7-and-7-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-7-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-7-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-7-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-7-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-7-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-8-and-8-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-8-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-8-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-8-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-8-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-9-and-9-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-9-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-9-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-9-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-11-and-11-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-11-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-11-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-22-and-22-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-22-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://luminanumbers.com/life-path-33-and-33-compatibility/</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
