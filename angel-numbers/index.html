@@ -53,28 +53,6 @@ function getCrystalForNum(n){
   return map[n]||'Clear Quartz';
 }
 
-// ── Date selects populate ──
-(function(){
-  const dd=document.getElementById('d-dd');
-  const yy=document.getElementById('d-yy');
-  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
-  const yr=new Date().getFullYear();
-  for(let y=yr;y>=2010;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
-  // default today
-  const today=new Date();
-  dd.value=today.getDate();
-  document.getElementById('d-mm').value=today.getMonth()+1;
-  yy.value=today.getFullYear();
-})();
-
-function toggleDateInline(){
-  const body=document.getElementById('dateInlineBody');
-  const arrow=document.getElementById('dateArrow');
-  const isOpen=body.classList.contains('open');
-  body.classList.toggle('open',!isOpen);
-  arrow.classList.toggle('open',!isOpen);
-}
-
 // ── Numerology helpers ──
 function reduceNum(n,preserve=true){
   if(preserve&&(n===11||n===22||n===33))return n;
@@ -424,7 +402,7 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
     <div class="date-row-inner" style="margin-bottom:12px">
       <div class="date-f">
         <label>Day</label>
-        <select id="d-dd"><option value="">DD</option></select>
+        <select id="d-dd"><option value="">DD</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
       </div>
       <div class="date-f">
         <label>Month</label>
@@ -440,7 +418,7 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
       </div>
       <div class="date-f">
         <label>Year</label>
-        <select id="d-yy"><option value="">YYYY</option></select>
+        <select id="d-yy"><option value="">YYYY</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option></select>
       </div>
     </div>
     <button class="btn-combine" onclick="combineReading()">✦ Get My Combined Reading →</button>
@@ -638,6 +616,14 @@ function decode(forceNum){
   // Update quick chips
   document.querySelectorAll('.quick-chip').forEach(c=>c.classList.toggle('active', +c.textContent===n));
 
+  // Auto-set date to today if not set
+  const today = new Date();
+  const ddEl = document.getElementById('d-dd');
+  const mmEl = document.getElementById('d-mm');
+  const yyEl = document.getElementById('d-yy');
+  if(ddEl && !ddEl.value){ ddEl.value = today.getDate(); }
+  if(mmEl && !mmEl.value){ mmEl.value = today.getMonth()+1; }
+  if(yyEl && !yyEl.value){ yyEl.value = today.getFullYear(); }
   const res = document.getElementById('result');
   res.className = 'show';
   res.scrollIntoView({behavior:'smooth', block:'start'});
