@@ -13,6 +13,46 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="../js/cookie-consent.js" data-ga="G-LSCWW3E9XV">
+
+// ── Fallback generator from base digits ──
+function getBaseDigitData(n){
+  const digits = String(n).split('').map(Number);
+  const sum = digits.reduce((a,c)=>a+c,0);
+  const reduced = reduceNum(sum);
+  const e = NUM_ENERGY[reduced] || NUM_ENERGY[1];
+
+  // Detect pattern type
+  const isRepeating = digits.every(d=>d===digits[0]);
+  const isSequential = digits.length>1 && digits.every((d,i)=>i===0||d===digits[i-1]+1);
+  const isMirror = digits.join('')===digits.slice().reverse().join('') && digits.length>1;
+
+  let patternNote = '';
+  if(isRepeating) patternNote = `As a repeating sequence, ${n} amplifies the energy of ${digits[0]} exponentially.`;
+  else if(isSequential) patternNote = `As a sequential pattern, ${n} carries the energy of steady progression and forward momentum.`;
+  else if(isMirror) patternNote = `As a mirror number, ${n} reflects dual energies that balance and amplify each other.`;
+  else patternNote = `The digits of ${n} reduce to ${reduced}, channeling the core energy of ${e.name}.`;
+
+  return {
+    title: `${e.name} Energy (${n})`,
+    general: `The sequence ${n} carries the vibrational frequency of the number ${reduced} — the energy of ${e.name} and ${e.theme}. ${patternNote} When this number appears repeatedly in your life, the universe is drawing your attention to the themes of ${e.theme}. Pay close attention to where this energy is most needed in your current circumstances.`,
+    love: `In matters of the heart, the ${reduced} (${e.name}) energy of ${n} brings themes of ${e.theme} into your romantic life. This number urges you to apply the qualities of ${e.name} to your relationships — whether that means nurturing a current bond or stepping boldly into new romantic territory.`,
+    career: `Professionally, ${n} channels the ${e.name} archetype into your career path. The themes of ${e.theme} are particularly relevant in your work life right now. Trust that this sequence is a signal to embody ${e.name} energy in your professional decisions and interactions.`,
+    finance: `Financially, the ${reduced} vibration within ${n} speaks of ${e.theme} applied to your material world. This is a reminder to approach your finances with the wisdom of ${e.name} — whether that calls for bold action, patient cultivation, or deeper awareness of your current resources.`,
+    twin_flame: `In the context of twin flame connections, ${n} carries the ${e.name} frequency of ${e.theme}. This energy often appears during significant moments in the twin flame journey, signaling that ${e.theme} is the key lesson both souls are working through together right now.`,
+    action: `Reflect on how the energy of ${e.name} (${e.theme}) is most needed in your life right now, and take one conscious step toward embodying it today.`,
+    crystal: getCrystalForNum(reduced),
+    frequency: 'Unique Pattern',
+    is_fallback: true,
+    reduced: reduced,
+    base_energy: e
+  };
+}
+
+function getCrystalForNum(n){
+  const map={1:'Clear Quartz',2:'Rose Quartz',3:'Carnelian',4:'Black Tourmaline',5:'Labradorite',6:'Rhodochrosite',7:'Amethyst',8:'Citrine',9:'Selenite',11:'Moonstone',22:'Pyrite',33:'Celestite'};
+  return map[n]||'Clear Quartz';
+}
+
 // ── Date selects populate ──
 (function(){
   const dd=document.getElementById('d-dd');
@@ -522,19 +562,34 @@ function onInput(){
 function decode(forceNum){
   const n = forceNum || +document.getElementById('numInput').value;
   if(!n){ alert('Please enter an angel number.'); return; }
-  const d = DATA[n];
-  if(!d){
-    alert(`Angel number ${n} — we don't have a specific reading for this sequence yet. Try 111, 222, 333, 444, 555, 777, 888, 999, 1111, 1212 or 1234.`);
-    return;
-  }
+  const rawData = DATA[n];
+  const d = rawData || getBaseDigitData(n);
   currentNum = n;
   document.getElementById('numInput').value = n;
 
   document.getElementById('r-num').textContent = n;
   document.getElementById('r-title').textContent = d.title;
+  // Fallback banner
+  let fallbackBanner = document.getElementById('fallback-banner');
+  if(d.is_fallback){
+    if(!fallbackBanner){
+      fallbackBanner = document.createElement('div');
+      fallbackBanner.id = 'fallback-banner';
+      fallbackBanner.style.cssText = 'background:rgba(155,107,191,.1);border:1px solid rgba(155,107,191,.25);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#9b6bbf;text-align:center;line-height:1.5;';
+      document.getElementById('result').insertBefore(fallbackBanner, document.getElementById('result').firstChild);
+    }
+    const re = d.base_energy;
+    fallbackBanner.style.display = 'block';
+    fallbackBanner.innerHTML = `✦ <strong>${n}</strong> reduces to <strong>${d.reduced}</strong> — reading generated from <strong>${re.name}</strong> (${re.theme}) energy ${re.emoji}`;
+  } else {
+    if(fallbackBanner) fallbackBanner.style.display = 'none';
+  }
   const fc = FREQ_COLOR[d.frequency]||'#9b6bbf';
-  document.getElementById('r-freq').innerHTML = `<span style="color:${fc}">●</span> ${d.frequency}`;
-  document.getElementById('r-freq').style.color = fc;
+  const freqLabel = d.is_fallback
+    ? `<span style="color:#9b6bbf">✦</span> Reading generated from base digit ${d.reduced}`
+    : `<span style="color:${fc}">●</span> ${d.frequency}`;
+  document.getElementById('r-freq').innerHTML = freqLabel;
+  document.getElementById('r-freq').style.color = d.is_fallback ? '#9b6bbf' : fc;
   document.getElementById('r-action').textContent = d.action;
   document.getElementById('r-general').textContent = d.general;
   document.getElementById('r-love').textContent = d.love;
@@ -574,6 +629,46 @@ function shareResult(){
   } else {
     navigator.clipboard.writeText(text).then(()=>alert('Copied to clipboard! ✦'));
   }
+}
+
+
+// ── Fallback generator from base digits ──
+function getBaseDigitData(n){
+  const digits = String(n).split('').map(Number);
+  const sum = digits.reduce((a,c)=>a+c,0);
+  const reduced = reduceNum(sum);
+  const e = NUM_ENERGY[reduced] || NUM_ENERGY[1];
+
+  // Detect pattern type
+  const isRepeating = digits.every(d=>d===digits[0]);
+  const isSequential = digits.length>1 && digits.every((d,i)=>i===0||d===digits[i-1]+1);
+  const isMirror = digits.join('')===digits.slice().reverse().join('') && digits.length>1;
+
+  let patternNote = '';
+  if(isRepeating) patternNote = `As a repeating sequence, ${n} amplifies the energy of ${digits[0]} exponentially.`;
+  else if(isSequential) patternNote = `As a sequential pattern, ${n} carries the energy of steady progression and forward momentum.`;
+  else if(isMirror) patternNote = `As a mirror number, ${n} reflects dual energies that balance and amplify each other.`;
+  else patternNote = `The digits of ${n} reduce to ${reduced}, channeling the core energy of ${e.name}.`;
+
+  return {
+    title: `${e.name} Energy (${n})`,
+    general: `The sequence ${n} carries the vibrational frequency of the number ${reduced} — the energy of ${e.name} and ${e.theme}. ${patternNote} When this number appears repeatedly in your life, the universe is drawing your attention to the themes of ${e.theme}. Pay close attention to where this energy is most needed in your current circumstances.`,
+    love: `In matters of the heart, the ${reduced} (${e.name}) energy of ${n} brings themes of ${e.theme} into your romantic life. This number urges you to apply the qualities of ${e.name} to your relationships — whether that means nurturing a current bond or stepping boldly into new romantic territory.`,
+    career: `Professionally, ${n} channels the ${e.name} archetype into your career path. The themes of ${e.theme} are particularly relevant in your work life right now. Trust that this sequence is a signal to embody ${e.name} energy in your professional decisions and interactions.`,
+    finance: `Financially, the ${reduced} vibration within ${n} speaks of ${e.theme} applied to your material world. This is a reminder to approach your finances with the wisdom of ${e.name} — whether that calls for bold action, patient cultivation, or deeper awareness of your current resources.`,
+    twin_flame: `In the context of twin flame connections, ${n} carries the ${e.name} frequency of ${e.theme}. This energy often appears during significant moments in the twin flame journey, signaling that ${e.theme} is the key lesson both souls are working through together right now.`,
+    action: `Reflect on how the energy of ${e.name} (${e.theme}) is most needed in your life right now, and take one conscious step toward embodying it today.`,
+    crystal: getCrystalForNum(reduced),
+    frequency: 'Unique Pattern',
+    is_fallback: true,
+    reduced: reduced,
+    base_energy: e
+  };
+}
+
+function getCrystalForNum(n){
+  const map={1:'Clear Quartz',2:'Rose Quartz',3:'Carnelian',4:'Black Tourmaline',5:'Labradorite',6:'Rhodochrosite',7:'Amethyst',8:'Citrine',9:'Selenite',11:'Moonstone',22:'Pyrite',33:'Celestite'};
+  return map[n]||'Clear Quartz';
 }
 
 // ── Date selects populate ──
