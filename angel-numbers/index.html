@@ -12,7 +12,117 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="../js/cookie-consent.js" data-ga="G-LSCWW3E9XV"></script>
+<script src="../js/cookie-consent.js" data-ga="G-LSCWW3E9XV">
+// ── Date selects populate ──
+(function(){
+  const dd=document.getElementById('d-dd');
+  const yy=document.getElementById('d-yy');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
+  const yr=new Date().getFullYear();
+  for(let y=yr;y>=2010;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+  // default today
+  const today=new Date();
+  dd.value=today.getDate();
+  document.getElementById('d-mm').value=today.getMonth()+1;
+  yy.value=today.getFullYear();
+})();
+
+function toggleDate(){
+  const sec=document.getElementById('dateSection');
+  const btn=document.getElementById('dateToggleBtn');
+  const isShow=sec.classList.contains('show');
+  sec.classList.toggle('show',!isShow);
+  btn.classList.toggle('active',!isShow);
+  btn.textContent=isShow?'📅 Add the date you saw this number':'✕ Hide date reading';
+}
+
+// ── Numerology helpers ──
+function reduceNum(n,preserve=true){
+  if(preserve&&(n===11||n===22||n===33))return n;
+  if(n<10)return n;
+  return reduceNum(String(n).split('').reduce((a,c)=>a+ +c,0),preserve);
+}
+function reduceYear(y){return reduceNum(String(y).split('').reduce((a,c)=>a+ +c,0));}
+
+const NUM_ENERGY={
+  1:{name:"Pioneer",theme:"new beginnings and bold action",emoji:"☀️"},
+  2:{name:"Diplomat",theme:"balance and cooperation",emoji:"🌙"},
+  3:{name:"Communicator",theme:"creativity and expression",emoji:"✨"},
+  4:{name:"Builder",theme:"structure and stability",emoji:"🏗️"},
+  5:{name:"Explorer",theme:"change and freedom",emoji:"🌊"},
+  6:{name:"Nurturer",theme:"love and responsibility",emoji:"🌸"},
+  7:{name:"Seeker",theme:"wisdom and spiritual depth",emoji:"🔮"},
+  8:{name:"Powerhouse",theme:"abundance and authority",emoji:"⚡"},
+  9:{name:"Humanitarian",theme:"completion and universal love",emoji:"🌍"},
+  11:{name:"Visionary",theme:"spiritual awakening and intuition",emoji:"🪽"},
+  22:{name:"Master Builder",theme:"manifesting grand visions",emoji:"🌟"},
+  33:{name:"Master Teacher",theme:"divine love and healing",emoji:"💫"},
+};
+
+const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+// ── Combined reading templates ──
+function buildCombinedReading(angel, angelData, dayNum, monthNum, yearNum){
+  const de=NUM_ENERGY[dayNum]||NUM_ENERGY[1];
+  const me=NUM_ENERGY[monthNum]||NUM_ENERGY[1];
+  const ye=NUM_ENERGY[yearNum]||NUM_ENERGY[1];
+
+  // Build contextual combined reading
+  const angelCore=angelData.title.toLowerCase();
+  const templates=[
+    `Seeing ${angel} on this day is no coincidence. The ${angelData.title} energy of ${angel} is amplified by ${de.name} day energy (${de.theme}), ${me.name} month energy (${me.theme}), and the ${ye.name} vibration of this year (${ye.theme}). The universe is sending a layered message: ${angelData.action.toLowerCase()} — and do so with the awareness that ${de.theme} is your immediate energetic backdrop right now.`,
+    `The date you saw ${angel} carries powerful numerological weight. Day ${dayNum} (${de.name} — ${de.theme}) combined with the ${angelCore} message creates a convergence the universe rarely offers twice. In a ${me.name} month that emphasizes ${me.theme}, and a ${ye.name} year focused on ${ye.theme}, this sighting is a triple confirmation from the cosmos. Act on this message now.`,
+    `When ${angel} appears under ${de.name} (Day ${dayNum}) energy, its message of ${angelCore} becomes deeply personal. This ${me.name} month is already vibrating with ${me.theme} — meaning the universe is not just speaking to you in general, but specifically about the area of your life that involves ${de.theme}. In a year of ${ye.theme}, this combination is rare and significant.`
+  ];
+
+  return templates[angel % 3];
+}
+
+function combineReading(){
+  if(!currentNum){alert('Please decode an angel number first.');return;}
+  const d=+document.getElementById('d-dd').value;
+  const m=+document.getElementById('d-mm').value;
+  const y=+document.getElementById('d-yy').value;
+  if(!d||!m||!y){alert('Please select the date you saw this number.');return;}
+
+  const dayNum=reduceNum(d);
+  const monthNum=reduceNum(m);
+  const yearNum=reduceYear(y);
+  const angelData=DATA[currentNum];
+
+  const de=NUM_ENERGY[dayNum]||NUM_ENERGY[1];
+  const me=NUM_ENERGY[monthNum]||NUM_ENERGY[1];
+  const ye=NUM_ENERGY[yearNum]||NUM_ENERGY[1];
+
+  // Date string
+  document.getElementById('c-datestr').textContent=`You saw ${currentNum} on ${MONTHS[m-1]} ${d}, ${y}`;
+
+  // Pills
+  const pills=document.getElementById('c-pills');
+  pills.innerHTML=`
+    <div class="energy-pill">${de.emoji} Day <span>${dayNum}</span> · ${de.name}</div>
+    <div class="energy-pill">${me.emoji} Month <span>${monthNum}</span> · ${me.name}</div>
+    <div class="energy-pill">${ye.emoji} Year <span>${yearNum}</span> · ${ye.name}</div>
+  `;
+
+  // Reading
+  document.getElementById('c-reading').textContent=buildCombinedReading(currentNum,angelData,dayNum,monthNum,yearNum);
+
+  const card=document.getElementById('combinedCard');
+  card.classList.add('show');
+  card.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function shareCombined(){
+  const dateStr=document.getElementById('c-datestr').textContent;
+  const reading=document.getElementById('c-reading').textContent;
+  if(!dateStr||!currentNum)return;
+  const text=`✦ ${dateStr}\n\nAngel Number ${currentNum} — ${DATA[currentNum].title}\n\n"${reading.substring(0,150)}..."\n\nGet your combined reading at luminanumbers.com/angel-numbers/`;
+  if(navigator.share){navigator.share({title:`Angel Number ${currentNum} — Date Reading`,text,url:'https://luminanumbers.com/angel-numbers/'});}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Copied! Share your reading ✦'));}
+}
+
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -134,6 +244,40 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
   .result-hero{padding:24px 18px}
   .input-card{padding:18px 16px}
 }
+
+/* ─── DATE ENERGY ─── */
+.date-toggle{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px auto 0;max-width:640px;padding:0 5vw}
+.date-toggle-btn{display:flex;align-items:center;gap:6px;background:none;border:1.5px dashed rgba(155,107,191,.35);border-radius:99px;padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:12.5px;color:#9b6bbf;cursor:pointer;transition:all .2s}
+.date-toggle-btn:hover{background:rgba(155,107,191,.08);border-style:solid}
+.date-toggle-btn.active{background:rgba(155,107,191,.1);border-style:solid}
+.date-section{display:none;position:relative;z-index:1;max-width:640px;margin:10px auto 0;padding:0 5vw}
+.date-section.show{display:block}
+.date-card{background:linear-gradient(135deg,rgba(212,191,232,.25),rgba(155,107,191,.1));border:1px solid rgba(155,107,191,.22);border-radius:20px;padding:20px 22px}
+.date-card-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#9b6bbf;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.date-row-inner{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;margin-bottom:12px}
+.date-f label{display:block;font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-soft);margin-bottom:4px}
+.date-f select{width:100%;padding:9px 10px;background:rgba(255,255,255,.75);border:1.5px solid rgba(155,107,191,.25);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-dark);appearance:none;cursor:pointer;outline:none;transition:border-color .2s}
+.date-f select:focus{border-color:#9b6bbf}
+.btn-combine{width:100%;padding:11px;background:linear-gradient(135deg,rgba(212,191,232,.6),rgba(155,107,191,.5));border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:white;cursor:pointer;transition:all .2s}
+.btn-combine:hover{background:linear-gradient(135deg,var(--lavender),#9b6bbf)}
+
+/* Combined reading */
+.combined-card{display:none;background:linear-gradient(135deg,rgba(212,191,232,.35),rgba(155,107,191,.2));border:1px solid rgba(155,107,191,.3);border-radius:20px;padding:22px;margin-top:12px}
+.combined-card.show{display:block}
+.combined-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-dark);margin-bottom:4px;display:flex;align-items:center;gap:7px}
+.combined-date-str{font-size:11.5px;color:#9b6bbf;margin-bottom:14px;font-weight:500}
+.energy-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.energy-pill{background:rgba(255,255,255,.65);border:1px solid rgba(155,107,191,.2);border-radius:99px;padding:5px 12px;font-size:11.5px;color:var(--text-mid);display:flex;align-items:center;gap:5px}
+.energy-pill span{font-weight:600;color:#9b6bbf}
+.combined-reading{font-size:14px;color:var(--text-mid);line-height:1.8;font-style:italic;padding:12px 14px;background:rgba(255,255,255,.5);border-radius:12px;border-left:3px solid #9b6bbf;margin-bottom:14px}
+.share-combined{width:100%;padding:11px;background:linear-gradient(135deg,var(--lavender),#9b6bbf);border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .15s}
+.share-combined:hover{transform:translateY(-1px)}
+
+@media(max-width:600px){
+  .date-row-inner{grid-template-columns:1fr 1fr}
+  .date-row-inner .date-f:last-child{grid-column:1/-1}
+}
+
 </style>
 </head>
 <body>
@@ -174,6 +318,53 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
     <p class="input-hint">✦ Supports 111–999 · 1010 · 1111 · 1122 · 1144 · 1155 · 1212 · 1234 · 2222–9999</p>
   </div>
 </div>
+
+<!-- DATE ENERGY TOGGLE -->
+<div class="date-toggle">
+  <button class="date-toggle-btn" id="dateToggleBtn" onclick="toggleDate()">
+    📅 Add the date you saw this number
+  </button>
+</div>
+
+<!-- DATE SECTION -->
+<div class="date-section" id="dateSection">
+  <div class="date-card">
+    <div class="date-card-label">📅 When did you see this number?</div>
+    <div class="date-row-inner">
+      <div class="date-f">
+        <label>Day</label>
+        <select id="d-dd"><option value="">DD</option></select>
+      </div>
+      <div class="date-f">
+        <label>Month</label>
+        <select id="d-mm">
+          <option value="">MM</option>
+          <option value="1">January</option><option value="2">February</option>
+          <option value="3">March</option><option value="4">April</option>
+          <option value="5">May</option><option value="6">June</option>
+          <option value="7">July</option><option value="8">August</option>
+          <option value="9">September</option><option value="10">October</option>
+          <option value="11">November</option><option value="12">December</option>
+        </select>
+      </div>
+      <div class="date-f">
+        <label>Year</label>
+        <select id="d-yy"><option value="">YYYY</option></select>
+      </div>
+    </div>
+    <button class="btn-combine" onclick="combineReading()">✦ Get Combined Reading →</button>
+  </div>
+
+  <!-- Combined Result -->
+  <div class="combined-card" id="combinedCard">
+    <div class="combined-title">✦ Your Combined Reading</div>
+    <div class="combined-date-str" id="c-datestr">—</div>
+    <div class="energy-pills" id="c-pills"></div>
+    <div class="combined-reading" id="c-reading">—</div>
+    <button class="share-combined" onclick="shareCombined()">🔗 Share This Reading</button>
+  </div>
+</div>
+
 
 <!-- RESULT -->
 <div id="result">
@@ -384,6 +575,116 @@ function shareResult(){
     navigator.clipboard.writeText(text).then(()=>alert('Copied to clipboard! ✦'));
   }
 }
+
+// ── Date selects populate ──
+(function(){
+  const dd=document.getElementById('d-dd');
+  const yy=document.getElementById('d-yy');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
+  const yr=new Date().getFullYear();
+  for(let y=yr;y>=2010;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+  // default today
+  const today=new Date();
+  dd.value=today.getDate();
+  document.getElementById('d-mm').value=today.getMonth()+1;
+  yy.value=today.getFullYear();
+})();
+
+function toggleDate(){
+  const sec=document.getElementById('dateSection');
+  const btn=document.getElementById('dateToggleBtn');
+  const isShow=sec.classList.contains('show');
+  sec.classList.toggle('show',!isShow);
+  btn.classList.toggle('active',!isShow);
+  btn.textContent=isShow?'📅 Add the date you saw this number':'✕ Hide date reading';
+}
+
+// ── Numerology helpers ──
+function reduceNum(n,preserve=true){
+  if(preserve&&(n===11||n===22||n===33))return n;
+  if(n<10)return n;
+  return reduceNum(String(n).split('').reduce((a,c)=>a+ +c,0),preserve);
+}
+function reduceYear(y){return reduceNum(String(y).split('').reduce((a,c)=>a+ +c,0));}
+
+const NUM_ENERGY={
+  1:{name:"Pioneer",theme:"new beginnings and bold action",emoji:"☀️"},
+  2:{name:"Diplomat",theme:"balance and cooperation",emoji:"🌙"},
+  3:{name:"Communicator",theme:"creativity and expression",emoji:"✨"},
+  4:{name:"Builder",theme:"structure and stability",emoji:"🏗️"},
+  5:{name:"Explorer",theme:"change and freedom",emoji:"🌊"},
+  6:{name:"Nurturer",theme:"love and responsibility",emoji:"🌸"},
+  7:{name:"Seeker",theme:"wisdom and spiritual depth",emoji:"🔮"},
+  8:{name:"Powerhouse",theme:"abundance and authority",emoji:"⚡"},
+  9:{name:"Humanitarian",theme:"completion and universal love",emoji:"🌍"},
+  11:{name:"Visionary",theme:"spiritual awakening and intuition",emoji:"🪽"},
+  22:{name:"Master Builder",theme:"manifesting grand visions",emoji:"🌟"},
+  33:{name:"Master Teacher",theme:"divine love and healing",emoji:"💫"},
+};
+
+const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+// ── Combined reading templates ──
+function buildCombinedReading(angel, angelData, dayNum, monthNum, yearNum){
+  const de=NUM_ENERGY[dayNum]||NUM_ENERGY[1];
+  const me=NUM_ENERGY[monthNum]||NUM_ENERGY[1];
+  const ye=NUM_ENERGY[yearNum]||NUM_ENERGY[1];
+
+  // Build contextual combined reading
+  const angelCore=angelData.title.toLowerCase();
+  const templates=[
+    `Seeing ${angel} on this day is no coincidence. The ${angelData.title} energy of ${angel} is amplified by ${de.name} day energy (${de.theme}), ${me.name} month energy (${me.theme}), and the ${ye.name} vibration of this year (${ye.theme}). The universe is sending a layered message: ${angelData.action.toLowerCase()} — and do so with the awareness that ${de.theme} is your immediate energetic backdrop right now.`,
+    `The date you saw ${angel} carries powerful numerological weight. Day ${dayNum} (${de.name} — ${de.theme}) combined with the ${angelCore} message creates a convergence the universe rarely offers twice. In a ${me.name} month that emphasizes ${me.theme}, and a ${ye.name} year focused on ${ye.theme}, this sighting is a triple confirmation from the cosmos. Act on this message now.`,
+    `When ${angel} appears under ${de.name} (Day ${dayNum}) energy, its message of ${angelCore} becomes deeply personal. This ${me.name} month is already vibrating with ${me.theme} — meaning the universe is not just speaking to you in general, but specifically about the area of your life that involves ${de.theme}. In a year of ${ye.theme}, this combination is rare and significant.`
+  ];
+
+  return templates[angel % 3];
+}
+
+function combineReading(){
+  if(!currentNum){alert('Please decode an angel number first.');return;}
+  const d=+document.getElementById('d-dd').value;
+  const m=+document.getElementById('d-mm').value;
+  const y=+document.getElementById('d-yy').value;
+  if(!d||!m||!y){alert('Please select the date you saw this number.');return;}
+
+  const dayNum=reduceNum(d);
+  const monthNum=reduceNum(m);
+  const yearNum=reduceYear(y);
+  const angelData=DATA[currentNum];
+
+  const de=NUM_ENERGY[dayNum]||NUM_ENERGY[1];
+  const me=NUM_ENERGY[monthNum]||NUM_ENERGY[1];
+  const ye=NUM_ENERGY[yearNum]||NUM_ENERGY[1];
+
+  // Date string
+  document.getElementById('c-datestr').textContent=`You saw ${currentNum} on ${MONTHS[m-1]} ${d}, ${y}`;
+
+  // Pills
+  const pills=document.getElementById('c-pills');
+  pills.innerHTML=`
+    <div class="energy-pill">${de.emoji} Day <span>${dayNum}</span> · ${de.name}</div>
+    <div class="energy-pill">${me.emoji} Month <span>${monthNum}</span> · ${me.name}</div>
+    <div class="energy-pill">${ye.emoji} Year <span>${yearNum}</span> · ${ye.name}</div>
+  `;
+
+  // Reading
+  document.getElementById('c-reading').textContent=buildCombinedReading(currentNum,angelData,dayNum,monthNum,yearNum);
+
+  const card=document.getElementById('combinedCard');
+  card.classList.add('show');
+  card.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function shareCombined(){
+  const dateStr=document.getElementById('c-datestr').textContent;
+  const reading=document.getElementById('c-reading').textContent;
+  if(!dateStr||!currentNum)return;
+  const text=`✦ ${dateStr}\n\nAngel Number ${currentNum} — ${DATA[currentNum].title}\n\n"${reading.substring(0,150)}..."\n\nGet your combined reading at luminanumbers.com/angel-numbers/`;
+  if(navigator.share){navigator.share({title:`Angel Number ${currentNum} — Date Reading`,text,url:'https://luminanumbers.com/angel-numbers/'});}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Copied! Share your reading ✦'));}
+}
+
 </script>
 </body>
 </html>
