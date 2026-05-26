@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angel Number Decoder — Lumina Numbers</title>
+<meta name="description" content="Decode your angel number instantly. Discover what 111, 222, 333, 444, 555, 777, 1111 and more mean for love, career, finance, and twin flames.">
+<meta property="og:title" content="Angel Number Decoder — Lumina Numbers">
+<meta property="og:description" content="Seeing repeating numbers? Decode the message the universe is sending you right now.">
+<meta property="og:image" content="../og-image.jpg">
+<link rel="canonical" href="https://luminanumbers.com/angel-numbers/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="../js/cookie-consent.js" data-ga="G-LSCWW3E9XV"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fdf8f2;--gold:#c9a96e;--gold-light:#e8d5b0;--peach:#f5c4a8;
+  --lavender:#d4bfe8;--rose:#e8a4b0;--mint:#a8e8d4;
+  --text-dark:#2d2418;--text-mid:#6b5744;--text-soft:#a08878;
+  --glass:rgba(255,255,255,0.6);--glass-border:rgba(201,169,110,0.22);
+  --shadow:0 8px 32px rgba(180,140,100,0.13);--shadow-lg:0 20px 60px rgba(180,140,100,0.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.bg-aura{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 70% 10%,rgba(212,191,232,.4) 0%,transparent 60%),
+  radial-gradient(ellipse 55% 50% at 15% 80%,rgba(232,213,176,.32) 0%,transparent 55%),
+  radial-gradient(ellipse 45% 40% at 85% 70%,rgba(232,164,176,.22) 0%,transparent 50%),var(--cream)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:64px;background:rgba(253,248,242,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,169,110,.13)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold-light),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.nav-logo-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--text-dark);letter-spacing:.07em}
+.nav-logo-sub{font-size:9px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.nav-back{font-size:13px;color:var(--text-soft);text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:88px 5vw 36px;text-align:center;max-width:720px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(8px);border-radius:99px;padding:6px 16px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);line-height:1.12;color:var(--text-dark);margin-bottom:10px}
+h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bbf);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;color:var(--text-soft);line-height:1.65;max-width:500px;margin:0 auto 28px}
+
+/* QUICK SELECT */
+.quick-wrap{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 5vw 12px}
+.quick-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px;text-align:center}
+.quick-grid{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.quick-chip{background:var(--glass);border:1px solid var(--glass-border);border-radius:99px;padding:7px 16px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .2s}
+.quick-chip:hover,.quick-chip.active{background:linear-gradient(135deg,var(--peach),var(--gold));color:white;border-color:transparent;box-shadow:0 4px 12px rgba(201,169,110,.35)}
+
+/* INPUT CARD */
+.input-wrap{position:relative;z-index:1;max-width:640px;margin:16px auto 0;padding:0 5vw}
+.input-card{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(20px);border-radius:24px;padding:24px 24px 20px;box-shadow:var(--shadow)}
+.input-row{display:flex;gap:10px;align-items:flex-end}
+.input-field{flex:1}
+.input-field label{display:block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px}
+.input-field input{width:100%;padding:14px 18px;background:rgba(255,255,255,.8);border:1.5px solid rgba(201,169,110,.28);border-radius:14px;font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--text-dark);outline:none;transition:border-color .2s,box-shadow .2s;text-align:center;letter-spacing:.05em}
+.input-field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.14)}
+.input-field input::placeholder{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:400;letter-spacing:0}
+.btn-decode{padding:14px 24px;background:linear-gradient(135deg,var(--lavender),#9b6bbf);border:none;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:white;cursor:pointer;white-space:nowrap;box-shadow:0 6px 18px rgba(155,107,191,.35);transition:transform .15s,box-shadow .15s;flex-shrink:0}
+.btn-decode:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(155,107,191,.45)}
+.btn-decode:active{transform:translateY(0)}
+.input-hint{text-align:center;font-size:11.5px;color:var(--text-soft);margin-top:10px}
+
+/* RESULT */
+#result{display:none;position:relative;z-index:1;max-width:720px;margin:0 auto;padding:20px 5vw 60px}
+#result.show{display:block}
+
+.result-hero{background:linear-gradient(135deg,rgba(212,191,232,.4),rgba(155,107,191,.15));border:1px solid rgba(155,107,191,.22);border-radius:28px;padding:32px 28px;margin-bottom:18px;text-align:center;position:relative;overflow:hidden}
+.result-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(155,107,191,.2),transparent 70%)}
+.result-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#9b6bbf;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px}
+.result-eyebrow::before,.result-eyebrow::after{content:'✦';font-size:9px}
+.result-number{font-family:'Playfair Display',serif;font-size:clamp(56px,14vw,88px);font-weight:700;line-height:1;background:linear-gradient(135deg,#c4a0e0,#9b6bbf);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.result-title{font-family:'Playfair Display',serif;font-size:clamp(20px,3.5vw,30px);font-weight:600;color:var(--text-dark);margin-bottom:6px}
+.freq-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.6);border:1px solid rgba(155,107,191,.25);border-radius:99px;padding:4px 14px;font-size:11.5px;color:#9b6bbf;font-weight:500}
+
+/* Tab navigation */
+.tabs-wrap{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;margin-bottom:16px;overflow:hidden}
+.tabs-nav{display:flex;border-bottom:1px solid rgba(201,169,110,.15);overflow-x:auto;scrollbar-width:none}
+.tabs-nav::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;color:var(--text-soft);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:#9b6bbf;border-bottom-color:#9b6bbf}
+.tab-btn:hover{color:var(--text-mid)}
+.tab-content{display:none;padding:20px}
+.tab-content.active{display:block}
+.tab-text{font-size:14px;color:var(--text-mid);line-height:1.8}
+
+/* Action card */
+.action-card{background:linear-gradient(135deg,rgba(212,191,232,.3),rgba(155,107,191,.15));border:1px solid rgba(155,107,191,.22);border-radius:16px;padding:16px 18px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px}
+.action-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.action-text strong{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#9b6bbf;display:block;margin-bottom:4px}
+.action-text p{font-size:14px;color:var(--text-mid);line-height:1.65}
+
+/* Gemstone card */
+.extras-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.extra-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:14px;text-align:center}
+.extra-card-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px}
+.extra-card-value{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--text-dark)}
+
+/* CTA */
+.cta-card{background:linear-gradient(135deg,rgba(245,196,168,.3),rgba(212,191,232,.3));border:1px solid rgba(201,169,110,.2);border-radius:20px;padding:24px;margin-bottom:18px;text-align:center}
+.btn-cta{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--peach),var(--gold));color:white;border:none;border-radius:14px;padding:13px 24px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;box-shadow:0 6px 18px rgba(201,169,110,.35);transition:transform .15s}
+.btn-cta:hover{transform:translateY(-1px)}
+
+.share-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-share{flex:1;min-width:130px;padding:12px;background:linear-gradient(135deg,var(--lavender),#9b6bbf);border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(155,107,191,.3);transition:transform .15s}
+.btn-share:hover{transform:translateY(-1px)}
+.btn-lp{flex:1;min-width:130px;padding:12px;background:transparent;border:1.5px solid var(--gold);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;transition:all .15s}
+.btn-lp:hover{background:var(--gold);color:white}
+
+/* All numbers grid */
+.all-section{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 5vw 60px}
+.all-title{font-family:'Playfair Display',serif;font-size:22px;text-align:center;color:var(--text-dark);margin-bottom:6px}
+.all-sub{font-size:13px;color:var(--text-soft);text-align:center;margin-bottom:20px}
+.all-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:9px}
+.all-chip{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.all-chip:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(155,107,191,.4)}
+.ac-num{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#9b6bbf;margin-bottom:4px}
+.ac-title{font-size:9.5px;color:var(--text-soft);line-height:1.3}
+.freq-dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:3px}
+.fd-vc{background:#1D9E75}
+.fd-c{background:#c9a96e}
+.fd-r{background:#c84848}
+
+@media(max-width:600px){
+  .input-row{flex-direction:column}
+  .btn-decode{width:100%}
+  .extras-grid{grid-template-columns:1fr}
+  .share-row{flex-direction:column}
+  .result-hero{padding:24px 18px}
+  .input-card{padding:18px 16px}
+}
+</style>
+</head>
+<body>
+<div class="bg-aura"></div>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    <div>
+      <div class="nav-logo-name">LUMINA NUMBERS</div>
+      <div class="nav-logo-sub">Discover Your Divine Numbers</div>
+    </div>
+  </a>
+  <a href="/" class="nav-back">← Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🪽 Angel Number Decoder</div>
+  <h1>What Is the Universe<br><em>Telling You?</em></h1>
+  <p class="hero-sub">Enter any repeating number you keep seeing — 111, 444, 1111, 1212 and more. Decode the message instantly across love, career, finance, and twin flames.</p>
+</div>
+
+<div class="quick-wrap">
+  <div class="quick-label">Most seen today</div>
+  <div class="quick-grid" id="quickGrid"></div>
+</div>
+
+<div class="input-wrap">
+  <div class="input-card">
+    <div class="input-row">
+      <div class="input-field">
+        <label>Enter Your Angel Number</label>
+        <input type="number" id="numInput" placeholder="e.g. 444" min="1" max="9999"
+          oninput="onInput()" onkeydown="if(event.key==='Enter')decode()">
+      </div>
+      <button class="btn-decode" onclick="decode()">🪽 Decode →</button>
+    </div>
+    <p class="input-hint">✦ Supports 111–999 · 1010 · 1111 · 1122 · 1144 · 1155 · 1212 · 1234 · 2222–9999</p>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="result">
+  <div class="result-hero">
+    <div class="result-eyebrow">Angel Number</div>
+    <div class="result-number" id="r-num">444</div>
+    <div class="result-title" id="r-title">Angelic Protection and Solid Foundations</div>
+    <div style="margin-top:10px">
+      <span class="freq-badge" id="r-freq">🔮 Very Common</span>
+    </div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-icon">⚡</div>
+    <div class="action-text">
+      <strong>Your Action Right Now</strong>
+      <p id="r-action">—</p>
+    </div>
+  </div>
+
+  <div class="tabs-wrap">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('general',this)">✨ General</button>
+      <button class="tab-btn" onclick="switchTab('love',this)">♡ Love</button>
+      <button class="tab-btn" onclick="switchTab('career',this)">💼 Career</button>
+      <button class="tab-btn" onclick="switchTab('finance',this)">💰 Finance</button>
+      <button class="tab-btn" onclick="switchTab('twin_flame',this)">🔥 Twin Flame</button>
+    </div>
+    <div class="tab-content active" id="tab-general"><p class="tab-text" id="r-general">—</p></div>
+    <div class="tab-content" id="tab-love"><p class="tab-text" id="r-love">—</p></div>
+    <div class="tab-content" id="tab-career"><p class="tab-text" id="r-career">—</p></div>
+    <div class="tab-content" id="tab-finance"><p class="tab-text" id="r-finance">—</p></div>
+    <div class="tab-content" id="tab-twin_flame"><p class="tab-text" id="r-twin">—</p></div>
+  </div>
+
+  <div class="extras-grid">
+    <div class="extra-card">
+      <div class="extra-card-label">✦ Crystal / Gemstone</div>
+      <div class="extra-card-value" id="r-crystal">—</div>
+    </div>
+    <div class="extra-card">
+      <div class="extra-card-label">📊 Frequency</div>
+      <div class="extra-card-value" id="r-freq2">—</div>
+    </div>
+  </div>
+
+  <div class="cta-card">
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text-dark);margin-bottom:6px;">Discover Your Life Path Number</div>
+    <p style="font-size:13.5px;color:var(--text-soft);margin-bottom:16px;">Your angel numbers are connected to your Life Path. Calculate yours for the complete picture.</p>
+    <a href="/life-path-calculator/" class="btn-cta">✦ Calculate My Life Path →</a>
+  </div>
+
+  <div class="share-row">
+    <button class="btn-share" onclick="shareResult()">🔗 Share This Reading</button>
+    <a href="/life-path-calculator/" class="btn-lp">🔢 My Life Path →</a>
+  </div>
+</div>
+
+<!-- ALL NUMBERS -->
+<div class="all-section" id="allSection" style="margin-top:40px">
+  <div class="all-title">All Angel Numbers</div>
+  <div class="all-sub">Tap any number to decode its meaning instantly</div>
+  <div class="all-grid" id="allGrid"></div>
+</div>
+
+<script>
+// ── Full Data ──────────────────────────────────────────
+const DATA = {
+  111:{title:"Accelerated Manifestation",general:"The sequence 111 functions as a powerful wake-up call signaling that your thoughts are rapidly manifesting into reality. It represents the initiation of new beginnings and a sudden opening of energetic portals. You are urged to maintain a highly positive and focused mindset to shape a favorable future.",love:"This number indicates that fresh romantic opportunities are manifesting quickly in your immediate environment. It encourages you to stay optimistic and be exceptionally clear about the traits you desire in a partner.",career:"New professional chapters and sudden leadership opportunities are emerging rapidly. Focus on your ultimate vocational ambitions and take independent initiative rather than dwelling on current limitations.",finance:"A rapid surge of financial potential is available if you align your mindset with pure abundance. Trust that novel income streams are currently being generated through your positive intentions.",twin_flame:"You are energetically aligning with your twin flame through the elevation of your highest thoughts. Maintain a high vibrational frequency to draw this profound soul connection closer into physical reality.",action:"Pause immediately to monitor your current thoughts, deliberately shifting your focus away from fear and solely toward what you desire to create.",crystal:"Clear Quartz",frequency:"Very Common"},
+
+  222:{title:"Equilibrium and Divine Trust",general:"The number 222 carries a gentle frequency of balance, emotional healing, and deep reassurance from the universe. It acts as a reminder that everything is aligning perfectly behind the scenes, even if progress appears stagnant. You are being asked to release urgency and cultivate profound trust in divine timing.",love:"This sequence represents emotional alignment, mutual cooperation, and the restoration of harmony within relationships. It encourages patience and open communication, reminding you that true love develops steadily and naturally.",career:"Your professional efforts are quietly taking root, requiring you to maintain steady cooperation with colleagues. Avoid impulsive career moves and trust that your current trajectory is correct and will yield results soon.",finance:"Financial stability is being established through a balanced and patient approach to wealth management. It advises against extreme financial risks, promoting a steady, harmonious cultivation of resources.",twin_flame:"Your twin flame journey is entering a phase of crucial emotional balancing and mutual healing. Patience is paramount as both souls undergo the necessary alignment to sustain a harmonious eventual union.",action:"Slow down, regulate your emotional state, and practice patience by trusting that your current path is unfolding exactly as it should.",crystal:"Rose Quartz",frequency:"Very Common"},
+
+  333:{title:"Creative Expression and Ascended Guidance",general:"The sequence 333 is a vibrant call to access your innate creativity and achieve harmony across your mind, body, and spirit. It signifies the supportive presence of Ascended Masters who are guiding your personal expansion. You are encouraged to express your authentic self boldly and without hesitation.",love:"This number demands open, honest communication to deepen romantic bonds and clear up any lingering misunderstandings. For single individuals, it signals that adopting a socially active and optimistic demeanor will attract true love.",career:"Your professional life requires an injection of creativity, collaboration, and clear articulation of your innovative ideas. It is an ideal time to step into the spotlight and confidently pitch new projects to leadership.",finance:"Financial abundance is closely tied to your ability to monetize your unique creative passions and communicate your value. It warns against material hoarding, suggesting that wealth flows best when shared and enjoyed.",twin_flame:"This sequence points toward an imminent encounter or a significant breakthrough in communication with your twin flame. It urges both individuals to express their deepest spiritual truths to foster an unbreakable bond.",action:"Engage in a creative project, speak your truth confidently, and actively expand your social connections.",crystal:"Carnelian",frequency:"Very Common"},
+
+  444:{title:"Angelic Protection and Solid Foundations",general:"The sequence 444 is a profound indicator of intense angelic protection and the grounding of your personal energy. It confirms that you are surrounded by divine support as you work diligently toward your long-term objectives. The universe is urging you to focus on building stable, enduring foundations for your future.",love:"This number emphasizes the creation of a secure, loyal, and practically grounded romantic partnership. It suggests that enduring love requires consistent effort, mutual protection, and a shared commitment to building a life together.",career:"Your dedication and disciplined work ethic are being recognized, leading to solid career progression. It is a reminder to remain organized, persistent, and focused on the structural integrity of your professional projects.",finance:"Financial security is achievable through meticulous planning, budgeting, and the steady accumulation of wealth over time. Avoid get-rich-quick schemes and focus on investments that provide long-term material stability.",twin_flame:"Your twin flame connection is being spiritually safeguarded against external negative influences. The relationship requires both partners to focus on creating a grounded, emotionally safe environment for mutual growth.",action:"Ground your energy, commit to disciplined action, and trust that you are completely protected by divine forces.",crystal:"Black Tourmaline",frequency:"Very Common"},
+
+  555:{title:"Dynamic Transformation and Unrestricted Freedom",general:"The sequence 555 announces that massive, unavoidable transformations are currently unfolding or are imminent in your life. It is a divine signal to completely release outdated patterns and eagerly welcome the unknown. Embracing extreme adaptability will ensure these major life shifts lead to your ultimate liberation.",love:"Significant evolutionary changes are occurring within your romantic life, which may involve deep rejuvenation or the necessary ending of a stagnant dynamic. You must remain emotionally flexible and open to entirely new experiences in love.",career:"Expect sudden shifts in your professional trajectory, such as a major role change, a new job, or an unexpected entrepreneurial opportunity. These career disruptions are purposefully designed to align you with your true vocational calling.",finance:"Your financial situation is undergoing a transition that requires you to adapt your earning and spending strategies rapidly. Embrace innovative financial opportunities and be willing to take calculated risks for greater monetary freedom.",twin_flame:"The twin flame dynamic is experiencing a period of intense, rapid evolution that requires both souls to shed old karmic baggage. Embrace the ensuing changes, as they are essential for moving the connection to a higher operational frequency.",action:"Let go of all resistance, remain highly adaptable, and proactively embrace the incoming life changes with absolute optimism.",crystal:"Labradorite",frequency:"Common"},
+
+  666:{title:"Radical Self-Love and Holistic Balance",general:"Contrary to popular myth, 666 is a deeply compassionate sequence urging you to restore harmony between your material pursuits and spiritual health. It indicates that your thoughts may be out of balance, driven excessively by fear or worldly anxieties. You are being called to return to a state of profound self-love and internal peace.",love:"This number highlights the necessity of healing internal emotional wounds to prevent projecting insecurities onto your romantic partner. True relational harmony can only be achieved when you first offer unconditional love and acceptance to yourself.",career:"You are heavily cautioned against allowing professional ambition to completely consume your identity and personal life. Reassess your work-life balance immediately to ensure your career serves your well-being rather than destroying it.",finance:"Financial anxieties are currently blocking your natural flow of abundance, requiring a shift away from a scarcity mindset. Trust in divine provision and focus on ethical, balanced wealth generation rather than desperate accumulation.",twin_flame:"This sequence frequently appears during painful twin flame separations, serving as a directive to heal individual childhood traumas and codependency. The separation is a purposeful phase meant to correct imbalances before a harmonious reunion can occur.",action:"Audit your life for imbalances, release material anxieties, and aggressively prioritize your emotional and spiritual self-care.",crystal:"Rhodochrosite",frequency:"Rare"},
+
+  777:{title:"Profound Spiritual Enlightenment",general:"The sequence 777 is a highly auspicious indicator of deep spiritual growth, enlightenment, and alignment with the higher realms. It confirms that you are successfully navigating your spiritual journey and trusting your inner intuition accurately. The universe is celebrating your expansion in consciousness and inner wisdom.",love:"Your romantic connections are evolving beyond the superficial, requiring a partner who can meet you on an intensely spiritual level. It encourages you to trust your intuitive feelings regarding the energetic compatibility of your relationships.",career:"Professional success will be achieved by aligning your career choices strictly with your higher spiritual purpose and ethics. You are encouraged to utilize your profound inner wisdom to guide your vocational trajectory.",finance:"Financial rewards are manifesting as a direct result of your spiritual alignment and ethical handling of resources. Maintain your faith in the universe, as spiritual richness is currently translating into material prosperity.",twin_flame:"The twin flame connection is reaching an unprecedented depth of spiritual telepathy and mutual energetic recognition. Both individuals are experiencing simultaneous spiritual awakenings that draw their souls irrevocably closer.",action:"Deepen your meditation practices, trust your intuitive faculties implicitly, and continue your pursuit of esoteric knowledge.",crystal:"Amethyst",frequency:"Rare"},
+
+  888:{title:"Infinite Abundance and Karmic Reward",general:"The sequence 888 is a powerful omen of infinite abundance, immense success, and the arrival of well-deserved karmic rewards. It signifies that your past efforts have generated a continuous flow of prosperity that is now entering your physical reality. You are fully supported by the universe in mastering the material and spiritual realms simultaneously.",love:"Your love life is entering a phase of rich emotional abundance and deeply reciprocal exchange. It indicates that the love you have selflessly given in the past is returning to you multiplied through a fulfilling partnership.",career:"You are reaching the absolute pinnacle of professional achievement, marked by significant recognition and career mastery. This is a highly favorable time to request promotions, close major deals, or expand your business operations.",finance:"An extraordinary financial windfall or the establishment of a highly lucrative income stream is currently manifesting. You are encouraged to graciously accept this wealth and utilize it to further expand your influence and generosity.",twin_flame:"The twin flame relationship is characterized by an infinite, circulating flow of perfectly balanced energy between both partners. The union will act as a powerful catalyst for generating shared abundance and fulfilling your joint earthly mission.",action:"Open yourself completely to receiving wealth, celebrate your success, and ensure your energy remains in a state of generous flow.",crystal:"Citrine",frequency:"Rare"},
+
+  999:{title:"Karmic Completion and Soul Renewal",general:"The sequence 999 represents the definitive conclusion of a major life chapter and the clearing of old karmic cycles. It is a powerful sign of spiritual graduation, urging you to release obsolete patterns and identities. By surrendering to these natural endings, you prepare your soul for a massive energetic renewal.",love:"A romantic relationship may be reaching its natural conclusion, or an outdated dynamic within an existing partnership must be entirely dismantled. You are required to forgive past hurts and release attachments to make space for a higher frequency of love.",career:"Your current professional path has taught you everything it can, signaling that it is time to transition toward your true life purpose. Do not fear leaving behind a secure but unfulfilling job, as a more aligned vocation awaits.",finance:"Financial obligations, debts, or old methods of earning are coming to a definitive close, allowing for a fresh economic start. Focus your resources on humanitarian or spiritually fulfilling endeavors rather than pure accumulation.",twin_flame:"A difficult phase of the twin flame journey is ending, bringing ultimate closure to past-life karma and deeply entrenched blockages. This profound clearing is the final prerequisite before the souls can ascend to the next level of their shared destiny.",action:"Release all attachments to the past with love, forgive what needs closure, and boldly prepare for a completely new beginning.",crystal:"Selenite",frequency:"Rare"},
+
+  1010:{title:"Divine Orchestration and Infinite Potential",general:"The sequence 1010 acts as a reassuring message that your life is unfolding exactly as envisioned through divine orchestration. It whispers promises of spiritual awakening and urges you to embrace the infinite possibilities of the universe. Stepping out of your comfort zone is now mandatory to unlock your highest potential.",love:"This number is a powerful reminder of profound self-love and the achievement of perfect romantic alignment. The universe is actively conspiring to bring you a deep soul connection that resonates with pure joy.",career:"It signifies the initiation of entirely new professional ventures and stepping into visionary leadership roles with absolute confidence. Embracing discomfort and radical change at work is necessary to achieve your ultimate career evolution.",finance:"A massive wave of prosperity is approaching as the universe aligns to usher in unparalleled material abundance. Your positive thoughts and structured actions are actively attracting immense, sustainable financial growth.",twin_flame:"This sequence signals a highly harmonious union with your twin flame that has been perfectly orchestrated by divine timing. The connection promises a future filled with deep emotional fulfillment, mutual support, and spiritual elevation.",action:"Trust your intuition implicitly and confidently step completely outside your comfort zone to embrace new opportunities.",crystal:"Rose Quartz & Citrine",frequency:"Common"},
+
+  1111:{title:"Master Spiritual Awakening",general:"The master sequence 1111 signifies an intense spiritual awakening and the opening of a profound energetic portal in your life. It indicates that your thoughts are aligning instantly with universal intelligence to manifest your reality. You are being called to step into your highest potential and true life purpose.",love:"This sequence strongly points toward the manifestation of a highly spiritual, destined soulmate connection. If already partnered, it demands a massive elevation in the spiritual consciousness shared between you.",career:"Your career is undergoing a destined evolution that perfectly aligns with your deepest spiritual mission. Trust your visionary ideas and take decisive, pioneering action to forge a completely new professional path.",finance:"Your ability to manifest financial abundance is currently operating at absolute maximum capacity. Maintain laser-focused, positive intentions regarding wealth, as the universe is instantly responding to your energetic output.",twin_flame:"1111 is the ultimate twin flame indicator, signaling an imminent encounter, profound spiritual recognition, or a major union milestone. The sequence acts as a magnetic beacon, perfectly aligning the energetic frequencies of both mirror souls.",action:"Set crystal-clear intentions, completely eliminate negative thinking, and step confidently through the new opportunities presenting themselves.",crystal:"Clear Quartz",frequency:"Very Common"},
+
+  1122:{title:"Balanced Forward Movement",general:"The sequence 1122 is a powerful message of balanced manifestation, urging you to move forward with unshakeable faith in your journey. It perfectly synthesizes the independent drive for new beginnings with the necessity for inner peace and harmony. You are being supported as you navigate major life changes, provided you maintain emotional equilibrium.",love:"This number demands clear, honest communication and the emotional maturity to heal old relational misunderstandings. True love will grow slowly and naturally if you prioritize balance, mutual effort, and deep emotional understanding.",career:"Your hard work and disciplined focus are leading directly toward successful career advancement and new opportunities. You must trust your professional path and utilize your leadership strengths while maintaining cooperative partnerships.",finance:"A positive financial mindset combined with consistent, disciplined effort is generating highly stable economic growth. Ensure your daily actions are perfectly aligned with your long-term financial goals to maximize incoming opportunities.",twin_flame:"This sequence indicates significant progress toward reuniting with your twin flame through mutual personal development. It mirrors a balanced partnership where both individuals must be equally present emotionally and spiritually before union is possible.",action:"Pay close attention to your intentions, balance your personal ambitions with relational harmony, and trust the unfolding process.",crystal:"Opal",frequency:"Rare"},
+
+  1144:{title:"Constructing Divine Reality",general:"The sequence 1144 is an auspicious sign that you are taking charge of your destiny and manifesting your reality with divine support. It blends the powerful energy of new beginnings with the structured discipline required to build lasting foundations. The universe confirms that your hard work and positive attitude will result in thriving abundance.",love:"Exciting changes are occurring in your relationships, urging you to let your true, authentic self flourish. Cultivating deep self-reliance and positive thoughts will prepare you for a highly committed and structurally sound romantic partnership.",career:"A positive shift in a new direction is occurring, requiring you to remain open to unforeseen but highly beneficial career evolutions. Continued dedication to your current projects will soon secure recognition and major advancement from superiors.",finance:"You are encouraged to make incredibly wise, disciplined financial decisions to establish long-term economic stability. Even if current finances are tight, your perseverance and strategic planning promise complete recovery and future wealth.",twin_flame:"This is a powerful manifestation number indicating imminent progress or a reunion on your complex twin flame journey. It calls for structured emotional growth and the letting go of past negativity to foster a harmonious spiritual bond.",action:"Maintain an aggressively positive attitude, focus diligently on your goals, and build strong practical foundations for your future.",crystal:"Black Tourmaline",frequency:"Rare"},
+
+  1155:{title:"Transformational Leadership",general:"The sequence 1155 is a dramatic sign that your life is about to undergo significant, paradigm-altering transformations. It demands that you embrace these changes by stepping into a strong leadership role and trusting your inner intuition completely. Your angels are confirming that making bold changes now will lead to highly positive outcomes.",love:"Your love life is experiencing a profound rejuvenation, bringing a wave of optimism and potential new beginnings. You must take the initiative to introduce fresh energy into your relationships or actively seek out new romantic connections.",career:"You are stepping into exciting new leadership roles or overseeing innovative projects that completely alter your professional trajectory. Embrace these career changes with open arms, as they are vitally necessary for your ultimate vocational growth.",finance:"Financial progress requires you to take calculated risks and initiate new wealth-building endeavors without hesitation. Trust that the changes you implement now will drastically improve your material stability over time.",twin_flame:"The twin flame dynamic is undergoing rapid, essential shifts that require both partners to adapt quickly and fearlessly. Embrace this period of transformation, as it is designed to clear old blockages and elevate the soul connection.",action:"Greet impending life changes with open arms, step into a leadership mindset, and execute new projects without fear.",crystal:"Opalite",frequency:"Rare"},
+
+  1212:{title:"Spiritual Ascension and Destined Alignment",general:"The sequence 1212 is a powerful confirmation that you are perfectly in line with your ultimate destiny and experiencing spiritual ascension. It blends the independent drive of new beginnings with the harmonious patience of deep emotional healing. Your guardian angels are actively supporting your progress toward a higher state of being.",love:"Positive changes are transforming your love life, bringing a perfect balance of independence and deeply supportive partnership. It indicates that your current romantic trajectory is destined and highly favored by the universe.",career:"You are successfully navigating professional shifts by taking confident initiative while maintaining excellent cooperative relationships with peers. Your career is advancing steadily because your actions are aligned with your true purpose.",finance:"Financial stability is being achieved through a balanced approach to generating new income and managing existing resources responsibly. Trust that your financial destiny is secure as long as you maintain a positive, progressive mindset.",twin_flame:"This is a powerful twin flame number symbolizing a new depth of harmony, unity, and the manifestation of a shared life. It confirms that you and your twin flame are in perfect alignment and the connection is rapidly strengthening.",action:"Maintain an optimistic outlook, confidently step out of your comfort zone, and trust the divine guidance leading your path.",crystal:"Clear Quartz",frequency:"Common"},
+
+  1234:{title:"Progressive Momentum and Evolution",general:"The ascending sequence 1234 indicates that you are gaining unstoppable momentum and moving systematically through the necessary stages of personal evolution. It is a highly progressive vibration that confirms your step-by-step efforts are leading to significant success. You are leveling up and building an unshakeable foundation for your future.",love:"Your relationship is naturally progressing to the next level of commitment through consistent effort and mutual support. For singles, it advises taking proactive, logical steps to seek out a partner rather than waiting passively.",career:"Your hard work is compounding, and you are currently preparing for a major professional payoff or leveling up in your industry. It is an excellent time to systematically plan and launch a new business venture or project.",finance:"Consistent, incremental financial strategies are steadily building a highly secure and expansive wealth portfolio. Focus on higher-level financial thinking and practical investments rather than seeking immediate, unstructured gains.",twin_flame:"The twin flame connection is steadily ascending through its destined stages of evolution and shadow work. If experiencing drama or separation, trust that this is merely a temporary step on the definitive path toward ultimate reunion.",action:"Continue putting in consistent, hard work and take the next logical step forward without skipping vital parts of the process.",crystal:"Citrine",frequency:"Common"},
+
+  2222:{title:"Profound Harmony and Dual Mastery",general:"The powerful sequence 2222 represents the ultimate mastery of balance, duality, and profound emotional harmony. It serves as a strong reassurance from the spiritual realm that you are perfectly aligned with your higher self and the universe. Even if progress seems incredibly slow, you are urged to maintain unshakeable patience and inner peace.",love:"This is the ultimate number of romantic alignment, indicating that deep emotional harmony and mutual respect are anchoring your relationship. If single, love will develop naturally and effortlessly once you completely restore your own internal emotional balance.",career:"You are steadily progressing in the right direction, and your dedicated, positive energy is quietly guiding you toward major success. It emphasizes the absolute necessity of maintaining a healthy work-life balance to avoid burnout.",finance:"Your financial situation is achieving remarkable stability and long-term security through a highly balanced, patient approach to wealth. Avoid any impulsive economic choices and trust that steady, gradual progress will yield massive financial rewards.",twin_flame:"Considered a primary twin flame beacon, 2222 indicates that a destined reunion is imminent as both souls achieve energetic equilibrium. It demands profound patience, requiring both individuals to heal individually before merging into a perfectly harmonious union.",action:"Pause before reacting to any situation, prioritize your emotional calm, and trust that perfect alignment is happening behind the scenes.",crystal:"Rose Quartz & Blue Sapphire",frequency:"Rare"},
+
+  3333:{title:"Expressive Synergy and Boundless Optimism",general:"The sequence 3333 is an explosive manifestation of creative energy, social connection, and boundless optimism. It indicates that your innate talents have been fully activated by the divine, urging you to express yourself with absolute joy. You are being called to break out of your routine, become highly adventurous, and inspire those around you.",love:"Honest, highly expressive communication will drastically deepen the bond you share with your partner. For singles, this vibrant energy acts as a magnet, signaling that your true love is right around the corner if you socialize actively.",career:"Extensive networking and collaborative teamwork are the immediate keys to unlocking massive advancement in your career. You must boldly share your innovative ideas and utilize your unique creative skills to distinguish yourself professionally.",finance:"Financial abundance is highly favored, often manifesting through lucrative investments, creative ventures, or collaborative business partnerships. However, the sequence warns against greed, urging you to align your spending with your higher purpose.",twin_flame:"You are on the precipice of an imminent and highly communicative encounter or reunion with your twin flame. While the journey may involve challenging separations to inspire growth, your ultimate reunion will be built on unbreakable harmony.",action:"Socialize aggressively, communicate your deepest feelings openly, and boldly pursue your most creative impulses.",crystal:"Carnelian",frequency:"Rare"},
+
+  4444:{title:"Impenetrable Stability and Divine Affirmation",general:"The sequence 4444 represents impenetrable stability, relentless determination, and absolute affirmation from the divine realm. It is a powerful signal of progress, indicating that you have the spiritual support to overcome any current challenges. Your guardian angels are confirming that your highly disciplined approach is shifting your fortune positively.",love:"Your romantic life is experiencing highly positive developments that will lead to a remarkably secure and structured partnership. It provides deep reassurance that your current relationship is built to withstand any external pressures or difficulties.",career:"Your relentless hard work and unyielding dedication are about to be rewarded with significant, tangible career advancements. You have established a flawless professional foundation that will easily support long-term success and heavy responsibilities.",finance:"You are entering a period of immense financial success and absolute economic protection against material hardship. Continue your disciplined wealth management, as your systematic efforts are guaranteeing a highly prosperous future.",twin_flame:"The twin flame dynamic is experiencing crucial growth, moving from a phase of turbulence into a deeply grounded, stable connection. It offers profound reassurance that the structural integrity of your soul bond is entirely protected by the universe.",action:"Keep moving forward with relentless determination, trusting that your foundations are secure and divine guidance is ever-present.",crystal:"Black Tourmaline",frequency:"Rare"},
+
+  5555:{title:"Absolute Metamorphosis and Liberation",general:"The extremely potent sequence 5555 acts as a catalyst for absolute metamorphosis and complete liberation from stagnant life paradigms. It signifies that unprecedented, monumental shifts are arriving to overhaul your entire existence. You must possess the courage to break old patterns completely and trust in your ability to navigate massive transitions.",love:"You must completely abandon outdated relationship patterns to foster genuine connections and remain radically open to new romantic opportunities. Existing relationships will undergo a massive transformation that redefines the fundamental nature of the partnership.",career:"Positive, radical shifts in your career are imminent, requiring you to take bold risks and pursue highly ambitious projects. Trust entirely in your professional abilities, as these sudden disruptions will lead directly to greater prosperity and freedom.",finance:"Embracing adaptability and taking calculated financial risks during this period of upheaval will lead to massive economic rewards. You must manage your resources wisely as entirely new, unexpected avenues for generating wealth rapidly unfold.",twin_flame:"The twin flame connection is undergoing an extreme, necessary transformation to facilitate profound healing and spiritual progress. If separated, this intense period of change is actively destroying old karmic blocks to prepare both souls for a redefined reunion.",action:"Believe absolutely in your abilities, embrace monumental risks, and allow the universe to completely transform your reality.",crystal:"Labradorite",frequency:"Rare"},
+
+  6666:{title:"Profound Healing and Shadow Work",general:"The sequence 6666 is a highly spiritual message calling for profound internal healing and the establishment of absolute harmony within yourself. It prompts you to dive deeply into your subconscious, release past wounds, and completely embrace unconditional self-love. You are being guided to correct severe imbalances between your material desires and spiritual needs.",love:"You must establish a healthy sense of boundaries and engage in emotional restructuring within your romantic relationships. True partnership requires you to deeply understand your own emotional architecture and love yourself without any judgment or condition.",career:"It is critical to let go of negative thoughts and severe anxieties regarding your professional trajectory to allow for positive developments. You must ruthlessly enforce a healthy work-life balance, ensuring that ambition does not destroy your personal well-being.",finance:"This number emphasizes the absolute necessity of aligning your material financial goals strictly with your higher spiritual values. True financial success and abundance will only be fulfilling when achieved through ethical, meaningful work.",twin_flame:"This is a critical twin flame sequence offering a message of intense hope and deep psychological healing during periods of separation. It demands that both individuals focus entirely on personal shadow work, releasing past traumas to prepare for a stable union.",action:"Engage aggressively in deep self-exploration, release all self-judgment, and restructure your life to prioritize holistic balance.",crystal:"Rhodochrosite",frequency:"Rare"},
+
+  7777:{title:"Ultimate Cosmic Alignment and Reward",general:"The extraordinarily rare sequence 7777 signifies the absolute pinnacle of spiritual growth, esoteric wisdom, and perfect cosmic alignment. It is a powerful confirmation that your intense dedication to your personal evolution is being actively rewarded by the higher realms. You are encouraged to trust your highly attuned intuition, as it is leading you flawlessly.",love:"Your romantic connections are heavily influenced by deep spiritual dynamics, requiring a profound, soulful resonance with your partner. It indicates that your relational life is evolving rapidly toward a state of enlightened, unconditional mutual support.",career:"You are currently welcoming massive professional success because your career choices are perfectly aligned with your soul's true purpose. Your relentless dedication and persistence are being universally recognized, opening doors to highly prestigious new opportunities.",finance:"Immense financial rewards are manifesting rapidly as a direct consequence of your spiritual integrity and hard work. However, the universe strongly encourages you to utilize this sudden wealth to enhance your holistic quality of life, not just for material hoarding.",twin_flame:"This is a phenomenally powerful sign indicating complete spiritual healing, imminent reunion, and explosive personal growth within the twin flame journey. Both souls have successfully navigated profound self-discovery and are now prepared for an incredibly deep, harmonious connection.",action:"Trust your heightened intuition implicitly and gratefully accept the massive success flowing into your reality.",crystal:"Amethyst",frequency:"Rare"},
+
+  8888:{title:"Infinite Prosperity and Material Mastery",general:"The sequence 8888 represents the opening of a massive energetic vortex delivering infinite prosperity, profound blessings, and ultimate karmic payouts. It signifies that your spiritual alignment has resulted in total mastery over the material realm. You are advised to stay highly connected and spiritually open to receive the monumental windfalls coming your way.",love:"Your romantic life is overflowing with abundant, deeply fulfilling energy that reflects the immense love you have cultivated within. It signifies a partnership that acts as a powerhouse for mutual success, joy, and boundless emotional wealth.",career:"You are achieving unprecedented, monumental success in your career, commanding absolute authority and respect within your industry. This is a time of massive expansion, where your professional influence and capabilities are recognized as limitless.",finance:"An extraordinary, life-altering financial windfall is arriving, cementing your absolute economic security and wealth generation. You are currently experiencing the ultimate peak of financial flow, driven by your past ethical actions and high vibrational state.",twin_flame:"The twin flame union is functioning as an infinite feedback loop of highly positive, expansive energy that empowers both individuals. Together, you are manifesting immense earthly success and fulfilling a deeply significant, shared cosmic mission.",action:"Remain completely spiritually open, graciously accept the monumental financial windfalls, and utilize your abundance to elevate others.",crystal:"Citrine",frequency:"Rare"},
+
+  9999:{title:"Ultimate Completion and Total Soul Renewal",general:"The sequence 9999 is the most definitive signal of ultimate completion, massive life transitions, and profound soul renewal. It indicates that a monumental, long-standing karmic chapter of your existence has reached its absolute conclusion. You are being completely cleared of past identities to prepare for entry into a totally unprecedented, higher paradigm.",love:"A major cycle within your romantic life has finished, requiring the absolute release of any relationships or toxic dynamics that hinder your growth. You must engage in deep forgiveness and let go of all emotional baggage to welcome an evolved state of love.",career:"Your current professional identity has been entirely outgrown, signaling an imminent, total transition toward your ultimate life vocation. You are urged to fearlessly abandon unfulfilling career paths to embrace a completely new, spiritually aligned mission.",finance:"Old financial structures, limiting economic beliefs, and previous methods of generating wealth are being permanently dismantled. This profound clearing paves the way for a completely refreshed, highly ethical approach to universal abundance.",twin_flame:"The twin flame connection has successfully completed a massive, grueling karmic cycle of separation, learning, and deep healing. This ultimate closure is the final, necessary step before both souls can fully ascend into a permanent, harmonious union.",action:"Surrender completely to these massive endings, release all fear of the unknown, and prepare your soul for total renewal.",crystal:"Selenite",frequency:"Rare"}
+};
+
+const FREQ_COLOR = {"Very Common":"#1D9E75","Common":"#c9a96e","Rare":"#c84848"};
+const FREQ_DOT = {"Very Common":"fd-vc","Common":"fd-c","Rare":"fd-r"};
+
+const COMMON = [111,222,333,444,555,777,888,999,1111,1212,1234,1010];
+let currentNum = null;
+
+// ── Build quick chips ──
+(function(){
+  const g = document.getElementById('quickGrid');
+  COMMON.forEach(n=>{
+    const btn = document.createElement('button');
+    btn.className = 'quick-chip';
+    btn.textContent = n;
+    btn.onclick = ()=>{ document.getElementById('numInput').value=n; decode(n); };
+    g.appendChild(btn);
+  });
+})();
+
+// ── Build all-grid ──
+(function(){
+  const g = document.getElementById('allGrid');
+  Object.keys(DATA).sort((a,b)=>+a-+b).forEach(n=>{
+    const d = DATA[n];
+    const chip = document.createElement('a');
+    chip.className = 'all-chip';
+    chip.href = '#';
+    chip.onclick = (e)=>{ e.preventDefault(); document.getElementById('numInput').value=n; decode(+n); };
+    chip.innerHTML = `<div class="ac-num">${n}</div><div class="ac-title"><span class="freq-dot ${FREQ_DOT[d.frequency]}"></span>${d.title.split(' ').slice(0,2).join(' ')}</div>`;
+    g.appendChild(chip);
+  });
+})();
+
+function onInput(){
+  const v = +document.getElementById('numInput').value;
+  document.querySelectorAll('.quick-chip').forEach(c=>c.classList.toggle('active', +c.textContent===v));
+}
+
+function decode(forceNum){
+  const n = forceNum || +document.getElementById('numInput').value;
+  if(!n){ alert('Please enter an angel number.'); return; }
+  const d = DATA[n];
+  if(!d){
+    alert(`Angel number ${n} — we don't have a specific reading for this sequence yet. Try 111, 222, 333, 444, 555, 777, 888, 999, 1111, 1212 or 1234.`);
+    return;
+  }
+  currentNum = n;
+  document.getElementById('numInput').value = n;
+
+  document.getElementById('r-num').textContent = n;
+  document.getElementById('r-title').textContent = d.title;
+  const fc = FREQ_COLOR[d.frequency]||'#9b6bbf';
+  document.getElementById('r-freq').innerHTML = `<span style="color:${fc}">●</span> ${d.frequency}`;
+  document.getElementById('r-freq').style.color = fc;
+  document.getElementById('r-action').textContent = d.action;
+  document.getElementById('r-general').textContent = d.general;
+  document.getElementById('r-love').textContent = d.love;
+  document.getElementById('r-career').textContent = d.career;
+  document.getElementById('r-finance').textContent = d.finance;
+  document.getElementById('r-twin').textContent = d.twin_flame;
+  document.getElementById('r-crystal').textContent = d.crystal;
+  document.getElementById('r-freq2').textContent = d.frequency;
+
+  // Reset tabs
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelector('.tab-btn').classList.add('active');
+  document.getElementById('tab-general').classList.add('active');
+
+  // Update quick chips
+  document.querySelectorAll('.quick-chip').forEach(c=>c.classList.toggle('active', +c.textContent===n));
+
+  const res = document.getElementById('result');
+  res.className = 'show';
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function switchTab(name, btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+function shareResult(){
+  if(!currentNum) return;
+  const d = DATA[currentNum];
+  const text = `🪽 Angel Number ${currentNum} — ${d.title}\n\n"${d.general.substring(0,120)}..."\n\nDecode your angel numbers at luminanumbers.com/angel-numbers/`;
+  if(navigator.share){
+    navigator.share({title:`Angel Number ${currentNum}`,text,url:`https://luminanumbers.com/angel-numbers/`});
+  } else {
+    navigator.clipboard.writeText(text).then(()=>alert('Copied to clipboard! ✦'));
+  }
+}
+</script>
+</body>
+</html>
