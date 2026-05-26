@@ -1,7 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="/js/cookie-consent.js" data-ga="G-LSCWW3E9XV"></script>
+<script src="/js/cookie-consent.js" data-ga="G-LSCWW3E9XV">
+// ─── Tarot Birth Card ───
+(function(){
+  const dd=document.getElementById('t-dd');
+  const yy=document.getElementById('t-yy');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
+  const yr=new Date().getFullYear();
+  for(let y=yr;y>=1930;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+})();
+
+const TAROT_MAP = {
+  1:{name:"The Magician",num:"I",emoji:"🎩",desc:"A master of willpower and manifestation. You have all the tools you need — the universe is waiting for you to act with intention and confidence."},
+  2:{name:"The High Priestess",num:"II",emoji:"🌙",desc:"The keeper of hidden wisdom and deep intuition. You are guided by an inner knowing that transcends logic — trust the silence between thoughts."},
+  3:{name:"The Empress",num:"III",emoji:"🌸",desc:"The embodiment of abundance, creativity, and nurturing love. You are here to create, to bloom, and to remind the world of its own beauty."},
+  4:{name:"The Emperor",num:"IV",emoji:"👑",desc:"A builder of systems and structures. Your authority comes from discipline and wisdom — you are here to create order from chaos and leave a lasting legacy."},
+  5:{name:"The Hierophant",num:"V",emoji:"🏛️",desc:"The bridge between the sacred and the earthly. You are a keeper of tradition and a teacher of timeless truths — your path involves guiding others toward wisdom."},
+  6:{name:"The Lovers",num:"VI",emoji:"💫",desc:"A soul defined by choice, connection, and alignment. You are here to learn the art of love in its deepest form — of others, and ultimately of yourself."},
+  7:{name:"The Chariot",num:"VII",emoji:"⚡",desc:"A warrior of focused will and determined victory. You overcome obstacles through sheer resolve — the universe has given you the energy of movement and triumph."},
+  8:{name:"Strength",num:"VIII",emoji:"🦁",desc:"True power expressed through compassion and patience. Your greatest strength lies not in force, but in the quiet courage to face your shadow with unconditional love."},
+  9:{name:"The Hermit",num:"IX",emoji:"🕯️",desc:"A solitary seeker carrying a lantern for others. Your path leads inward first — through deep contemplation and wisdom, you become a light that guides those still searching."},
+  11:{name:"Justice",num:"XI",emoji:"⚖️",desc:"The embodiment of karmic truth and divine balance. You are here to restore equilibrium — your life is guided by a deep understanding of cause, consequence, and cosmic law."},
+  22:{name:"The Fool",num:"0",emoji:"🌟",desc:"The most powerful card — the infinite potential of pure beginnings. You carry the energy of boundless possibility and the courage to leap into the unknown with complete trust."},
+  33:{name:"The World",num:"XXI",emoji:"🌍",desc:"The completion of the great cycle. You carry the wisdom of all 21 Major Arcana within you — yours is a soul that has journeyed far and returned to share everything it has learned."},
+};
+
+function calcTarot(){
+  const d=+document.getElementById('t-dd').value;
+  const m=+document.getElementById('t-mm').value;
+  const y=+document.getElementById('t-yy').value;
+  if(!d||!m||!y){alert('Please select your full birth date.');return;}
+  const lp=lifePathFromDate(d,m,y);
+  const card=TAROT_MAP[lp];
+  if(!card)return;
+  document.getElementById('t-lp').textContent=lp;
+  document.getElementById('t-card').textContent=card.name;
+  document.getElementById('t-num').textContent=card.num;
+  document.getElementById('t-desc').textContent=card.desc;
+  // Link to tarot web — update URL when tarot site is live
+  document.getElementById('t-link').href='https://tarot.luminanumbers.com/cards/'+card.name.toLowerCase().replace(/\s+/g,'-')+'/';
+  document.getElementById('tarotDisplay').style.display='none';
+  const res=document.getElementById('tarotResult');
+  res.style.display='block';
+  res.innerHTML=`
+    <div style="font-size:52px;margin-bottom:12px;animation:float 4s ease-in-out infinite">${card.emoji}</div>
+    <div class="tarot-lp-badge">Life Path ${lp}</div>
+    <div class="tarot-card-title">${card.name}</div>
+    <div class="tarot-card-num">${card.num}</div>
+    <div class="tarot-card-desc">${card.desc}</div>
+    <a href="https://tarot.luminanumbers.com/cards/${card.name.toLowerCase().replace(/\s+/g,'-')}/" class="btn-tarot-explore" target="_blank">✦ Explore Full Tarot Reading →</a>
+  `;
+}
+
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lumina Numbers — Decode Your Divine Numbers</title>
@@ -851,6 +903,59 @@ footer {
   color: white; border-radius: 12px; padding: 14px;
   font-weight: 500; font-size: 15px; text-decoration: none;
 }
+
+/* ─── TAROT BIRTH CARD ─── */
+.tarot-section {
+  position: relative; z-index: 1;
+  background: linear-gradient(135deg, rgba(155,107,191,0.08), rgba(212,191,232,0.15));
+  border-top: 1px solid rgba(155,107,191,0.15);
+  border-bottom: 1px solid rgba(155,107,191,0.15);
+}
+.tarot-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 64px 5vw;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center;
+}
+.tarot-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #9b6bbf; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+.tarot-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3vw, 40px); font-weight: 600;
+  color: var(--text-dark); line-height: 1.2; margin-bottom: 14px;
+}
+.tarot-title em { font-style: italic; color: #9b6bbf; }
+.tarot-desc {
+  font-size: 14.5px; color: var(--text-soft);
+  line-height: 1.7; margin-bottom: 24px;
+}
+.tarot-calc { background: rgba(255,255,255,0.6); border: 1px solid rgba(155,107,191,0.2); border-radius: 20px; padding: 20px; }
+.tarot-date-row { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 8px; margin-bottom: 14px; }
+.tarot-field label { display: block; font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 4px; }
+.tarot-field select { width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.8); border: 1.5px solid rgba(155,107,191,0.25); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-dark); appearance: none; cursor: pointer; outline: none; transition: border-color .2s; }
+.tarot-field select:focus { border-color: #9b6bbf; }
+.btn-tarot { width: 100%; padding: 13px; background: linear-gradient(135deg, #c4a0e0, #9b6bbf); border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: white; cursor: pointer; box-shadow: 0 6px 18px rgba(155,107,191,0.35); transition: transform .15s, box-shadow .15s; }
+.btn-tarot:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(155,107,191,0.45); }
+.tarot-card-display { background: linear-gradient(160deg, rgba(212,191,232,0.4), rgba(155,107,191,0.2)); border: 1px solid rgba(155,107,191,0.25); border-radius: 24px; padding: 40px 24px; text-align: center; min-height: 280px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
+.tarot-card-icon { font-size: 64px; margin-bottom: 12px; animation: float 4s ease-in-out infinite; }
+.tarot-card-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #9b6bbf; margin-bottom: 6px; }
+.tarot-card-sub { font-size: 12px; color: var(--text-soft); }
+.tarot-result { background: linear-gradient(160deg, rgba(212,191,232,0.4), rgba(155,107,191,0.2)); border: 1px solid rgba(155,107,191,0.25); border-radius: 24px; padding: 28px 24px; text-align: center; box-shadow: var(--shadow); }
+.tarot-lp-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(155,107,191,0.15); border: 1px solid rgba(155,107,191,0.25); border-radius: 99px; padding: 4px 14px; font-size: 11px; color: #9b6bbf; font-weight: 500; margin-bottom: 12px; }
+.tarot-card-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
+.tarot-card-num { font-family: 'Playfair Display', serif; font-size: 18px; color: #9b6bbf; margin-bottom: 12px; letter-spacing: 0.1em; }
+.tarot-card-desc { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 18px; }
+.btn-tarot-explore { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #c4a0e0, #9b6bbf); color: white; border-radius: 99px; padding: 10px 22px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; text-decoration: none; box-shadow: 0 4px 14px rgba(155,107,191,0.35); transition: transform .15s; }
+.btn-tarot-explore:hover { transform: translateY(-1px); }
+@media(max-width:900px){
+  .tarot-inner { grid-template-columns: 1fr; gap: 32px; }
+  .tarot-date-row { grid-template-columns: 1fr 1fr; }
+  .tarot-date-row .tarot-field:last-child { grid-column: 1/-1; }
+}
+
 </style>
 </head>
 <body>
@@ -1090,6 +1195,59 @@ footer {
   </div>
 </section>
 
+
+<!-- TAROT BIRTH CARD -->
+<div class="tarot-section">
+  <div class="tarot-inner">
+    <div class="tarot-left">
+      <div class="tarot-eyebrow">✦ New — Discover Your Tarot Birth Card</div>
+      <h2 class="tarot-title">Your Numbers<br>Know Your <em>Card</em></h2>
+      <p class="tarot-desc">In Western mysticism, every Life Path Number is governed by a Major Arcana card. Enter your birth date to reveal the Tarot archetype that has shaped your soul's journey.</p>
+      <div class="tarot-calc">
+        <div class="tarot-date-row">
+          <div class="tarot-field">
+            <label>Day</label>
+            <select id="t-dd"><option value="">DD</option></select>
+          </div>
+          <div class="tarot-field">
+            <label>Month</label>
+            <select id="t-mm">
+              <option value="">MM</option>
+              <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+              <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+              <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+              <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+            </select>
+          </div>
+          <div class="tarot-field">
+            <label>Year</label>
+            <select id="t-yy"><option value="">YYYY</option></select>
+          </div>
+        </div>
+        <button class="btn-tarot" onclick="calcTarot()">🃏 Reveal My Birth Card →</button>
+      </div>
+    </div>
+    <div class="tarot-right">
+      <div class="tarot-card-display" id="tarotDisplay">
+        <div class="tarot-card-inner">
+          <div class="tarot-card-icon">🃏</div>
+          <div class="tarot-card-name">Your Card<br>Awaits</div>
+          <div class="tarot-card-sub">Enter your birth date</div>
+        </div>
+      </div>
+      <div class="tarot-result" id="tarotResult" style="display:none">
+        <div class="tarot-lp-badge">Life Path <span id="t-lp">—</span></div>
+        <div class="tarot-card-title" id="t-card">The Chariot</div>
+        <div class="tarot-card-num" id="t-num">VII</div>
+        <div class="tarot-card-desc" id="t-desc">—</div>
+        <a href="#" id="t-link" class="btn-tarot-explore" target="_blank">
+          ✦ Explore Full Tarot Reading →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- AURA WALLPAPER SECTION -->
 <div class="aura-section" id="aura">
   <div class="aura-inner">
@@ -1327,6 +1485,58 @@ function shareResult() {
       .then(() => alert('Copied to clipboard! Share it with the world. ✦'));
   }
 }
+
+// ─── Tarot Birth Card ───
+(function(){
+  const dd=document.getElementById('t-dd');
+  const yy=document.getElementById('t-yy');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
+  const yr=new Date().getFullYear();
+  for(let y=yr;y>=1930;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+})();
+
+const TAROT_MAP = {
+  1:{name:"The Magician",num:"I",emoji:"🎩",desc:"A master of willpower and manifestation. You have all the tools you need — the universe is waiting for you to act with intention and confidence."},
+  2:{name:"The High Priestess",num:"II",emoji:"🌙",desc:"The keeper of hidden wisdom and deep intuition. You are guided by an inner knowing that transcends logic — trust the silence between thoughts."},
+  3:{name:"The Empress",num:"III",emoji:"🌸",desc:"The embodiment of abundance, creativity, and nurturing love. You are here to create, to bloom, and to remind the world of its own beauty."},
+  4:{name:"The Emperor",num:"IV",emoji:"👑",desc:"A builder of systems and structures. Your authority comes from discipline and wisdom — you are here to create order from chaos and leave a lasting legacy."},
+  5:{name:"The Hierophant",num:"V",emoji:"🏛️",desc:"The bridge between the sacred and the earthly. You are a keeper of tradition and a teacher of timeless truths — your path involves guiding others toward wisdom."},
+  6:{name:"The Lovers",num:"VI",emoji:"💫",desc:"A soul defined by choice, connection, and alignment. You are here to learn the art of love in its deepest form — of others, and ultimately of yourself."},
+  7:{name:"The Chariot",num:"VII",emoji:"⚡",desc:"A warrior of focused will and determined victory. You overcome obstacles through sheer resolve — the universe has given you the energy of movement and triumph."},
+  8:{name:"Strength",num:"VIII",emoji:"🦁",desc:"True power expressed through compassion and patience. Your greatest strength lies not in force, but in the quiet courage to face your shadow with unconditional love."},
+  9:{name:"The Hermit",num:"IX",emoji:"🕯️",desc:"A solitary seeker carrying a lantern for others. Your path leads inward first — through deep contemplation and wisdom, you become a light that guides those still searching."},
+  11:{name:"Justice",num:"XI",emoji:"⚖️",desc:"The embodiment of karmic truth and divine balance. You are here to restore equilibrium — your life is guided by a deep understanding of cause, consequence, and cosmic law."},
+  22:{name:"The Fool",num:"0",emoji:"🌟",desc:"The most powerful card — the infinite potential of pure beginnings. You carry the energy of boundless possibility and the courage to leap into the unknown with complete trust."},
+  33:{name:"The World",num:"XXI",emoji:"🌍",desc:"The completion of the great cycle. You carry the wisdom of all 21 Major Arcana within you — yours is a soul that has journeyed far and returned to share everything it has learned."},
+};
+
+function calcTarot(){
+  const d=+document.getElementById('t-dd').value;
+  const m=+document.getElementById('t-mm').value;
+  const y=+document.getElementById('t-yy').value;
+  if(!d||!m||!y){alert('Please select your full birth date.');return;}
+  const lp=lifePathFromDate(d,m,y);
+  const card=TAROT_MAP[lp];
+  if(!card)return;
+  document.getElementById('t-lp').textContent=lp;
+  document.getElementById('t-card').textContent=card.name;
+  document.getElementById('t-num').textContent=card.num;
+  document.getElementById('t-desc').textContent=card.desc;
+  // Link to tarot web — update URL when tarot site is live
+  document.getElementById('t-link').href='https://tarot.luminanumbers.com/cards/'+card.name.toLowerCase().replace(/\s+/g,'-')+'/';
+  document.getElementById('tarotDisplay').style.display='none';
+  const res=document.getElementById('tarotResult');
+  res.style.display='block';
+  res.innerHTML=`
+    <div style="font-size:52px;margin-bottom:12px;animation:float 4s ease-in-out infinite">${card.emoji}</div>
+    <div class="tarot-lp-badge">Life Path ${lp}</div>
+    <div class="tarot-card-title">${card.name}</div>
+    <div class="tarot-card-num">${card.num}</div>
+    <div class="tarot-card-desc">${card.desc}</div>
+    <a href="https://tarot.luminanumbers.com/cards/${card.name.toLowerCase().replace(/\s+/g,'-')}/" class="btn-tarot-explore" target="_blank">✦ Explore Full Tarot Reading →</a>
+  `;
+}
+
 </script>
 </body>
 </html>
