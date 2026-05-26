@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumina Numbers — Decode Your Divine Numbers</title>
+<meta name="description" content="Discover your Life Path, Destiny, Soul Urge & Angel Numbers. Free numerology calculator with personal aura insights.">
+<meta property="og:title" content="Lumina — Decode Your Divine Numbers">
+<meta property="og:description" content="Your birth date holds divine codes. Discover your numerology profile in seconds.">
+<meta property="og:image" content="og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #fdf8f2;
+  --gold: #c9a96e;
+  --gold-light: #e8d5b0;
+  --peach: #f5c4a8;
+  --lavender: #d4bfe8;
+  --rose: #e8a4b0;
+  --text-dark: #2d2418;
+  --text-mid: #6b5744;
+  --text-soft: #a08878;
+  --white: #ffffff;
+  --glass-bg: rgba(255,255,255,0.55);
+  --glass-border: rgba(201,169,110,0.25);
+  --shadow: 0 8px 32px rgba(180,140,100,0.12);
+  --shadow-lg: 0 20px 60px rgba(180,140,100,0.18);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── BACKGROUND AURA ─── */
+.bg-aura {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(232,213,176,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(212,191,232,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 75%, rgba(232,164,176,0.25) 0%, transparent 50%),
+    var(--cream);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 68px;
+  background: rgba(253,248,242,0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201,169,110,0.15);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.nav-logo-text { line-height: 1.1; }
+.nav-logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 600;
+  color: var(--text-dark); letter-spacing: 0.08em;
+}
+.nav-logo-sub {
+  font-size: 9px; letter-spacing: 0.12em;
+  color: var(--gold); text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13.5px; font-weight: 400;
+  color: var(--text-mid); text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+.nav-cta {
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 20px;
+  border-radius: 99px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--gold); color: white; }
+
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px; background: none; border: none;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--text-mid); border-radius: 2px;
+  transition: all .3s;
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; z-index: 1;
+  padding: 120px 5vw 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  border-radius: 99px;
+  padding: 6px 16px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.hero-badge::before { content: '✦'; font-size: 10px; }
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4.5vw, 62px);
+  line-height: 1.12;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+h1 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--peach), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 15px; line-height: 1.65;
+  color: var(--text-soft); margin-bottom: 32px;
+  max-width: 420px;
+}
+
+/* ─── CALCULATOR CARD ─── */
+.calc-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 28px 28px 24px;
+  box-shadow: var(--shadow);
+}
+
+.calc-label {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 6px;
+}
+.calc-label-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, #f9ece0, #f5c4a8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.calc-label-text { line-height: 1.2; }
+.calc-label-text strong { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+.calc-label-text span { font-size: 11.5px; color: var(--text-soft); display: block; }
+
+.date-row {
+  display: grid; grid-template-columns: 1fr 1fr 1.3fr;
+  gap: 10px; margin: 18px 0 16px;
+}
+
+.date-select {
+  position: relative;
+}
+.date-select label {
+  display: block; font-size: 11px; font-weight: 500;
+  color: var(--text-soft); letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.date-select select {
+  width: 100%; padding: 11px 14px;
+  background: rgba(255,255,255,0.7);
+  border: 1.5px solid rgba(201,169,110,0.3);
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; color: var(--text-dark);
+  appearance: none; cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+.date-select select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+}
+
+.btn-calc {
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, var(--peach), var(--gold));
+  border: none; border-radius: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 500;
+  color: white; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 6px 20px rgba(201,169,110,0.4);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-calc:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(201,169,110,0.5); }
+.btn-calc:active { transform: translateY(0); }
+.btn-calc .arrow { transition: transform .2s; }
+.btn-calc:hover .arrow { transform: translateX(4px); }
+
+.calc-privacy {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 12px;
+  font-size: 11.5px; color: var(--text-soft);
+}
+.calc-privacy::before { content: '🔒'; font-size: 11px; }
+
+/* ─── FEATURES ROW ─── */
+.features {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 28px;
+  border-top: 1px solid rgba(201,169,110,0.15);
+  padding-top: 24px;
+}
+.feature-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 0 12px;
+  border-right: 1px solid rgba(201,169,110,0.15);
+}
+.feature-item:first-child { padding-left: 0; }
+.feature-item:last-child { border-right: none; }
+
+.feature-icon {
+  font-size: 18px; flex-shrink: 0; margin-top: 2px;
+}
+.feature-name {
+  font-size: 12.5px; font-weight: 500;
+  color: var(--text-dark); margin-bottom: 2px;
+}
+.feature-desc {
+  font-size: 11px; color: var(--text-soft); line-height: 1.4;
+}
+
+/* ─── HERO RIGHT (Mockup) ─── */
+.hero-right {
+  display: flex; gap: 16px; align-items: flex-start;
+  justify-content: center;
+}
+
+.phone-mockup {
+  width: 180px; flex-shrink: 0;
+  background: linear-gradient(160deg, #f9e8d8, #ecd5f0, #f5c4c4);
+  border-radius: 32px;
+  padding: 16px 14px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.7);
+  animation: float 5s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.phone-time {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px; font-weight: 400;
+  text-align: center; color: var(--text-dark);
+  line-height: 1; margin-bottom: 4px;
+}
+.phone-date {
+  text-align: center; font-size: 11px;
+  color: var(--text-soft); margin-bottom: 16px;
+}
+
+.phone-aura {
+  width: 120px; height: 120px; margin: 0 auto 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%,
+    rgba(255,220,180,0.9),
+    rgba(212,150,200,0.6),
+    rgba(160,180,240,0.4));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px;
+  box-shadow: 0 0 30px rgba(200,150,200,0.4);
+  animation: pulse-aura 4s ease-in-out infinite;
+}
+@keyframes pulse-aura {
+  0%,100% { box-shadow: 0 0 30px rgba(200,150,200,0.4); transform: scale(1); }
+  50% { box-shadow: 0 0 50px rgba(200,150,200,0.6); transform: scale(1.03); }
+}
+
+.phone-affirmation {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px; font-style: italic;
+  color: var(--text-mid); line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.phone-actions {
+  display: flex; justify-content: space-between;
+  padding: 0 8px;
+}
+.phone-actions span {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; cursor: pointer;
+}
+
+/* Results panel */
+.result-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 18px 16px;
+  min-width: 160px;
+  box-shadow: var(--shadow);
+}
+
+.result-label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 14px;
+}
+.result-label::before { content: '✦'; font-size: 9px; }
+
+.result-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 600;
+  color: var(--gold); line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.result-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(201,169,110,0.12);
+}
+.result-row:last-of-type { border-bottom: none; }
+.result-row-left {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; color: var(--text-mid);
+}
+.result-row-left span { font-size: 13px; }
+.result-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 600;
+  color: var(--text-dark);
+}
+
+.angel-section { margin-top: 14px; }
+.angel-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-soft);
+  margin-bottom: 6px;
+}
+.angel-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; color: var(--gold);
+  display: flex; align-items: center; gap: 6px;
+}
+.angel-msg {
+  font-size: 11px; color: var(--text-soft); line-height: 1.4;
+  margin-top: 4px;
+}
+
+.quote-bubble {
+  background: white;
+  border-radius: 14px 14px 14px 4px;
+  padding: 10px 14px;
+  margin-top: 14px;
+  font-family: 'Playfair Display', serif;
+  font-size: 11.5px; font-style: italic;
+  color: var(--text-mid); line-height: 1.45;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  position: relative;
+}
+.quote-heart {
+  position: absolute; bottom: 8px; right: 10px;
+  font-size: 12px;
+}
+
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 5vw 32px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  flex-wrap: wrap;
+}
+.trust-text {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+.trust-avatars {
+  display: flex;
+}
+.trust-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -8px; first-child: { margin-left: 0; }
+  font-size: 14px;
+  background: linear-gradient(135deg, var(--peach), var(--lavender));
+  display: flex; align-items: center; justify-content: center;
+}
+.trust-avatar:first-child { margin-left: 0; }
+.trust-stars {
+  display: flex; gap: 2px; color: var(--gold); font-size: 13px;
+}
+.trust-score {
+  font-size: 13px; font-weight: 500; color: var(--text-mid);
+}
+
+/* ─── HOW IT WORKS ─── */
+.section {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 60px 5vw;
+}
+
+.section-eyebrow {
+  text-align: center;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.section-eyebrow::before, .section-eyebrow::after { content: '—'; color: var(--gold-light); }
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 600; text-align: center;
+  color: var(--text-dark); margin-bottom: 14px;
+}
+.section-sub {
+  text-align: center; font-size: 15px;
+  color: var(--text-soft); max-width: 480px;
+  margin: 0 auto 48px; line-height: 1.65;
+}
+
+.steps-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+
+.step-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  border-radius: 20px; padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+.step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px; font-weight: 600;
+  color: var(--gold); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.step-icon {
+  font-size: 36px; margin-bottom: 14px; display: block;
+}
+.step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 8px;
+}
+.step-desc {
+  font-size: 13.5px; color: var(--text-soft);
+  line-height: 1.6;
+}
+
+/* ─── TOOLS SECTION ─── */
+.tools-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.tool-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  border-radius: 20px; padding: 24px;
+  display: flex; align-items: flex-start; gap: 16px;
+  box-shadow: var(--shadow);
+  text-decoration: none; color: inherit;
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+.tool-icon-wrap {
+  width: 52px; height: 52px; flex-shrink: 0;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.tool-icon-wrap.gold { background: linear-gradient(135deg, #f9ece0, #f0d4a8); }
+.tool-icon-wrap.rose { background: linear-gradient(135deg, #f9e0e8, #f0b8c8); }
+.tool-icon-wrap.lav { background: linear-gradient(135deg, #ede0f9, #d4b8f0); }
+.tool-icon-wrap.mint { background: linear-gradient(135deg, #e0f9f0, #b8f0d4); }
+
+.tool-info { flex: 1; }
+.tool-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 5px;
+}
+.tool-desc { font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+.tool-arrow {
+  color: var(--gold); font-size: 18px;
+  align-self: center; flex-shrink: 0;
+  transition: transform .2s;
+}
+.tool-card:hover .tool-arrow { transform: translateX(4px); }
+
+/* ─── AURA SECTION ─── */
+.aura-section {
+  position: relative; z-index: 1;
+  background: linear-gradient(135deg, rgba(245,196,168,0.25), rgba(212,191,232,0.25));
+  border-top: 1px solid rgba(201,169,110,0.12);
+  border-bottom: 1px solid rgba(201,169,110,0.12);
+}
+
+.aura-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 64px 5vw;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center;
+}
+
+.aura-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, var(--peach), var(--gold));
+  color: white; border-radius: 99px;
+  padding: 5px 14px; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.06em; margin-bottom: 18px;
+}
+
+.aura-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3vw, 40px); font-weight: 600;
+  color: var(--text-dark); line-height: 1.2; margin-bottom: 16px;
+}
+.aura-title em {
+  font-style: italic; color: var(--gold);
+}
+
+.aura-desc {
+  font-size: 14.5px; color: var(--text-soft);
+  line-height: 1.7; margin-bottom: 28px;
+}
+
+.aura-price {
+  display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px;
+}
+.price-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 600; color: var(--gold);
+}
+.price-note { font-size: 13px; color: var(--text-soft); }
+
+.btn-aura {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--peach), var(--gold));
+  color: white; border: none; border-radius: 14px;
+  padding: 14px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 500;
+  cursor: pointer; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(201,169,110,0.4);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-aura:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,169,110,0.5); }
+
+.aura-samples {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+}
+
+.aura-sample {
+  border-radius: 20px; aspect-ratio: 9/16;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 16px; text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.6);
+  position: relative; overflow: hidden;
+}
+.aura-sample::before {
+  content: ''; position: absolute; inset: 0;
+  background: inherit; filter: blur(0); z-index: 0;
+}
+.aura-sample > * { position: relative; z-index: 1; }
+.as-1 { background: linear-gradient(160deg, #fde8d8, #f5d0e8, #e8d0f8); }
+.as-2 { background: linear-gradient(160deg, #d8e8fd, #d0f5e8, #d8f0d0); }
+.as-3 { background: linear-gradient(160deg, #fdf8d0, #fde8a0, #f8d0c0); }
+
+.aura-sample-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 600;
+  color: rgba(80,50,40,0.7); margin-bottom: 8px;
+}
+.aura-sample-glyph { font-size: 32px; margin-bottom: 8px; }
+.aura-sample-name {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(80,50,40,0.55);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  position: relative; z-index: 1;
+  padding: 40px 5vw 24px;
+  border-top: 1px solid rgba(201,169,110,0.15);
+  max-width: 1280px; margin: 0 auto;
+}
+
+.footer-inner {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 32px;
+  flex-wrap: wrap; margin-bottom: 32px;
+}
+
+.footer-brand { max-width: 240px; }
+.footer-brand p {
+  font-size: 13px; color: var(--text-soft);
+  line-height: 1.6; margin-top: 10px;
+}
+
+.footer-links h4 {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+}
+.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-links a {
+  font-size: 13.5px; color: var(--text-soft);
+  text-decoration: none; transition: color .2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(201,169,110,0.12);
+  padding-top: 20px;
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 12px; color: var(--text-soft); }
+
+/* ─── RESULTS MODAL OVERLAY ─── */
+#result-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(45,36,24,0.5); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 16px;
+}
+#result-overlay.show { display: flex; }
+
+.result-modal {
+  background: var(--cream);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px; padding: 32px 28px;
+  max-width: 480px; width: 100%;
+  box-shadow: var(--shadow-lg);
+  animation: slide-up .4s cubic-bezier(.2,.8,.3,1);
+  max-height: 90vh; overflow-y: auto;
+}
+@keyframes slide-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute; right: 20px; top: 20px;
+  background: none; border: none; font-size: 20px;
+  cursor: pointer; color: var(--text-soft);
+  line-height: 1; padding: 4px;
+}
+.result-modal { position: relative; }
+
+.modal-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+}
+.modal-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 4px;
+}
+.modal-sub { font-size: 13px; color: var(--text-soft); margin-bottom: 24px; }
+
+.modal-numbers {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-bottom: 20px;
+}
+
+.num-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 16px;
+  text-align: center;
+}
+.num-card-label {
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-soft); margin-bottom: 6px;
+}
+.num-card-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px; font-weight: 600; color: var(--gold);
+  line-height: 1;
+}
+.num-card.master .num-card-value { color: #9b6bbf; }
+
+.modal-desc {
+  background: rgba(255,255,255,0.6);
+  border-radius: 14px; padding: 16px;
+  font-size: 13.5px; color: var(--text-mid);
+  line-height: 1.65; margin-bottom: 16px;
+}
+
+.angel-result {
+  display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, rgba(245,196,168,0.3), rgba(212,191,232,0.3));
+  border-radius: 14px; padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.angel-result-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 600; color: var(--gold);
+  flex-shrink: 0;
+}
+.angel-result-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+
+.modal-actions {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.btn-share {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--peach), var(--gold));
+  border: none; border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; color: white;
+  cursor: pointer; display: flex; align-items: center;
+  justify-content: center; gap: 7px;
+  box-shadow: 0 4px 16px rgba(201,169,110,0.35);
+  transition: transform .15s;
+}
+.btn-share:hover { transform: translateY(-1px); }
+.btn-aura-sm {
+  width: 100%; padding: 13px;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; color: var(--gold);
+  cursor: pointer; display: flex; align-items: center;
+  justify-content: center; gap: 7px;
+  transition: all .15s;
+}
+.btn-aura-sm:hover { background: var(--gold); color: white; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 90px; padding-bottom: 32px;
+  }
+  .hero-right { display: none; }
+  h1 { font-size: clamp(32px, 8vw, 50px); }
+  .features { grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .feature-item {
+    border-right: none; padding: 0;
+    border-bottom: 1px solid rgba(201,169,110,0.12);
+    padding-bottom: 14px;
+  }
+  .feature-item:nth-child(3), .feature-item:nth-child(4) { border-bottom: none; }
+  .steps-grid { grid-template-columns: 1fr; gap: 16px; }
+  .tools-grid { grid-template-columns: 1fr; gap: 14px; }
+  .aura-inner { grid-template-columns: 1fr; gap: 32px; }
+  .aura-samples { max-width: 280px; margin: 0 auto; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .footer-inner { flex-direction: column; gap: 24px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .date-row { grid-template-columns: 1fr 1fr; }
+  .date-row .date-select:last-child { grid-column: 1 / -1; }
+  .modal-numbers { grid-template-columns: 1fr 1fr; }
+  .aura-samples { grid-template-columns: repeat(3,1fr); }
+  nav { padding: 0 4vw; }
+  .section { padding: 44px 4vw; }
+}
+
+/* Mobile nav drawer */
+.nav-drawer {
+  display: none; position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+  background: rgba(253,248,242,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201,169,110,0.15);
+  padding: 16px 5vw 24px;
+  flex-direction: column; gap: 0;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  padding: 14px 0; font-size: 16px;
+  color: var(--text-mid); text-decoration: none;
+  border-bottom: 1px solid rgba(201,169,110,0.1);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer .nav-cta-mobile {
+  margin-top: 16px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--peach), var(--gold));
+  color: white; border-radius: 12px; padding: 14px;
+  font-weight: 500; font-size: 15px; text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-aura"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    <div class="nav-logo-text">
+      <div class="nav-logo-name">Lumina Numbers</div>
+      <div class="nav-logo-sub">Discover Your Divine Numbers</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#tools">Numbers</a></li>
+    <li><a href="#angel">Angel Numbers</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a href="#aura" class="nav-cta">✦ Premium Insights</a>
+  <button class="nav-hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="#">Home <span>→</span></a>
+  <a href="#tools">Numbers <span>→</span></a>
+  <a href="#angel">Angel Numbers <span>→</span></a>
+  <a href="#">About <span>→</span></a>
+  <a href="#aura" class="nav-cta-mobile">✦ Premium Insights</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Numerology & Angel Number Calculator</div>
+    <h1>Decode the Numbers.<br><em>Discover Your Purpose.</em></h1>
+    <p class="hero-sub">Your birth date holds divine codes that reveal your path, purpose, strengths, and spiritual messages from the universe.</p>
+
+    <div class="calc-card">
+      <div class="calc-label">
+        <div class="calc-label-icon">📅</div>
+        <div class="calc-label-text">
+          <strong>Enter Your Birth Date</strong>
+          <span>We'll calculate your core numbers and angel guidance.</span>
+        </div>
+      </div>
+
+      <div class="date-row">
+        <div class="date-select">
+          <label>Day</label>
+          <select id="selDay"><option value="">DD</option></select>
+        </div>
+        <div class="date-select">
+          <label>Month</label>
+          <select id="selMonth">
+            <option value="">MM</option>
+            <option value="1">January</option><option value="2">February</option>
+            <option value="3">March</option><option value="4">April</option>
+            <option value="5">May</option><option value="6">June</option>
+            <option value="7">July</option><option value="8">August</option>
+            <option value="9">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
+        </div>
+        <div class="date-select">
+          <label>Year</label>
+          <select id="selYear"><option value="">YYYY</option></select>
+        </div>
+      </div>
+
+      <button class="btn-calc" onclick="calculate()">
+        Calculate My Numbers <span class="arrow">→</span>
+      </button>
+      <p class="calc-privacy">Your data is private and secure.</p>
+    </div>
+
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">☀️</div>
+        <div>
+          <div class="feature-name">Life Path</div>
+          <div class="feature-desc">Your life's purpose and direction</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">♡</div>
+        <div>
+          <div class="feature-name">Destiny</div>
+          <div class="feature-desc">Natural talents and potential</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">👁</div>
+        <div>
+          <div class="feature-name">Soul Urge</div>
+          <div class="feature-desc">Inner desires and motivations</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">111</div>
+        <div>
+          <div class="feature-name">Angel Numbers</div>
+          <div class="feature-desc">Divine messages and guidance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="phone-mockup">
+      <div class="phone-time">11:11</div>
+      <div class="phone-date">Monday, May 26</div>
+      <div class="phone-aura">🧘</div>
+      <div class="phone-affirmation">I am aligned<br>I am becoming</div>
+      <div class="phone-actions">
+        <span>🔦</span><span>📷</span>
+      </div>
+    </div>
+
+    <div class="result-panel">
+      <div class="result-label">Your Result</div>
+      <div class="result-title">Personal Aura<br>Wallpaper</div>
+      <div class="result-row">
+        <div class="result-row-left"><span>☀️</span> Life Path</div>
+        <div class="result-num">7</div>
+      </div>
+      <div class="result-row">
+        <div class="result-row-left"><span>⭐</span> Destiny</div>
+        <div class="result-num">9</div>
+      </div>
+      <div class="result-row">
+        <div class="result-row-left"><span>♡</span> Soul Urge</div>
+        <div class="result-num">3</div>
+      </div>
+      <div class="result-row">
+        <div class="result-row-left"><span>👤</span> Personality</div>
+        <div class="result-num">5</div>
+      </div>
+      <div class="angel-section">
+        <div class="angel-label">Angel Message</div>
+        <div class="angel-num">🪽 111</div>
+        <div class="angel-msg">Stay aligned. You are on the right path.</div>
+      </div>
+      <div class="quote-bubble">
+        "The universe speaks in numbers. Are you ready to listen?"
+        <div class="quote-heart">♥</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="trust-text">Trusted by thousands on their spiritual journey</span>
+  <div class="trust-avatars">
+    <div class="trust-avatar">😊</div>
+    <div class="trust-avatar">🙂</div>
+    <div class="trust-avatar">😌</div>
+    <div class="trust-avatar">🤩</div>
+    <div class="trust-avatar">😇</div>
+  </div>
+  <div class="trust-stars">★★★★★</div>
+  <span class="trust-score">4.9/5</span>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-eyebrow">How It Works</div>
+  <h2 class="section-title">Your Numbers, Revealed in Seconds</h2>
+  <p class="section-sub">Ancient numerology wisdom decoded by modern algorithms — precisely and instantly.</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">Step 01</div>
+      <span class="step-icon">📅</span>
+      <div class="step-title">Enter Your Birth Date</div>
+      <div class="step-desc">Simply select your day, month, and year. That's all the universe needs to reveal your blueprint.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 02</div>
+      <span class="step-icon">✦</span>
+      <div class="step-title">We Calculate Your Numbers</div>
+      <div class="step-desc">Our Pythagorean engine computes your Life Path, Destiny, Soul Urge, and current Angel Number guidance.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 03</div>
+      <span class="step-icon">🌟</span>
+      <div class="step-title">Discover Your Purpose</div>
+      <div class="step-desc">Receive a full reading of your divine numbers and optionally unlock your personalized Aura Wallpaper.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section" id="tools" style="padding-top:0">
+  <div class="section-eyebrow">Our Calculators</div>
+  <h2 class="section-title">Explore Your Full Numerology Profile</h2>
+  <p class="section-sub">Each tool reveals a different dimension of your spiritual blueprint.</p>
+
+  <div class="tools-grid">
+    <a class="tool-card" href="/life-path-calculator/">
+      <div class="tool-icon-wrap gold">🔢</div>
+      <div class="tool-info">
+        <div class="tool-name">Life Path Number Calculator</div>
+        <div class="tool-desc">Discover your core life purpose, natural strengths, and the journey your soul chose for this lifetime.</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </a>
+    <a class="tool-card" href="/destiny-calculator/">
+      <div class="tool-icon-wrap rose">⭐</div>
+      <div class="tool-info">
+        <div class="tool-name">Destiny & Soul Urge Numbers</div>
+        <div class="tool-desc">Uncover your hidden talents, deepest desires, and the expression your soul longs to embody.</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </a>
+    <a class="tool-card" href="/angel-numbers/" id="angel">
+      <div class="tool-icon-wrap lav">🪽</div>
+      <div class="tool-info">
+        <div class="tool-name">Angel Number Decoder</div>
+        <div class="tool-desc">Seeing 111, 444, or 777 repeatedly? Decode the message the universe is sending you right now.</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </a>
+    <a class="tool-card" href="/compatibility/">
+      <div class="tool-icon-wrap mint">💫</div>
+      <div class="tool-info">
+        <div class="tool-name">Numerology Compatibility</div>
+        <div class="tool-desc">Compare your numbers with a partner, friend, or colleague to reveal your energetic harmony.</div>
+      </div>
+      <div class="tool-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<!-- AURA WALLPAPER SECTION -->
+<div class="aura-section" id="aura">
+  <div class="aura-inner">
+    <div>
+      <div class="aura-tag">✦ Premium Feature</div>
+      <h2 class="aura-title">Your Personal<br><em>Aura Wallpaper</em></h2>
+      <p class="aura-desc">A unique energy visualization designed specifically for your numbers. Each wallpaper is generated from your exact Life Path, Destiny, and Soul Urge combination — no two are alike.</p>
+      <div class="aura-price">
+        <div class="price-amount">$2.99</div>
+        <div class="price-note">one-time · instant download · yours forever</div>
+      </div>
+      <a href="#" class="btn-aura">✦ Get My Aura Wallpaper</a>
+    </div>
+    <div class="aura-samples">
+      <div class="aura-sample as-1">
+        <div class="aura-sample-num">7 · 9</div>
+        <div class="aura-sample-glyph">🌸</div>
+        <div class="aura-sample-name">Seeker</div>
+      </div>
+      <div class="aura-sample as-2">
+        <div class="aura-sample-num">3 · 6</div>
+        <div class="aura-sample-glyph">🌿</div>
+        <div class="aura-sample-name">Creator</div>
+      </div>
+      <div class="aura-sample as-3">
+        <div class="aura-sample-num">1 · 1</div>
+        <div class="aura-sample-glyph">✨</div>
+        <div class="aura-sample-name">Pioneer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="nav-logo" style="text-decoration:none">
+        <div class="nav-logo-icon">✦</div>
+        <div class="nav-logo-text">
+          <div class="nav-logo-name">Lumina Numbers</div>
+          <div class="nav-logo-sub">Discover Your Divine Numbers</div>
+        </div>
+      </a>
+      <p>Ancient wisdom, decoded by modern tools. Your numbers hold the answers you've been searching for.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Calculators</h4>
+      <ul>
+        <li><a href="/life-path-calculator/">Life Path Number</a></li>
+        <li><a href="/destiny-calculator/">Destiny Number</a></li>
+        <li><a href="/angel-numbers/">Angel Numbers</a></li>
+        <li><a href="/compatibility/">Compatibility</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Angel Numbers</h4>
+      <ul>
+        <li><a href="/angel-numbers/111/">111 Meaning</a></li>
+        <li><a href="/angel-numbers/222/">222 Meaning</a></li>
+        <li><a href="/angel-numbers/444/">444 Meaning</a></li>
+        <li><a href="/angel-numbers/777/">777 Meaning</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Lumina Numbers All rights reserved.</div>
+    <div class="footer-copy">Made with ✦ for seekers everywhere</div>
+  </div>
+</footer>
+
+<!-- RESULT OVERLAY -->
+<div id="result-overlay" onclick="closeResult(event)">
+  <div class="result-modal">
+    <button class="modal-close" onclick="document.getElementById('result-overlay').classList.remove('show')">✕</button>
+    <div class="modal-eyebrow">✦ Your Reading</div>
+    <div class="modal-name" id="r-name">Life Path 7</div>
+    <div class="modal-sub" id="r-sub">Born seeker · The Spiritual Analyst</div>
+
+    <div class="modal-numbers">
+      <div class="num-card" id="nc-lp">
+        <div class="num-card-label">Life Path</div>
+        <div class="num-card-value" id="r-lp">7</div>
+      </div>
+      <div class="num-card" id="nc-dest">
+        <div class="num-card-label">Destiny</div>
+        <div class="num-card-value" id="r-dest">—</div>
+      </div>
+      <div class="num-card">
+        <div class="num-card-label">Soul Urge</div>
+        <div class="num-card-value" id="r-soul">—</div>
+      </div>
+      <div class="num-card">
+        <div class="num-card-label">Personality</div>
+        <div class="num-card-value" id="r-pers">—</div>
+      </div>
+    </div>
+
+    <div class="modal-desc" id="r-desc">Loading your reading…</div>
+
+    <div class="angel-result">
+      <div class="angel-result-num" id="r-angel">111</div>
+      <div class="angel-result-text">
+        <strong>Angel Message</strong><br>
+        <span id="r-angel-msg">The universe is aligning in your favor. Stay focused on your intentions.</span>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-share" onclick="shareResult()">🔗 Share My Reading</button>
+      <button class="btn-aura-sm" onclick="alert('Aura Wallpaper — coming soon!')">✦ Get My Aura Wallpaper ($2.99)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── Populate selects ───
+const dayEl = document.getElementById('selDay');
+const yearEl = document.getElementById('selYear');
+for (let d = 1; d <= 31; d++) {
+  const o = document.createElement('option');
+  o.value = d; o.textContent = String(d).padStart(2,'0');
+  dayEl.appendChild(o);
+}
+const y = new Date().getFullYear();
+for (let yr = y; yr >= 1930; yr--) {
+  const o = document.createElement('option');
+  o.value = yr; o.textContent = yr;
+  yearEl.appendChild(o);
+}
+
+// ─── Nav toggle ───
+function toggleNav() {
+  document.getElementById('navDrawer').classList.toggle('open');
+}
+
+// ─── Numerology engine ───
+function reduce(n, preserveMaster = true) {
+  if (preserveMaster && (n === 11 || n === 22 || n === 33)) return n;
+  if (n < 10) return n;
+  const s = String(n).split('').reduce((a, c) => a + +c, 0);
+  return reduce(s, preserveMaster);
+}
+
+function lifePathFromDate(d, m, y) {
+  const rd = reduce(d); const rm = reduce(m); const ry = reduce(+String(y).split('').reduce((a,c)=>a+ +c,0));
+  const total = rd + rm + ry;
+  return reduce(total);
+}
+
+const LP_DESC = {
+  1: ["The Leader","Natural-born leader, independent, pioneering spirit. You forge your own path with courage and originality."],
+  2: ["The Diplomat","Sensitive, cooperative, and deeply intuitive. You bring harmony and peace to every situation."],
+  3: ["The Creator","Expressive, joyful, and artistically gifted. You uplift others through creativity and communication."],
+  4: ["The Builder","Practical, disciplined, and deeply reliable. You create stability and lasting foundations."],
+  5: ["The Adventurer","Freedom-loving, curious, and dynamic. You thrive on change and inspire others to embrace life fully."],
+  6: ["The Nurturer","Compassionate, responsible, and deeply loving. You are the healer and caregiver of the world."],
+  7: ["The Seeker","Analytical, spiritual, and deeply wise. You search for truth beyond the surface of things."],
+  8: ["The Achiever","Ambitious, powerful, and materially gifted. You are here to master the material world and create abundance."],
+  9: ["The Humanitarian","Compassionate, idealistic, and universally loving. You are here to serve humanity on the grandest scale."],
+  11: ["The Visionary ✦","A Master Number. You are an enlightened soul carrying heightened intuition and spiritual insight."],
+  22: ["The Master Builder ✦","A Master Number. You have the rare ability to turn visionary dreams into concrete reality."],
+  33: ["The Master Teacher ✦","A Master Number. The highest expression of love — you are here to uplift and heal the world."],
+};
+
+const ANGEL_BY_LP = {
+  1:111, 2:222, 3:333, 4:444, 5:555, 6:666, 7:777, 8:888, 9:999, 11:1111, 22:2222, 33:3333
+};
+const ANGEL_MSG = {
+  111: "New beginnings are unfolding. Your thoughts are manifesting rapidly.",
+  222: "Trust the process. Balance and harmony are being restored.",
+  333: "Your creative power is activated. Express yourself freely.",
+  444: "You are divinely protected. Keep building with faith.",
+  555: "A major life change is coming. Embrace the transformation.",
+  666: "Bring your thoughts back into balance. Nurture yourself.",
+  777: "You are on the right spiritual path. Keep going.",
+  888: "Abundance is flowing toward you. Receive with gratitude.",
+  999: "A chapter is closing. Your highest calling awaits.",
+  1111: "You are a powerful creator. Align your thoughts with your deepest truth.",
+  2222: "Your vision is becoming reality. Trust divine timing.",
+  3333: "Master love is guiding you. Your purpose is healing the world.",
+};
+
+function calculate() {
+  const d = +document.getElementById('selDay').value;
+  const m = +document.getElementById('selMonth').value;
+  const y = +document.getElementById('selYear').value;
+  if (!d || !m || !y) { alert('Please select your full birth date.'); return; }
+
+  const lp = lifePathFromDate(d, m, y);
+  const info = LP_DESC[lp] || ["Unknown",""];
+  const angel = ANGEL_BY_LP[lp] || 111;
+  const angelMsg = ANGEL_MSG[angel] || "";
+
+  document.getElementById('r-name').textContent = 'Life Path ' + lp;
+  document.getElementById('r-sub').textContent = info[0];
+  document.getElementById('r-lp').textContent = lp;
+  document.getElementById('r-dest').textContent = reduce(d + m);
+  document.getElementById('r-soul').textContent = reduce(m + y % 100);
+  document.getElementById('r-pers').textContent = reduce(d + y % 100);
+  document.getElementById('r-desc').textContent = info[1];
+  document.getElementById('r-angel').textContent = angel;
+  document.getElementById('r-angel-msg').textContent = angelMsg;
+
+  const isMaster = [11,22,33].includes(lp);
+  document.getElementById('nc-lp').classList.toggle('master', isMaster);
+
+  document.getElementById('result-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeResult(e) {
+  if (e.target === document.getElementById('result-overlay')) {
+    document.getElementById('result-overlay').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+
+function shareResult() {
+  const lp = document.getElementById('r-lp').textContent;
+  const name = document.getElementById('r-name').textContent;
+  const text = `✦ My ${name} — ${LP_DESC[+lp]?.[0] || ''} ✦\nDiscover your divine numbers at Lumina Numbers →`;
+  if (navigator.share) {
+    navigator.share({ title: 'My Numerology Reading', text, url: location.href });
+  } else {
+    navigator.clipboard.writeText(text + '\n' + location.href)
+      .then(() => alert('Copied to clipboard! Share it with the world. ✦'));
+  }
+}
+</script>
+</body>
+</html>
