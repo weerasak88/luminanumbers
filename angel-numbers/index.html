@@ -67,13 +67,12 @@ function getCrystalForNum(n){
   yy.value=today.getFullYear();
 })();
 
-function toggleDate(){
-  const sec=document.getElementById('dateSection');
-  const btn=document.getElementById('dateToggleBtn');
-  const isShow=sec.classList.contains('show');
-  sec.classList.toggle('show',!isShow);
-  btn.classList.toggle('active',!isShow);
-  btn.textContent=isShow?'📅 Add the date you saw this number':'✕ Hide date reading';
+function toggleDateInline(){
+  const body=document.getElementById('dateInlineBody');
+  const arrow=document.getElementById('dateArrow');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  arrow.classList.toggle('open',!isOpen);
 }
 
 // ── Numerology helpers ──
@@ -318,6 +317,30 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
   .date-row-inner .date-f:last-child{grid-column:1/-1}
 }
 
+
+/* ─── DATE INLINE CARD ─── */
+.date-inline-card{
+  background:linear-gradient(135deg,rgba(212,191,232,.25),rgba(155,107,191,.12));
+  border:1px solid rgba(155,107,191,.28);
+  border-radius:20px;margin-bottom:16px;overflow:hidden;
+}
+.date-inline-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;cursor:pointer;transition:background .2s;
+}
+.date-inline-header:hover{background:rgba(155,107,191,.08)}
+.date-inline-left{display:flex;align-items:center;gap:12px}
+.date-inline-icon{font-size:22px;flex-shrink:0}
+.date-inline-title{font-size:14px;font-weight:500;color:var(--text-dark)}
+.date-inline-sub{font-size:11.5px;color:#9b6bbf;margin-top:2px}
+.date-inline-arrow{font-size:20px;color:#9b6bbf;font-weight:300;transition:transform .25s;line-height:1}
+.date-inline-arrow.open{transform:rotate(45deg)}
+.date-inline-body{
+  display:none;padding:4px 20px 18px;
+  border-top:1px solid rgba(155,107,191,.15);
+}
+.date-inline-body.open{display:block}
+
 </style>
 </head>
 <body>
@@ -359,18 +382,41 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
   </div>
 </div>
 
-<!-- DATE ENERGY TOGGLE -->
-<div class="date-toggle">
-  <button class="date-toggle-btn" id="dateToggleBtn" onclick="toggleDate()">
-    📅 Add the date you saw this number
-  </button>
-</div>
 
-<!-- DATE SECTION -->
-<div class="date-section" id="dateSection">
-  <div class="date-card">
-    <div class="date-card-label">📅 When did you see this number?</div>
-    <div class="date-row-inner">
+<!-- RESULT -->
+<div id="result">
+  <div class="result-hero">
+    <div class="result-eyebrow">Angel Number</div>
+    <div class="result-number" id="r-num">444</div>
+    <div class="result-title" id="r-title">Angelic Protection and Solid Foundations</div>
+    <div style="margin-top:10px">
+      <span class="freq-badge" id="r-freq">🔮 Very Common</span>
+    </div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-icon">⚡</div>
+    <div class="action-text">
+      <strong>Your Action Right Now</strong>
+      <p id="r-action">—</p>
+    </div>
+  </div>
+
+
+<!-- DATE ENERGY — inline in result -->
+<div class="date-inline-card" id="dateInlineCard">
+  <div class="date-inline-header" onclick="toggleDateInline()">
+    <div class="date-inline-left">
+      <span class="date-inline-icon">📅</span>
+      <div>
+        <div class="date-inline-title">When did you see this number?</div>
+        <div class="date-inline-sub">Add the date for a personalised combined reading</div>
+      </div>
+    </div>
+    <span class="date-inline-arrow" id="dateArrow">﹢</span>
+  </div>
+  <div class="date-inline-body" id="dateInlineBody">
+    <div class="date-row-inner" style="margin-bottom:12px">
       <div class="date-f">
         <label>Day</label>
         <select id="d-dd"><option value="">DD</option></select>
@@ -392,38 +438,17 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
         <select id="d-yy"><option value="">YYYY</option></select>
       </div>
     </div>
-    <button class="btn-combine" onclick="combineReading()">✦ Get Combined Reading →</button>
-  </div>
+    <button class="btn-combine" onclick="combineReading()">✦ Get My Combined Reading →</button>
 
-  <!-- Combined Result -->
-  <div class="combined-card" id="combinedCard">
-    <div class="combined-title">✦ Your Combined Reading</div>
-    <div class="combined-date-str" id="c-datestr">—</div>
-    <div class="energy-pills" id="c-pills"></div>
-    <div class="combined-reading" id="c-reading">—</div>
-    <button class="share-combined" onclick="shareCombined()">🔗 Share This Reading</button>
+    <div class="combined-card" id="combinedCard">
+      <div class="combined-title">✦ Your Combined Reading</div>
+      <div class="combined-date-str" id="c-datestr">—</div>
+      <div class="energy-pills" id="c-pills"></div>
+      <div class="combined-reading" id="c-reading">—</div>
+      <button class="share-combined" onclick="shareCombined()">🔗 Share This Reading</button>
+    </div>
   </div>
 </div>
-
-
-<!-- RESULT -->
-<div id="result">
-  <div class="result-hero">
-    <div class="result-eyebrow">Angel Number</div>
-    <div class="result-number" id="r-num">444</div>
-    <div class="result-title" id="r-title">Angelic Protection and Solid Foundations</div>
-    <div style="margin-top:10px">
-      <span class="freq-badge" id="r-freq">🔮 Very Common</span>
-    </div>
-  </div>
-
-  <div class="action-card">
-    <div class="action-icon">⚡</div>
-    <div class="action-text">
-      <strong>Your Action Right Now</strong>
-      <p id="r-action">—</p>
-    </div>
-  </div>
 
   <div class="tabs-wrap">
     <div class="tabs-nav">
@@ -685,13 +710,12 @@ function getCrystalForNum(n){
   yy.value=today.getFullYear();
 })();
 
-function toggleDate(){
-  const sec=document.getElementById('dateSection');
-  const btn=document.getElementById('dateToggleBtn');
-  const isShow=sec.classList.contains('show');
-  sec.classList.toggle('show',!isShow);
-  btn.classList.toggle('active',!isShow);
-  btn.textContent=isShow?'📅 Add the date you saw this number':'✕ Hide date reading';
+function toggleDateInline(){
+  const body=document.getElementById('dateInlineBody');
+  const arrow=document.getElementById('dateArrow');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  arrow.classList.toggle('open',!isOpen);
 }
 
 // ── Numerology helpers ──
