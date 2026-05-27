@@ -556,6 +556,10 @@ let currentNum = null;
     const chip = document.createElement('a');
     chip.className = 'all-chip';
     chip.href = '/angel-number-' + n + '/';
+    chip.setAttribute('target', '_self');
+    chip.addEventListener('click', function(e){
+      window.location.href = '/angel-number-' + n + '/';
+    });
     chip.innerHTML = `<div class="ac-num">${n}</div><div class="ac-title"><span class="freq-dot ${FREQ_DOT[d.frequency]}"></span>${d.title.split(' ').slice(0,2).join(' ')}</div>`;
     g.appendChild(chip);
   });
