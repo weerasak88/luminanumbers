@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numerology Compatibility Calculator — Life Path, Destiny & Soul Urge | Lumina Numbers</title>
+<meta name="description" content="Compare your complete numerology profile with another person. Discover compatibility across Life Path, Destiny, and Soul Urge numbers with a full synthesis reading.">
+<meta property="og:title" content="Numerology Compatibility Calculator — Lumina Numbers">
+<meta property="og:image" content="../og-image.jpg">
+<link rel="canonical" href="https://luminanumbers.com/compatibility/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="../js/cookie-consent.js" data-ga="G-LSCWW3E9XV"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fdf8f2;--gold:#c9a96e;--gold-light:#e8d5b0;--peach:#f5c4a8;
+  --lav:#d4bfe8;--lav-deep:#9b6bbf;--rose:#e8a4b0;--rose-deep:#c87080;
+  --text-dark:#2d2418;--text-mid:#6b5744;--text-soft:#a08878;
+  --glass:rgba(255,255,255,0.6);--glass-border:rgba(201,169,110,0.22);
+  --shadow:0 8px 32px rgba(180,140,100,0.13);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.bg-aura{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 70% 5%,rgba(232,213,176,.4) 0%,transparent 60%),
+  radial-gradient(ellipse 55% 50% at 10% 80%,rgba(212,191,232,.32) 0%,transparent 55%),
+  radial-gradient(ellipse 45% 40% at 90% 65%,rgba(232,164,176,.2) 0%,transparent 50%),var(--cream)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:64px;background:rgba(253,248,242,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,169,110,.13)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold-light),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.nav-logo-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--text-dark);letter-spacing:.07em}
+.nav-logo-sub{font-size:9px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.nav-back{font-size:13px;color:var(--text-soft);text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--gold)}
+
+.hero{position:relative;z-index:1;padding:88px 5vw 32px;text-align:center;max-width:720px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(8px);border-radius:99px;padding:6px 16px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:16px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,50px);line-height:1.12;color:var(--text-dark);margin-bottom:10px}
+h1 em{font-style:italic;background:linear-gradient(135deg,var(--rose),var(--rose-deep));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;color:var(--text-soft);line-height:1.65;max-width:540px;margin:0 auto 6px}
+.hero-note{font-size:12px;color:var(--text-soft);background:rgba(255,255,255,.5);border:1px solid rgba(201,169,110,.18);border-radius:99px;padding:5px 14px;display:inline-block;margin-top:8px}
+
+/* DUAL INPUT */
+.input-wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 5vw 20px}
+.dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.person-card{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(20px);border-radius:24px;padding:22px 20px;box-shadow:var(--shadow)}
+.person-label{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.person-a .person-label{color:var(--gold)}
+.person-b .person-label{color:var(--lav-deep)}
+.person-a{border-top:3px solid rgba(201,169,110,.5)}
+.person-b{border-top:3px solid rgba(155,107,191,.4)}
+
+.field-label{display:block;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:5px}
+.mini-date{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.mini-date select{width:100%;padding:9px 10px;background:rgba(255,255,255,.8);border:1.5px solid rgba(201,169,110,.25);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-dark);appearance:none;cursor:pointer;outline:none;transition:border-color .2s}
+.mini-date select:focus{border-color:var(--gold)}
+.year-sel{width:100%;padding:9px 10px;background:rgba(255,255,255,.8);border:1.5px solid rgba(201,169,110,.25);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-dark);appearance:none;cursor:pointer;outline:none;margin-bottom:12px;transition:border-color .2s}
+.year-sel:focus{border-color:var(--gold)}
+.name-stack{display:flex;flex-direction:column;gap:6px}
+.name-stack input{width:100%;padding:9px 10px;background:rgba(255,255,255,.8);border:1.5px solid rgba(201,169,110,.25);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-dark);outline:none;transition:border-color .2s}
+.name-stack input:focus{border-color:var(--gold)}
+.name-stack input::placeholder{color:rgba(160,136,120,.45);font-size:12px}
+
+/* Y section */
+.y-mini{background:rgba(255,255,255,.4);border:1px solid rgba(201,169,110,.15);border-radius:10px;padding:8px 12px;margin-top:8px;display:none;font-size:11.5px}
+.y-mini.show{display:block}
+.y-mini-title{font-size:10.5px;color:var(--text-soft);margin-bottom:6px;font-weight:500}
+.y-mini-checks{display:flex;flex-direction:column;gap:4px}
+.y-mini-check{display:flex;align-items:center;gap:5px;cursor:pointer}
+.y-mini-check input{accent-color:var(--gold)}
+.y-mini-check label{font-size:11.5px;color:var(--text-mid);cursor:pointer}
+
+.btn-calc{width:100%;padding:15px 24px;background:linear-gradient(135deg,var(--rose),var(--rose-deep));border:none;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 20px rgba(200,112,128,.35);transition:transform .15s,box-shadow .15s}
+.btn-calc:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(200,112,128,.45)}
+.calc-note{text-align:center;font-size:11.5px;color:var(--text-soft);margin-top:10px;display:flex;align-items:center;justify-content:center;gap:5px}
+
+/* RESULT */
+#result{display:none;position:relative;z-index:1;max-width:800px;margin:0 auto;padding:16px 5vw 60px}
+#result.show{display:block}
+
+/* Overall score */
+.overall-card{background:linear-gradient(135deg,rgba(232,164,176,.35),rgba(212,191,232,.3));border:1px solid rgba(200,112,128,.25);border-radius:28px;padding:28px 24px;margin-bottom:18px;text-align:center;position:relative;overflow:hidden}
+.overall-eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--rose-deep);display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:10px}
+.overall-eyebrow::before,.overall-eyebrow::after{content:'✦';font-size:9px}
+.overall-score{font-family:'Playfair Display',serif;font-size:clamp(72px,16vw,100px);font-weight:700;line-height:1;background:linear-gradient(135deg,var(--rose-deep),var(--lav-deep));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.overall-label{font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,30px);font-weight:600;color:var(--text-dark);margin-bottom:8px}
+.bar-wrap{background:rgba(255,255,255,.4);border-radius:99px;height:8px;max-width:320px;margin:10px auto;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--rose),var(--lav-deep));transition:width 1s cubic-bezier(.2,.8,.3,1)}
+.overall-names{font-size:13px;color:var(--text-soft);margin-top:8px}
+
+/* Person profiles mini */
+.profiles-mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.pm-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:18px;padding:16px}
+.pm-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:8px}
+.pm-a .pm-name{color:var(--gold)}
+.pm-b .pm-name{color:var(--lav-deep)}
+.pm-nums{display:flex;flex-direction:column;gap:4px}
+.pm-row{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.pm-row-label{color:var(--text-soft)}
+.pm-row-val{font-family:'Playfair Display',serif;font-size:14px;font-weight:600}
+
+/* Dimension scores */
+.dimensions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.dim-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:14px;text-align:center}
+.dim-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px}
+.dim-score{font-family:'Playfair Display',serif;font-size:26px;font-weight:700}
+.dim-lp .dim-score{color:var(--gold)}
+.dim-dest .dim-score{color:var(--lav-deep)}
+.dim-soul .dim-score{color:var(--rose-deep)}
+.dim-pct{font-size:10px;color:var(--text-soft)}
+.dim-mini-bar{background:rgba(201,169,110,.15);border-radius:99px;height:4px;margin-top:6px;overflow:hidden}
+.dim-mini-fill{height:100%;border-radius:99px;transition:width .8s}
+
+/* Detail cards */
+.detail-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:22px;margin-bottom:14px;box-shadow:var(--shadow)}
+.dc-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dc-text{font-size:14px;color:var(--text-mid);line-height:1.8}
+
+.strengths-list,.tips-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.s-item,.t-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--text-mid);line-height:1.5}
+
+/* Synthesis */
+.synth-card{background:linear-gradient(135deg,rgba(212,191,232,.3),rgba(232,164,176,.2));border:1px solid rgba(200,112,128,.2);border-radius:20px;padding:22px;margin-bottom:14px}
+.synth-eyebrow{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:6px}
+.synth-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text-dark);margin-bottom:10px}
+
+/* Actions */
+.action-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-share{flex:1;min-width:130px;padding:12px;background:linear-gradient(135deg,var(--rose),var(--rose-deep));border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(200,112,128,.3);transition:transform .15s}
+.btn-share:hover{transform:translateY(-1px)}
+.btn-full{flex:1;min-width:130px;padding:12px;background:transparent;border:1.5px solid var(--rose-deep);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:var(--rose-deep);cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+.btn-full:hover{background:var(--rose-deep);color:white}
+
+@media(max-width:700px){
+  .dual-grid{grid-template-columns:1fr}
+  .profiles-mini{grid-template-columns:1fr 1fr}
+  .dimensions{grid-template-columns:repeat(3,1fr)}
+  .action-row{flex-direction:column}
+}
+@media(max-width:400px){
+  .dimensions{grid-template-columns:1fr}
+  .profiles-mini{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="bg-aura"></div>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    <div>
+      <div class="nav-logo-name">LUMINA NUMBERS</div>
+      <div class="nav-logo-sub">Discover Your Divine Numbers</div>
+    </div>
+  </a>
+  <a href="/" class="nav-back">← Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">💞 Full Compatibility Reading</div>
+  <h1>Are You <em>Cosmically Aligned</em>?</h1>
+  <p class="hero-sub">Compare your complete numerology profile with another person — across Life Path, Destiny, and Soul Urge — for the deepest compatibility reading available.</p>
+  <span class="hero-note">Works for romantic partners, friends, or colleagues</span>
+</div>
+
+<div class="input-wrap">
+  <div class="dual-grid">
+    <!-- Person A -->
+    <div class="person-card person-a">
+      <div class="person-label">🌟 Person A</div>
+
+      <span class="field-label">Birth Date</span>
+      <div class="mini-date">
+        <select id="a-dd"><option value="">DD</option></select>
+        <select id="a-mm">
+          <option value="">MM</option>
+          <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+          <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+          <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+          <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+        </select>
+      </div>
+      <select id="a-yy" class="year-sel"><option value="">YYYY</option></select>
+
+      <span class="field-label">Full Birth Name</span>
+      <div class="name-stack">
+        <input type="text" id="a-first" placeholder="First name" oninput="onNameInput('a')">
+        <input type="text" id="a-mid" placeholder="Middle name (optional)" oninput="onNameInput('a')">
+        <input type="text" id="a-last" placeholder="Last name" oninput="onNameInput('a')">
+      </div>
+      <div class="y-mini" id="a-y-section">
+        <div class="y-mini-title">⚡ Y in name — vowel or consonant?</div>
+        <div class="y-mini-checks" id="a-y-checks"></div>
+      </div>
+    </div>
+
+    <!-- Person B -->
+    <div class="person-card person-b">
+      <div class="person-label">🌙 Person B</div>
+
+      <span class="field-label">Birth Date</span>
+      <div class="mini-date">
+        <select id="b-dd"><option value="">DD</option></select>
+        <select id="b-mm">
+          <option value="">MM</option>
+          <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+          <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+          <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+          <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+        </select>
+      </div>
+      <select id="b-yy" class="year-sel"><option value="">YYYY</option></select>
+
+      <span class="field-label">Full Birth Name</span>
+      <div class="name-stack">
+        <input type="text" id="b-first" placeholder="First name" oninput="onNameInput('b')">
+        <input type="text" id="b-mid" placeholder="Middle name (optional)" oninput="onNameInput('b')">
+        <input type="text" id="b-last" placeholder="Last name" oninput="onNameInput('b')">
+      </div>
+      <div class="y-mini" id="b-y-section">
+        <div class="y-mini-title">⚡ Y in name — vowel or consonant?</div>
+        <div class="y-mini-checks" id="b-y-checks"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-calc" onclick="calculate()">
+    💞 Reveal Our Compatibility →
+  </button>
+  <p class="calc-note">🔒 Names and dates are never stored or shared</p>
+</div>
+
+<!-- RESULT -->
+<div id="result">
+
+  <!-- Overall -->
+  <div class="overall-card">
+    <div class="overall-eyebrow">Overall Compatibility</div>
+    <div class="overall-score" id="r-overall">72</div>
+    <div class="overall-label" id="r-label">Magnetic Attraction</div>
+    <div class="bar-wrap"><div class="bar-fill" id="r-bar" style="width:0%"></div></div>
+    <div class="overall-names" id="r-names">—</div>
+  </div>
+
+  <!-- Profiles mini -->
+  <div class="profiles-mini">
+    <div class="pm-card pm-a">
+      <div class="pm-name" id="pa-name">Person A</div>
+      <div class="pm-nums">
+        <div class="pm-row"><span class="pm-row-label">☀️ Life Path</span><span class="pm-row-val" id="pa-lp" style="color:var(--gold)">—</span></div>
+        <div class="pm-row"><span class="pm-row-label">⭐ Destiny</span><span class="pm-row-val" id="pa-dest" style="color:var(--lav-deep)">—</span></div>
+        <div class="pm-row"><span class="pm-row-label">♡ Soul Urge</span><span class="pm-row-val" id="pa-soul" style="color:var(--rose-deep)">—</span></div>
+      </div>
+    </div>
+    <div class="pm-card pm-b">
+      <div class="pm-name" id="pb-name">Person B</div>
+      <div class="pm-nums">
+        <div class="pm-row"><span class="pm-row-label">☀️ Life Path</span><span class="pm-row-val" id="pb-lp" style="color:var(--gold)">—</span></div>
+        <div class="pm-row"><span class="pm-row-label">⭐ Destiny</span><span class="pm-row-val" id="pb-dest" style="color:var(--lav-deep)">—</span></div>
+        <div class="pm-row"><span class="pm-row-label">♡ Soul Urge</span><span class="pm-row-val" id="pb-soul" style="color:var(--rose-deep)">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dimension scores -->
+  <div class="dimensions">
+    <div class="dim-card dim-lp">
+      <div class="dim-label">Life Path</div>
+      <div class="dim-score" id="d-lp">—</div>
+      <div class="dim-pct" id="d-lp-label">—</div>
+      <div class="dim-mini-bar"><div class="dim-mini-fill" id="d-lp-bar" style="width:0%;background:var(--gold)"></div></div>
+    </div>
+    <div class="dim-card dim-dest">
+      <div class="dim-label">Destiny</div>
+      <div class="dim-score" id="d-dest">—</div>
+      <div class="dim-pct" id="d-dest-label">—</div>
+      <div class="dim-mini-bar"><div class="dim-mini-fill" id="d-dest-bar" style="width:0%;background:var(--lav-deep)"></div></div>
+    </div>
+    <div class="dim-card dim-soul">
+      <div class="dim-label">Soul Urge</div>
+      <div class="dim-score" id="d-soul">—</div>
+      <div class="dim-pct" id="d-soul-label">—</div>
+      <div class="dim-mini-bar"><div class="dim-mini-fill" id="d-soul-bar" style="width:0%;background:var(--rose-deep)"></div></div>
+    </div>
+  </div>
+
+  <!-- LP Compatibility detail -->
+  <div class="detail-card">
+    <div class="dc-title">☀️ Life Path Compatibility</div>
+    <div class="dc-text" id="lp-compat-desc">—</div>
+  </div>
+
+  <!-- Destiny + Soul synthesis -->
+  <div class="detail-card">
+    <div class="dc-title">⭐ How Your Toolkits Interact</div>
+    <div class="dc-text" id="dest-compat-desc">—</div>
+  </div>
+
+  <div class="detail-card">
+    <div class="dc-title">♡ Soul-Level Desires</div>
+    <div class="dc-text" id="soul-compat-desc">—</div>
+  </div>
+
+  <!-- Strengths -->
+  <div class="detail-card">
+    <div class="dc-title">💪 Strengths of This Pairing</div>
+    <div class="strengths-list" id="r-strengths"></div>
+  </div>
+
+  <!-- Tensions -->
+  <div class="detail-card">
+    <div class="dc-title">🌱 Where Tension May Arise</div>
+    <div class="dc-text" id="r-tensions">—</div>
+  </div>
+
+  <!-- Tips -->
+  <div class="detail-card">
+    <div class="dc-title">✦ Relationship Tips</div>
+    <div class="tips-list" id="r-tips"></div>
+  </div>
+
+  <!-- Full synthesis -->
+  <div class="synth-card">
+    <div class="synth-eyebrow">💞 Complete Synthesis</div>
+    <div class="synth-title" id="synth-title">—</div>
+    <div class="dc-text" id="synth-text">—</div>
+  </div>
+
+  <div class="action-row">
+    <button class="btn-share" onclick="shareResult()">🔗 Share Our Reading</button>
+    <a href="/numerology-calculator/" class="btn-full">✦ My Full Profile →</a>
+  </div>
+
+</div>
+
+<script>
+// ── Engine ──
+const MATRIX={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+const VOWELS=new Set(['A','E','I','O','U']);
+const yState={a:{},b:{}};
+
+// Populate selects
+(function(){
+  ['a','b'].forEach(p=>{
+    const dd=document.getElementById(`${p}-dd`);
+    const yy=document.getElementById(`${p}-yy`);
+    for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
+    const yr=new Date().getFullYear();
+    for(let y=yr;y>=1930;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+  });
+})();
+
+function reduce(n,preserve=true){if(preserve&&(n===11||n===22||n===33))return n;if(n<10)return n;return reduce(String(n).split('').reduce((a,c)=>a+ +c,0),preserve);}
+function reduceYear(y){return reduce(String(y).split('').reduce((a,c)=>a+ +c,0));}
+function lifePathFromDate(d,m,y){return reduce(reduce(+d)+reduce(+m)+reduceYear(+y));}
+
+function findYPositions(person){
+  const first=document.getElementById(`${person}-first`).value.trim();
+  const mid=document.getElementById(`${person}-mid`).value.trim();
+  const last=document.getElementById(`${person}-last`).value.trim();
+  const parts=[first,mid,last].filter(Boolean);
+  const positions=[];
+  parts.forEach((part,pi)=>{
+    const letters=part.toUpperCase();
+    for(let i=0;i<letters.length;i++){
+      if(letters[i]==='Y') positions.push({key:`${pi}_${i}`,part,partIdx:pi,letterIdx:i});
+    }
+  });
+  return positions;
+}
+
+function onNameInput(person){
+  const positions=findYPositions(person);
+  const section=document.getElementById(`${person}-y-section`);
+  const checksDiv=document.getElementById(`${person}-y-checks`);
+  if(positions.length===0){section.classList.remove('show');return;}
+  section.classList.add('show');
+  checksDiv.innerHTML='';
+  positions.forEach(pos=>{
+    if(!(pos.key in yState[person])) yState[person][pos.key]=pos.letterIdx===0?'c':'v';
+    const wrap=document.createElement('div');
+    wrap.className='y-mini-check';
+    const id=`y_${person}_${pos.key}`;
+    wrap.innerHTML=`<input type="checkbox" id="${id}" ${yState[person][pos.key]==='v'?'checked':''}><label for="${id}">Y in "<strong>${pos.part}</strong>" = vowel</label>`;
+    wrap.querySelector('input').addEventListener('change',function(){yState[person][pos.key]=this.checked?'v':'c';});
+    checksDiv.appendChild(wrap);
+  });
+}
+
+function calcName(person){
+  const first=document.getElementById(`${person}-first`).value.trim();
+  const mid=document.getElementById(`${person}-mid`).value.trim();
+  const last=document.getElementById(`${person}-last`).value.trim();
+  const parts=[first,mid,last].filter(Boolean);
+  let totalDest=0,totalSoul=0;
+  parts.forEach((part,pi)=>{
+    const letters=part.toUpperCase().split('').filter(c=>c.match(/[A-Z]/));
+    letters.forEach((ch,li)=>{
+      const val=MATRIX[ch]||0;
+      totalDest+=val;
+      if(ch==='Y'){if(yState[person][`${pi}_${li}`]==='v')totalSoul+=val;}
+      else if(VOWELS.has(ch)) totalSoul+=val;
+    });
+  });
+  return{dest:reduce(totalDest),soul:reduce(totalSoul)};
+}
+
+function getDisplayName(person){
+  const first=document.getElementById(`${person}-first`).value.trim();
+  return first||('Person '+person.toUpperCase());
+}
+
+// ── LP Compatibility Matrix ──
+const LP_COMPAT={
+  "1-1":{score:65,label:"Twin Flames or Ego Clash",desc:"Two pioneers in one room — either you build an empire together or battle for the throne. Requires immense psychological maturity to avoid territorial disputes."},
+  "1-2":{score:62,label:"Leadership Meets Sensitivity",desc:"The 1's directness often feels abrasive to the 2's sensitive nature. Deep love is possible, but the 2 must assert their needs and the 1 must learn to listen."},
+  "1-3":{score:82,label:"Magnetic Spark",desc:"Sun meets Jupiter — a powerful, creative partnership. The 3's joyful expression perfectly complements the 1's bold vision. High energy, high compatibility."},
+  "1-4":{score:52,label:"Vision vs Structure",desc:"The 1's rapid forward motion clashes with the 4's methodical pace. Shared goals can bridge the gap, but patience is absolutely required from both sides."},
+  "1-5":{score:85,label:"Dynamic Freedom Partnership",desc:"Two fiercely independent souls who understand each other's need for space. Fast-moving, exciting, and mutually inspiring — one of the most naturally compatible pairings."},
+  "1-6":{score:68,label:"Leader and Nurturer",desc:"The 6's devotion beautifully supports the 1's ambitions. However, the 1 must be careful not to neglect the 6's deep need for reciprocal affection."},
+  "1-7":{score:70,label:"Action Meets Contemplation",desc:"An intriguing pairing of opposite energies. The 1 acts while the 7 reflects. With mutual respect, this can be a deeply enriching connection."},
+  "1-8":{score:48,label:"Power Struggle",desc:"Two dominant forces, both demanding authority. This pairing requires exceptional psychological maturity and a shared purpose larger than either individual."},
+  "1-9":{score:75,label:"Warrior Alliance",desc:"Both are driven by purpose. The 1 pioneers the path; the 9 envisions the destination. A powerful partnership when their causes align."},
+  "2-2":{score:78,label:"Emotional Mirror",desc:"Deep mutual understanding and immense sensitivity. Beautiful harmony is possible, but both must work hard to avoid codependency."},
+  "2-3":{score:84,label:"Harmony and Expression",desc:"The 2 provides a stable, appreciative audience for the 3's creative outpouring. A vibrant, emotionally rich, and socially engaging partnership."},
+  "2-4":{score:80,label:"Stable Foundation",desc:"The emotional diplomat is securely anchored by the pragmatic builder — a beautiful, enduring combination built on trust and reliability."},
+  "2-5":{score:52,label:"Stability vs Freedom",desc:"The 5's erratic adventure-seeking triggers the 2's deep abandonment fears. Requires constant negotiation and exceptional mutual patience."},
+  "2-6":{score:88,label:"Divine Harmony",desc:"The absolute pinnacle of compatibility — profound emotional understanding, mutual caretaking, and a gentleness that allows both partners to flourish fully."},
+  "2-7":{score:65,label:"Emotional vs Analytical",desc:"The 2 craves emotional merging while the 7 requires intellectual solitude. Can be deeply enriching if the 2 respects the 7's sacred need for independent space."},
+  "2-8":{score:55,label:"Heart vs Ambition",desc:"The 8's intense ambition often cools the 2's emotional warmth. The 2 may feel emotionally isolated by the 8's relentless focus."},
+  "2-9":{score:72,label:"Compassionate Souls",desc:"Both are deeply devoted to others. A loving, service-oriented partnership, though the 9's broad focus may sometimes leave the 2 feeling personally neglected."},
+  "3-3":{score:74,label:"Creative Explosion",desc:"A spectacular burst of creative energy and social joy. Both share the same scattered tendencies — grounding mechanisms are essential for long-term stability."},
+  "3-4":{score:48,label:"Freedom vs Structure",desc:"The 4's rigid need for predictable foundations feels like a psychological prison to the 3. Requires enormous mutual effort and respect for different rhythms."},
+  "3-5":{score:80,label:"Adventure Partners",desc:"One of the most exciting combinations. Shared adventures, intellectual partnership, and rapid verbal exchange — an endlessly stimulating pairing."},
+  "3-6":{score:83,label:"Joyful Harmony",desc:"Both share a profound appreciation for aesthetics, pleasure, and social harmony. A joyful, family-creative unit with mutual appreciation for beauty."},
+  "3-7":{score:55,label:"Optimism vs Depth",desc:"The 3's extroverted optimism often rings hollow to the deeply introspective 7. Can be intellectually stimulating if both appreciate their different processing styles."},
+  "3-8":{score:50,label:"Creativity vs Ambition",desc:"The 3's creative spontaneity frequently clashes with the 8's rigid, goal-oriented structure. Both must make significant intentional compromises."},
+  "3-9":{score:79,label:"Inspirational Union",desc:"A deeply inspirational partnership focused on uplifting the collective. Both share a love for culture, expression, and global impact."},
+  "4-4":{score:76,label:"Solid Rock Partnership",desc:"Two builders building together — exceptional stability, shared values, and mutual respect for hard work. Watch for combined stubbornness creating immovable stalemates."},
+  "4-5":{score:45,label:"Walls vs Wings",desc:"The lowest overall compatibility pairing. The 4 builds walls for security while the 5 views those exact walls as a threat to their autonomy."},
+  "4-6":{score:80,label:"Security and Devotion",desc:"The 4 provides structure and security while the 6 transforms that stability into a warm, nurturing home. A classic and deeply functional pairing."},
+  "4-7":{score:82,label:"Grounded Seeker",desc:"An excellent karmic axis. The practical builder successfully grounds the cerebral seeker, providing the 7 with the secure base needed to explore spiritual realms."},
+  "4-8":{score:90,label:"Power Couple",desc:"The single most compatible combination. Both understand the intrinsic value of hard work, delayed gratification, and building material foundations together."},
+  "4-9":{score:52,label:"Pragmatism vs Idealism",desc:"The 4's pragmatic self-security focus clashes directly with the 9's willingness to sacrifice resources for the humanitarian collective."},
+  "5-5":{score:70,label:"Double Freedom",desc:"Two explorers exploring together — electrifying adventures and shared excitement. The combined lack of stability can make this feel like a perpetual vacation with no home base."},
+  "5-6":{score:52,label:"Freedom vs Home",desc:"The 6's intense nurturing duty feels suffocating to the 5, while the 5's unpredictability chronically triggers the 6's deep domestic anxieties."},
+  "5-7":{score:73,label:"Independent Intellectuals",desc:"Both value non-traditional relationship structures and individual exploration. Mutual respect for independence creates a deeply stimulating intellectual depth."},
+  "5-8":{score:55,label:"Speed vs Control",desc:"Mercury's fast, erratic speed operates in direct opposition to Saturn's slow, methodical nature. The 5's impulsivity deeply frustrates the 8's need for strategic order."},
+  "5-9":{score:72,label:"Freedom Seekers",desc:"Both value independence and resist being caged by convention. An exciting, adventurous partnership with shared appreciation for global exploration."},
+  "6-6":{score:80,label:"Twin Nurturers",desc:"Extraordinarily harmonious — two Venusian nurturers creating a beautiful home together. The risk is over-caretaking each other while neglecting individual growth."},
+  "6-7":{score:55,label:"Togetherness vs Solitude",desc:"The 6's desire for constant domestic intimacy deeply intrudes upon the 7's sacred need for psychological solitude, creating a painful cycle of pursuit and retreat."},
+  "6-8":{score:74,label:"Heart and Power",desc:"The 8 provides the material resources while the 6 transforms those resources into a beautiful, nurturing home. A synergistic and highly functional pairing."},
+  "6-9":{score:80,label:"Universal Love",desc:"The micro-caretaker meets the macro-caretaker. A partnership of immense compassion, shared ideals, and a beautiful home life that naturally becomes a beacon for others."},
+  "7-7":{score:72,label:"Twin Seekers",desc:"Two highly independent intellectuals and philosophical searchers. Deeply stimulating and profoundly understood by one another, but susceptible to emotional distance."},
+  "7-8":{score:60,label:"Spirit vs Matter",desc:"The 7's spiritual depth can feel alien to the 8's material focus. However, if both value wisdom and ambition equally, this can achieve an unusual and powerful balance."},
+  "7-9":{score:62,label:"Wisdom Seekers",desc:"The 9's extroverted collective-focused energy exhausts the 7's limited social battery. Both must consciously honor each other's fundamentally different social needs."},
+  "8-8":{score:68,label:"Corporate Empire",desc:"Two powerful, highly ambitious forces. Can build extraordinary material success together, but must be vigilant against a cold, competitive atmosphere."},
+  "8-9":{score:52,label:"Material vs Spiritual",desc:"A collision of core values. The 8 accumulates wealth through logic while the 9 sacrifices it for ideals. Each often misunderstands the other's deepest motivations."},
+  "9-9":{score:78,label:"Humanitarian Alliance",desc:"Two humanitarians on a shared world-saving mission. An inspiring, deeply purposeful partnership — both must ensure their vast love for the collective also flows toward each other."},
+  "11-2":{score:85,label:"Natural Harmony",desc:"The 2 provides grounded emotional support and practical stability without dismissing the 11's idealism. A deeply complementary pairing."},
+  "11-6":{score:87,label:"Nurturing Foundation",desc:"The 6 provides a necessary protective sanctuary for the 11 who constantly absorbs the world's pain. A deeply healing and secure combination."},
+  "11-9":{score:90,label:"Spiritual Soulmates",desc:"Two old souls who share a humanitarian vision. This connection often feels karmically significant from inception, marked by shared depth and idealism."},
+  "22-4":{score:88,label:"Master Builders Alliance",desc:"Two highly disciplined builders — a rare powerhouse combination. Together they can manifest almost anything through the marriage of visionary scope and practical execution."},
+  "22-8":{score:85,label:"Empire Builders",desc:"An exceptional pairing of material mastery and visionary building. Both understand the language of ambition, discipline, and the creation of lasting systemic legacies."},
+  "33-6":{score:92,label:"Divine Love",desc:"Two Venusian nurturers operating at elevated frequencies. Together they create an extraordinarily compassionate sanctuary that heals everyone who enters their sphere."}
+};
+
+function getLPCompat(a,b){
+  const k1=`${Math.min(a,b)}-${Math.max(a,b)}`;
+  return LP_COMPAT[k1]||{score:65,label:"Unique Connection",desc:"Your combination is rare — not every pairing has a standard template. What matters most is the conscious effort both of you bring to understanding each other's deeply different energetic rhythms."};
+}
+
+function getScoreLabel(score){
+  if(score>=90)return "Extraordinary Alignment";
+  if(score>=80)return "Highly Compatible";
+  if(score>=70)return "Well Matched";
+  if(score>=60)return "Can Work With Effort";
+  if(score>=50)return "Challenging But Growth-Oriented";
+  return "Opposite Energies — High Challenge";
+}
+
+function calcDestinyCompat(da,db){
+  if(da===db)return{score:90,text:`Both carry Destiny ${da} — you share an identical outward toolkit and natural operating style. This creates deep mutual understanding and minimal friction in how you each approach life.`};
+  const diff=Math.abs(da-db);
+  if(diff<=1||diff===10||diff===11)return{score:78,text:`Destiny ${da} and ${db} are neighboring vibrations. Your toolkits complement each other well — where one has gaps, the other naturally fills them, creating a balanced and efficient partnership.`};
+  if(da%2===db%2)return{score:70,text:`Destiny ${da} and ${db} share similar operational rhythms. You approach life's challenges with compatible methods, reducing friction in your day-to-day interactions.`};
+  return{score:60,text:`Destiny ${da} and ${db} operate differently — one is more ${da<=4?'structured and grounded':'expansive and fluid'} while the other tends toward ${db<=4?'structure and groundedness':'expansion and fluidity'}. With awareness, these differences become complementary strengths.`};
+}
+
+function calcSoulCompat(sa,sb){
+  if(sa===sb)return{score:92,text:`Both carry Soul Urge ${sa} — your innermost desires are identical. You understand each other's deepest needs without words, creating a rare and powerful emotional resonance.`};
+  const sum=reduce(sa+sb,false);
+  if(sa+sb===11||sa+sb===22||sa+sb===33)return{score:85,text:`Your Soul Urge numbers sum to a Master Number — ${sa+sb}. This is a karmically significant pairing where your combined inner drives create something greater than either individual. Your souls chose each other deliberately.`};
+  if((sa<=3&&sb<=3)||(sa>=7&&sb>=7))return{score:75,text:`Soul Urge ${sa} and ${sb} move in similar emotional rhythms. Your inner drives are compatible enough that you naturally understand what makes the other feel fulfilled.`};
+  return{score:62,text:`Soul Urge ${sa} craves ${getSoulCraving(sa)} while Soul Urge ${sb} craves ${getSoulCraving(sb)}. These desires differ, but with mutual awareness and intentional effort to honor each other's inner needs, this difference becomes a source of growth.`};
+}
+
+function getSoulCraving(n){
+  const cravings={1:"complete autonomy and recognition as a pioneer",2:"harmony, partnership, and emotional security",3:"creative expression, joy, and social connection",4:"structure, security, and tangible achievement",5:"absolute freedom and constant new experiences",6:"nurturing, domestic harmony, and being needed",7:"solitude, truth, and esoteric wisdom",8:"power, financial mastery, and material success",9:"universal service, love, and humanitarian impact",11:"spiritual enlightenment and inspiring others",22:"building massive lasting legacies",33:"offering unconditional love and healing to the world"};
+  return cravings[n]||"meaningful connection";
+}
+
+function buildStrengths(lpA,lpB,lpC,destA,destB,soulA,soulB){
+  const strengths=[];
+  if(lpC.score>=80) strengths.push(`Your Life Paths (${lpA} + ${lpB}) are naturally aligned — you walk compatible roads through life.`);
+  if(Math.abs(destA-destB)<=2) strengths.push(`Your Destiny numbers (${destA} + ${destB}) are close — you share similar approaches to tackling life's challenges.`);
+  if(soulA===soulB) strengths.push(`Your Soul Urges are identical (${soulA}) — at the deepest emotional level, you want exactly the same things from life.`);
+  if([lpA,destA,soulA].includes(lpB)||[lpA,destA,soulA].includes(destB)) strengths.push("At least one of your core numbers mirrors the other's, creating a natural bridge of understanding between you.");
+  const overallAvg=Math.round((lpC.score+60+65)/3);
+  if(overallAvg>=70) strengths.push("Your combined energy creates a partnership that is greater than the sum of its parts — together you access strengths neither has alone.");
+  while(strengths.length<3) strengths.push("The differences in your profiles create a complementary dynamic where each partner naturally compensates for what the other lacks.");
+  return strengths.slice(0,4);
+}
+
+function buildTension(lpA,lpB,lpC,destA,destB,soulA,soulB){
+  if(lpC.score<55) return `The primary tension arises from your Life Paths (${lpA} + ${lpB}): ${lpC.desc} Awareness of this dynamic is the first step toward transforming it.`;
+  if(Math.abs(soulA-soulB)>=5) return `Your Soul Urges (${soulA} + ${soulB}) represent your most divergent needs. Soul Urge ${soulA} craves ${getSoulCraving(soulA)}, while Soul Urge ${soulB} craves ${getSoulCraving(soulB)}. This gap requires the most conscious attention in your relationship.`;
+  if(Math.abs(destA-destB)>=4) return `Your Destiny numbers (${destA} + ${destB}) suggest different operational styles. One of you tends toward ${destA<=4?'structure and practicality':'freedom and expansion'} while the other leans ${destB<=4?'toward structure':'toward openness'}. When under stress, these differences can create friction.`;
+  return "Your primary tension is likely to emerge during high-stress periods when each person defaults to their core number's shadow traits. Building shared rituals and communication protocols will help you navigate these moments gracefully.";
+}
+
+function buildTips(lpA,lpB,lpC,destA,destB,soulA,soulB){
+  const tips=[];
+  if(lpC.score<65) tips.push(`Honor your different Life Path rhythms — LP ${lpA} and LP ${lpB} move at different speeds. Schedule dedicated time to meet in the middle.`);
+  tips.push("Discuss your Soul Urge numbers openly — understanding each other's deepest inner cravings removes the guesswork from meeting emotional needs.");
+  if(destA!==destB) tips.push(`Appreciate each other's Destiny toolkit — your ${destA} and ${destB} approaches are different, not wrong. When combined, they cover more ground than either could alone.`);
+  tips.push("Celebrate your differences as complementary strengths rather than incompatibilities. The friction points in numerological pairings are often where the most growth occurs.");
+  if([11,22,33].includes(lpA)||[11,22,33].includes(lpB)) tips.push("The Master Number in this pairing carries intense spiritual energy. Make space for the spiritual dimensions of your connection — they are real and significant.");
+  return tips.slice(0,4);
+}
+
+function calculate(){
+  // Validate
+  const ad=+document.getElementById('a-dd').value,am=+document.getElementById('a-mm').value,ay=+document.getElementById('a-yy').value;
+  const bd=+document.getElementById('b-dd').value,bm=+document.getElementById('b-mm').value,by=+document.getElementById('b-yy').value;
+  const af=document.getElementById('a-first').value.trim(),al=document.getElementById('a-last').value.trim();
+  const bf=document.getElementById('b-first').value.trim(),bl=document.getElementById('b-last').value.trim();
+
+  if(!ad||!am||!ay||!bd||!bm||!by){alert('Please enter birth dates for both people.');return;}
+  if(!af||!al||!bf||!bl){alert('Please enter first and last names for both people.');return;}
+
+  const aLP=lifePathFromDate(ad,am,ay);
+  const bLP=lifePathFromDate(bd,bm,by);
+  const{dest:aDest,soul:aSoul}=calcName('a');
+  const{dest:bDest,soul:bSoul}=calcName('b');
+
+  const aName=getDisplayName('a');
+  const bName=getDisplayName('b');
+
+  // LP compat
+  const lpC=getLPCompat(aLP,bLP);
+  // Destiny compat
+  const destC=calcDestinyCompat(aDest,bDest);
+  // Soul compat
+  const soulC=calcSoulCompat(aSoul,bSoul);
+
+  // Overall score (weighted: LP 50%, Destiny 25%, Soul 25%)
+  const overall=Math.round(lpC.score*0.5+destC.score*0.25+soulC.score*0.25);
+
+  // Fill UI
+  document.getElementById('r-overall').textContent=overall+'%';
+  document.getElementById('r-label').textContent=getScoreLabel(overall);
+  document.getElementById('r-names').textContent=`${aName} (LP ${aLP}) + ${bName} (LP ${bLP})`;
+  setTimeout(()=>{document.getElementById('r-bar').style.width=overall+'%'},100);
+
+  // Mini profiles
+  document.getElementById('pa-name').textContent=aName;
+  document.getElementById('pa-lp').textContent=aLP;
+  document.getElementById('pa-dest').textContent=aDest;
+  document.getElementById('pa-soul').textContent=aSoul;
+  document.getElementById('pb-name').textContent=bName;
+  document.getElementById('pb-lp').textContent=bLP;
+  document.getElementById('pb-dest').textContent=bDest;
+  document.getElementById('pb-soul').textContent=bSoul;
+
+  // Dimensions
+  setDim('lp',lpC.score,lpC.label,'var(--gold)');
+  setDim('dest',destC.score,destC.score>=80?'Strong Alignment':destC.score>=65?'Compatible':'Different Styles','var(--lav-deep)');
+  setDim('soul',soulC.score,soulC.score>=85?'Deep Resonance':soulC.score>=70?'Harmonious':'Growth Area','var(--rose-deep)');
+
+  // Details
+  document.getElementById('lp-compat-desc').textContent=lpC.desc;
+  document.getElementById('dest-compat-desc').textContent=destC.text;
+  document.getElementById('soul-compat-desc').textContent=soulC.text;
+
+  // Strengths
+  const strengths=buildStrengths(aLP,bLP,lpC,aDest,bDest,aSoul,bSoul);
+  document.getElementById('r-strengths').innerHTML=strengths.map(s=>`<div class="s-item"><span style="color:var(--rose-deep);flex-shrink:0">✦</span>${s}</div>`).join('');
+
+  // Tension
+  document.getElementById('r-tensions').textContent=buildTension(aLP,bLP,lpC,aDest,bDest,aSoul,bSoul);
+
+  // Tips
+  const tips=buildTips(aLP,bLP,lpC,aDest,bDest,aSoul,bSoul);
+  document.getElementById('r-tips').innerHTML=tips.map(t=>`<div class="t-item"><span style="color:var(--gold);flex-shrink:0">→</span>${t}</div>`).join('');
+
+  // Full synthesis
+  document.getElementById('synth-title').textContent=`${aName} + ${bName}: ${lpC.label}`;
+  document.getElementById('synth-text').textContent=
+    `At the Life Path level, ${lpC.desc} At the Destiny level, ${destC.text.substring(0,120)}... At the Soul Urge level, ${soulC.text.substring(0,120)}... Your overall compatibility score of ${overall}% reflects a ${getScoreLabel(overall).toLowerCase()} dynamic — one that ${overall>=75?'can flourish with conscious nurturing and mutual appreciation for what makes each of you unique':'requires conscious effort, but the growth potential within this pairing is significant and worth pursuing'}.`;
+
+  document.getElementById('result').className='show';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function setDim(id,score,label,color){
+  document.getElementById(`d-${id}`).textContent=score+'%';
+  document.getElementById(`d-${id}-label`).textContent=label;
+  setTimeout(()=>{document.getElementById(`d-${id}-bar`).style.width=score+'%';},100);
+}
+
+function shareResult(){
+  const overall=document.getElementById('r-overall').textContent;
+  const label=document.getElementById('r-label').textContent;
+  const names=document.getElementById('r-names').textContent;
+  const text=`💞 Numerology Compatibility Reading\n\n${names}\nOverall: ${overall} — ${label}\n\nDiscover yours at luminanumbers.com/compatibility/`;
+  if(navigator.share){navigator.share({title:'Our Numerology Compatibility',text,url:'https://luminanumbers.com/compatibility/'});}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Copied! Share your reading 💞'));}
+}
+</script>
+</body>
+</html>
