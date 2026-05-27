@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Numerology Calculator — Life Path, Destiny & Soul Urge | Lumina Numbers</title>
+<meta name="description" content="Get your complete numerology profile in one calculation. Discover your Life Path, Destiny, and Soul Urge numbers plus a full synthesis reading.">
+<meta property="og:title" content="Full Numerology Calculator — Lumina Numbers">
+<meta property="og:image" content="../og-image.jpg">
+<link rel="canonical" href="https://luminanumbers.com/numerology-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="../js/cookie-consent.js" data-ga="G-LSCWW3E9XV"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fdf8f2;--gold:#c9a96e;--gold-light:#e8d5b0;--peach:#f5c4a8;
+  --lavender:#d4bfe8;--lav-deep:#9b6bbf;--rose:#e8a4b0;
+  --text-dark:#2d2418;--text-mid:#6b5744;--text-soft:#a08878;
+  --glass:rgba(255,255,255,0.6);--glass-border:rgba(201,169,110,0.22);
+  --shadow:0 8px 32px rgba(180,140,100,0.13);--shadow-lg:0 20px 60px rgba(180,140,100,0.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.bg-aura{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 5%,rgba(232,213,176,.42) 0%,transparent 60%),
+    radial-gradient(ellipse 55% 50% at 10% 75%,rgba(212,191,232,.32) 0%,transparent 55%),
+    radial-gradient(ellipse 45% 40% at 90% 65%,rgba(232,164,176,.2) 0%,transparent 50%),
+    var(--cream)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:64px;background:rgba(253,248,242,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,169,110,.13)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold-light),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.nav-logo-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--text-dark);letter-spacing:.07em}
+.nav-logo-sub{font-size:9px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.nav-back{font-size:13px;color:var(--text-soft);text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:88px 5vw 32px;text-align:center;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(8px);border-radius:99px;padding:6px 16px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,50px);line-height:1.12;color:var(--text-dark);margin-bottom:10px}
+h1 em{font-style:italic;background:linear-gradient(135deg,var(--peach),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:15px;color:var(--text-soft);line-height:1.65;max-width:540px;margin:0 auto 16px}
+
+/* What you get */
+.what-wrap{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 5vw 24px}
+.what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.what-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:14px;text-align:center}
+.what-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
+.wn-lp{color:var(--gold)}
+.wn-dest{color:var(--lav-deep)}
+.wn-soul{color:#e8748a}
+.what-label{font-size:11px;font-weight:500;color:var(--text-soft)}
+.what-desc{font-size:11px;color:var(--text-soft);margin-top:3px;line-height:1.4}
+
+/* INPUT CARD */
+.input-wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 5vw 20px}
+.input-card{background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(20px);border-radius:28px;padding:28px 26px;box-shadow:var(--shadow)}
+
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.section-label::before{content:attr(data-num);background:var(--glass-border);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--gold);flex-shrink:0}
+
+.date-row{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:10px;margin-bottom:20px}
+.date-field label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:5px}
+.date-field select{width:100%;padding:11px 14px;background:rgba(255,255,255,.8);border:1.5px solid rgba(201,169,110,.28);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text-dark);appearance:none;cursor:pointer;outline:none;transition:border-color .2s,box-shadow .2s}
+.date-field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.14)}
+
+.name-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.name-field label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:5px}
+.name-field input{width:100%;padding:11px 14px;background:rgba(255,255,255,.8);border:1.5px solid rgba(201,169,110,.28);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text-dark);outline:none;transition:border-color .2s,box-shadow .2s}
+.name-field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.14)}
+.name-field input::placeholder{color:rgba(160,136,120,.5);font-size:13px}
+
+.divider{border:none;border-top:1px solid rgba(201,169,110,.15);margin:20px 0}
+
+/* Y section */
+.y-section{background:rgba(255,255,255,.45);border:1px solid rgba(201,169,110,.18);border-radius:14px;padding:12px 16px;margin-bottom:16px;display:none}
+.y-section.show{display:block}
+.y-title{font-size:12px;font-weight:500;color:var(--text-mid);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.y-checks{display:flex;flex-wrap:wrap;gap:6px}
+.y-check{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.7);border:1px solid rgba(201,169,110,.2);border-radius:8px;padding:5px 10px;cursor:pointer}
+.y-check input{accent-color:var(--gold)}
+.y-check label{font-size:12px;color:var(--text-mid);cursor:pointer}
+
+.btn-calc{width:100%;padding:15px 24px;background:linear-gradient(135deg,var(--peach),var(--gold));border:none;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 20px rgba(201,169,110,.4);transition:transform .15s,box-shadow .15s}
+.btn-calc:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,169,110,.5)}
+.calc-note{text-align:center;font-size:11.5px;color:var(--text-soft);margin-top:10px;display:flex;align-items:center;justify-content:center;gap:5px}
+
+/* RESULT */
+#result{display:none;position:relative;z-index:1;max-width:740px;margin:0 auto;padding:16px 5vw 60px}
+#result.show{display:block}
+
+/* Triple number display */
+.triple-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.tn-card{border-radius:22px;padding:22px 14px;text-align:center;position:relative;overflow:hidden}
+.tn-lp{background:linear-gradient(135deg,rgba(245,196,168,.4),rgba(201,169,110,.2));border:1px solid rgba(201,169,110,.28)}
+.tn-dest{background:linear-gradient(135deg,rgba(212,191,232,.4),rgba(155,107,191,.15));border:1px solid rgba(155,107,191,.22)}
+.tn-soul{background:linear-gradient(135deg,rgba(232,164,176,.35),rgba(245,196,168,.2));border:1px solid rgba(232,164,176,.28)}
+.tn-label{font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;margin-bottom:6px}
+.tn-lp .tn-label{color:var(--gold)}
+.tn-dest .tn-label{color:var(--lav-deep)}
+.tn-soul .tn-label{color:#c87080}
+.tn-num{font-family:'Playfair Display',serif;font-size:clamp(40px,10vw,60px);font-weight:700;line-height:1;margin-bottom:4px}
+.tn-lp .tn-num{color:var(--gold)}
+.tn-dest .tn-num{color:var(--lav-deep)}
+.tn-soul .tn-num{color:#c87080}
+.tn-num.master{background:linear-gradient(135deg,#9b6bbf,#c4a0e0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tn-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--text-dark);line-height:1.2}
+.master-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,rgba(155,107,191,.15),rgba(196,160,224,.15));border:1px solid rgba(155,107,191,.3);border-radius:99px;padding:3px 9px;font-size:9.5px;color:#9b6bbf;font-weight:500;margin-top:5px}
+
+/* Rarity */
+.rarity-bar{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.rarity-icon{font-size:22px;flex-shrink:0}
+.rarity-strong{font-size:14px;font-weight:500;color:var(--text-dark);display:block;margin-bottom:2px}
+.rarity-sub{font-size:12px;color:var(--text-soft)}
+
+/* Synthesis */
+.synthesis{background:linear-gradient(135deg,rgba(212,191,232,.28),rgba(245,196,168,.2));border:1px solid rgba(155,107,191,.18);border-radius:20px;padding:22px;margin-bottom:16px}
+.synth-eyebrow{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--lav-deep);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.synth-eyebrow::before{content:'✦';font-size:9px}
+.synth-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text-dark);margin-bottom:10px}
+.synth-text{font-size:14px;color:var(--text-mid);line-height:1.8}
+
+/* Tabs */
+.tabs-wrap{margin-bottom:16px}
+.tabs-nav{display:flex;border-bottom:2px solid rgba(201,169,110,.15);overflow-x:auto;scrollbar-width:none}
+.tabs-nav::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;color:var(--text-soft);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.tab-btn.active-lp{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-btn.active-dest{color:var(--lav-deep);border-bottom-color:var(--lav-deep)}
+.tab-btn.active-soul{color:#c87080;border-bottom-color:#c87080}
+.tab-btn.active-synth{color:var(--text-mid);border-bottom-color:var(--text-mid)}
+.tab-pane{display:none;padding-top:16px}
+.tab-pane.active{display:block}
+
+/* Content cards */
+.c-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:22px;margin-bottom:14px;box-shadow:var(--shadow)}
+.c-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.c-text{font-size:14px;color:var(--text-mid);line-height:1.8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.love-card{background:linear-gradient(135deg,rgba(232,164,176,.2),rgba(212,191,232,.15));border:1px solid rgba(232,164,176,.28);border-radius:20px;padding:20px;margin-bottom:14px}
+.careers-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.career-pill{background:rgba(255,255,255,.7);border:1px solid rgba(201,169,110,.2);border-radius:99px;padding:5px 14px;font-size:12.5px;color:var(--text-mid)}
+.forecast-card{background:linear-gradient(135deg,rgba(201,169,110,.15),rgba(245,196,168,.15));border:1px solid rgba(201,169,110,.25);border-radius:20px;padding:22px;margin-bottom:14px}
+.forecast-year{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.diff-card{background:rgba(255,255,255,.5);border:1px solid rgba(201,169,110,.18);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.diff-label{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+
+/* Trait list */
+.trait-item{display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid rgba(201,169,110,.1);font-size:13px;color:var(--text-mid)}
+.trait-item:last-child{border-bottom:none}
+
+/* CTA */
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.btn-compat{flex:1;min-width:140px;padding:13px;background:linear-gradient(135deg,var(--lavender),var(--lav-deep));border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:white;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(155,107,191,.3);transition:transform .15s}
+.btn-compat:hover{transform:translateY(-1px)}
+.btn-share{flex:1;min-width:140px;padding:13px;background:linear-gradient(135deg,var(--peach),var(--gold));border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(201,169,110,.3);transition:transform .15s}
+.btn-share:hover{transform:translateY(-1px)}
+.btn-aura{flex:1;min-width:140px;padding:13px;background:transparent;border:1.5px solid var(--gold);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
+.btn-aura:hover{background:var(--gold);color:white}
+
+@media(max-width:600px){
+  .what-grid{grid-template-columns:1fr}
+  .name-row{grid-template-columns:1fr}
+  .date-row{grid-template-columns:1fr 1fr}
+  .date-row .date-field:last-child{grid-column:1/-1}
+  .triple-nums{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+  .cta-row{flex-direction:column}
+}
+@media(max-width:480px){
+  .triple-nums{grid-template-columns:repeat(3,1fr)}
+  .tn-num{font-size:clamp(28px,8vw,48px)}
+  .tn-title{font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="bg-aura"></div>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    <div>
+      <div class="nav-logo-name">LUMINA NUMBERS</div>
+      <div class="nav-logo-sub">Discover Your Divine Numbers</div>
+    </div>
+  </a>
+  <a href="/" class="nav-back">← Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">✦ Complete Numerology Profile</div>
+  <h1>Your Full <em>Cosmic Blueprint</em><br>in One Reading</h1>
+  <p class="hero-sub">Enter your birth date and full birth name once — and receive your complete numerology profile: Life Path, Destiny, and Soul Urge with a unified synthesis.</p>
+</div>
+
+<!-- What you get -->
+<div class="what-wrap">
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="what-num wn-lp">LP</div>
+      <div class="what-label">Life Path</div>
+      <div class="what-desc">Your journey & core lessons</div>
+    </div>
+    <div class="what-card">
+      <div class="what-num wn-dest">D</div>
+      <div class="what-label">Destiny</div>
+      <div class="what-desc">Your innate toolkit & talents</div>
+    </div>
+    <div class="what-card">
+      <div class="what-num wn-soul">SU</div>
+      <div class="what-label">Soul Urge</div>
+      <div class="what-desc">Your deepest inner motivations</div>
+    </div>
+  </div>
+</div>
+
+<!-- Input -->
+<div class="input-wrap">
+  <div class="input-card">
+
+    <div class="section-label" data-num="1">Birth Date</div>
+    <div class="date-row">
+      <div class="date-field">
+        <label>Day</label>
+        <select id="selDay"><option value="">DD</option></select>
+      </div>
+      <div class="date-field">
+        <label>Month</label>
+        <select id="selMonth">
+          <option value="">MM</option>
+          <option value="1">January</option><option value="2">February</option>
+          <option value="3">March</option><option value="4">April</option>
+          <option value="5">May</option><option value="6">June</option>
+          <option value="7">July</option><option value="8">August</option>
+          <option value="9">September</option><option value="10">October</option>
+          <option value="11">November</option><option value="12">December</option>
+        </select>
+      </div>
+      <div class="date-field">
+        <label>Year</label>
+        <select id="selYear"><option value="">YYYY</option></select>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-label" data-num="2">Full Birth Name <span style="font-weight:400;opacity:.7;text-transform:none;letter-spacing:0;font-size:10px">(as on birth certificate)</span></div>
+    <div class="name-row">
+      <div class="name-field">
+        <label>First Name</label>
+        <input type="text" id="firstName" placeholder="e.g. Emily" oninput="onNameInput()">
+      </div>
+      <div class="name-field">
+        <label>Middle Name <span style="opacity:.6">(if any)</span></label>
+        <input type="text" id="middleName" placeholder="optional" oninput="onNameInput()">
+      </div>
+      <div class="name-field">
+        <label>Last Name</label>
+        <input type="text" id="lastName" placeholder="e.g. Brown" oninput="onNameInput()">
+      </div>
+    </div>
+
+    <!-- Y section -->
+    <div class="y-section" id="ySection">
+      <div class="y-title">⚡ Y found in your name — how does each Y sound?</div>
+      <div class="y-checks" id="yChecks"></div>
+    </div>
+
+    <button class="btn-calc" onclick="calculate()">
+      ✦ Reveal My Complete Profile →
+    </button>
+    <p class="calc-note">🔒 Your data is never stored or shared</p>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="result">
+
+  <!-- Triple numbers -->
+  <div class="triple-nums">
+    <div class="tn-card tn-lp">
+      <div class="tn-label">Life Path</div>
+      <div class="tn-num" id="r-lp">7</div>
+      <div class="tn-title" id="r-lp-title">The Seeker</div>
+      <div class="master-badge" id="r-lp-master" style="display:none">✦ Master</div>
+    </div>
+    <div class="tn-card tn-dest">
+      <div class="tn-label">Destiny</div>
+      <div class="tn-num" id="r-dest">3</div>
+      <div class="tn-title" id="r-dest-title">The Communicator</div>
+      <div class="master-badge" id="r-dest-master" style="display:none">✦ Master</div>
+    </div>
+    <div class="tn-card tn-soul">
+      <div class="tn-label">Soul Urge</div>
+      <div class="tn-num" id="r-soul">9</div>
+      <div class="tn-title" id="r-soul-title">The Philanthropist</div>
+      <div class="master-badge" id="r-soul-master" style="display:none">✦ Master</div>
+    </div>
+  </div>
+
+  <!-- Rarity -->
+  <div class="rarity-bar">
+    <div class="rarity-icon">🌟</div>
+    <div>
+      <span class="rarity-strong" id="r-rarity-title">Your Unique Combination</span>
+      <span class="rarity-sub" id="r-rarity-desc">This exact trio of numbers shapes your cosmic identity.</span>
+    </div>
+  </div>
+
+  <!-- Synthesis -->
+  <div class="synthesis">
+    <div class="synth-eyebrow">Your Cosmic Synthesis</div>
+    <div class="synth-title" id="r-synth-title">The Blueprint</div>
+    <div class="synth-text" id="r-synth-text"></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-wrap">
+    <div class="tabs-nav">
+      <button class="tab-btn active-lp" id="btn-lp" onclick="switchTab('lp',this,'active-lp')">☀️ Life Path</button>
+      <button class="tab-btn" id="btn-dest" onclick="switchTab('dest',this,'active-dest')">⭐ Destiny</button>
+      <button class="tab-btn" id="btn-soul" onclick="switchTab('soul',this,'active-soul')">♡ Soul Urge</button>
+      <button class="tab-btn" id="btn-synth" onclick="switchTab('synth',this,'active-synth')">🔮 Deep Synthesis</button>
+    </div>
+
+    <!-- Life Path tab -->
+    <div class="tab-pane active" id="tab-lp">
+      <div class="c-card">
+        <div class="c-title" style="display:flex;align-items:center;gap:8px"><span>✨</span>Overview</div>
+        <div class="c-text" id="lp-overview"></div>
+      </div>
+      <div class="two-col">
+        <div class="c-card">
+          <div class="c-title"><span>💪</span>Strengths</div>
+          <div id="lp-strengths"></div>
+        </div>
+        <div class="c-card">
+          <div class="c-title"><span>🌱</span>Challenges</div>
+          <div id="lp-challenges"></div>
+        </div>
+      </div>
+      <div class="love-card">
+        <div class="c-title"><span>♡</span>Love Style</div>
+        <div class="c-text" id="lp-love"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>💼</span>Ideal Careers</div>
+        <div class="careers-wrap" id="lp-careers"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>⭐</span>Famous Life Path <span id="lp-famous-num"></span>s</div>
+        <div id="lp-famous"></div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-year">✦ 2026 Forecast · Universal Year 1</div>
+        <div class="c-text" id="lp-forecast"></div>
+      </div>
+    </div>
+
+    <!-- Destiny tab -->
+    <div class="tab-pane" id="tab-dest">
+      <div class="diff-card">
+        <div class="diff-label">✦ What Destiny means vs Life Path</div>
+        <div class="c-text" id="dest-diff"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>✨</span>Overview</div>
+        <div class="c-text" id="dest-overview"></div>
+      </div>
+      <div class="two-col">
+        <div class="c-card">
+          <div class="c-title"><span>💪</span>Strengths</div>
+          <div id="dest-strengths"></div>
+        </div>
+        <div class="c-card">
+          <div class="c-title"><span>🌱</span>Challenges</div>
+          <div id="dest-challenges"></div>
+        </div>
+      </div>
+      <div class="love-card">
+        <div class="c-title"><span>♡</span>Love Style</div>
+        <div class="c-text" id="dest-love"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>💼</span>Ideal Careers</div>
+        <div class="careers-wrap" id="dest-careers"></div>
+      </div>
+    </div>
+
+    <!-- Soul Urge tab -->
+    <div class="tab-pane" id="tab-soul">
+      <div class="diff-card">
+        <div class="diff-label">✦ What Soul Urge means vs Life Path</div>
+        <div class="c-text" id="soul-diff"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>✨</span>Overview</div>
+        <div class="c-text" id="soul-overview"></div>
+      </div>
+      <div class="two-col">
+        <div class="c-card">
+          <div class="c-title"><span>💪</span>Strengths</div>
+          <div id="soul-strengths"></div>
+        </div>
+        <div class="c-card">
+          <div class="c-title"><span>🌱</span>Challenges</div>
+          <div id="soul-challenges"></div>
+        </div>
+      </div>
+      <div class="love-card">
+        <div class="c-title"><span>♡</span>Love Style</div>
+        <div class="c-text" id="soul-love"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>💼</span>Ideal Careers</div>
+        <div class="careers-wrap" id="soul-careers"></div>
+      </div>
+    </div>
+
+    <!-- Deep Synthesis tab -->
+    <div class="tab-pane" id="tab-synth">
+      <div class="c-card">
+        <div class="c-title"><span>🔮</span>The Three-Number Interplay</div>
+        <div class="c-text" id="synth-detail"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>⚡</span>Where Harmony Exists</div>
+        <div class="c-text" id="synth-harmony"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>🌱</span>Where Tension May Arise</div>
+        <div class="c-text" id="synth-tension"></div>
+      </div>
+      <div class="c-card">
+        <div class="c-title"><span>✦</span>Your Integration Path</div>
+        <div class="c-text" id="synth-path"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-row">
+    <a href="/compatibility/" class="btn-compat">💞 Check Compatibility →</a>
+    <button class="btn-share" onclick="shareResult()">🔗 Share My Profile</button>
+    <button class="btn-aura" onclick="alert('Aura Wallpaper — coming soon! ✦')">✦ Aura Wallpaper</button>
+  </div>
+
+</div>
+
+<script>
+// ── Populate date selects ──
+(function(){
+  const dd=document.getElementById('selDay');
+  const yy=document.getElementById('selYear');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=String(i).padStart(2,'0');dd.appendChild(o);}
+  const yr=new Date().getFullYear();
+  for(let y=yr;y>=1930;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yy.appendChild(o);}
+})();
+
+// ── Numerology Engine ──
+const MATRIX={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+const VOWELS=new Set(['A','E','I','O','U']);
+let yState={};
+
+function reduce(n,preserve=true){
+  if(preserve&&(n===11||n===22||n===33))return n;
+  if(n<10)return n;
+  return reduce(String(n).split('').reduce((a,c)=>a+ +c,0),preserve);
+}
+function reduceYear(y){return reduce(String(y).split('').reduce((a,c)=>a+ +c,0));}
+function lifePathFromDate(d,m,y){
+  return reduce(reduce(+d)+reduce(+m)+reduceYear(+y));
+}
+
+function findYPositions(){
+  const first=document.getElementById('firstName').value.trim();
+  const middle=document.getElementById('middleName').value.trim();
+  const last=document.getElementById('lastName').value.trim();
+  const parts=[first,middle,last].filter(Boolean);
+  const positions=[];
+  parts.forEach((part,pi)=>{
+    const letters=part.toUpperCase();
+    for(let i=0;i<letters.length;i++){
+      if(letters[i]==='Y') positions.push({key:`${pi}_${i}`,part,partIdx:pi,letterIdx:i});
+    }
+  });
+  return positions;
+}
+
+function onNameInput(){
+  const positions=findYPositions();
+  const section=document.getElementById('ySection');
+  const checksDiv=document.getElementById('yChecks');
+  if(positions.length===0){section.classList.remove('show');return;}
+  section.classList.add('show');
+  checksDiv.innerHTML='';
+  positions.forEach(pos=>{
+    if(!(pos.key in yState)) yState[pos.key]=pos.letterIdx===0?'c':'v';
+    const wrap=document.createElement('div');
+    wrap.className='y-check';
+    const id=`y_${pos.key}`;
+    wrap.innerHTML=`<input type="checkbox" id="${id}" ${yState[pos.key]==='v'?'checked':''}><label for="${id}">Y in "<strong>${pos.part}</strong>" = vowel</label>`;
+    wrap.querySelector('input').addEventListener('change',function(){yState[pos.key]=this.checked?'v':'c';});
+    checksDiv.appendChild(wrap);
+  });
+}
+
+function calcName(parts){
+  let totalDest=0,totalSoul=0;
+  parts.forEach((part,pi)=>{
+    const letters=part.toUpperCase().split('').filter(c=>c.match(/[A-Z]/));
+    letters.forEach((ch,li)=>{
+      const val=MATRIX[ch]||0;
+      totalDest+=val;
+      if(ch==='Y'){if(yState[`${pi}_${li}`]==='v')totalSoul+=val;}
+      else if(VOWELS.has(ch)) totalSoul+=val;
+    });
+  });
+  return{dest:reduce(totalDest),soul:reduce(totalSoul)};
+}
+
+function calculate(){
+  const d=+document.getElementById('selDay').value;
+  const m=+document.getElementById('selMonth').value;
+  const y=+document.getElementById('selYear').value;
+  const first=document.getElementById('firstName').value.trim();
+  const last=document.getElementById('lastName').value.trim();
+
+  if(!d||!m||!y){alert('Please select your birth date.');return;}
+  if(!first||!last){alert('Please enter at least your first and last name.');return;}
+
+  const middle=document.getElementById('middleName').value.trim();
+  const parts=[first,middle,last].filter(Boolean);
+
+  const lp=lifePathFromDate(d,m,y);
+  const{dest,soul}=calcName(parts);
+
+  const lpInfo=LP_DATA[lp];
+  const dInfo=DESTINY_DATA[dest];
+  const sInfo=SOUL_DATA[soul];
+  if(!lpInfo||!dInfo||!sInfo)return;
+
+  const isMasterLP=[11,22,33].includes(lp);
+  const isMasterD=[11,22,33].includes(dest);
+  const isMasterS=[11,22,33].includes(soul);
+
+  // Triple numbers
+  setNum('r-lp',lp,isMasterLP,lpInfo[0]);
+  setNum('r-dest',dest,isMasterD,dInfo.title);
+  setNum('r-soul',soul,isMasterS,sInfo.title);
+
+  // Rarity
+  const masterCount=[isMasterLP,isMasterD,isMasterS].filter(Boolean).length;
+  const allSame=lp===dest&&dest===soul;
+  let rarityTitle,rarityDesc;
+  if(allSame){rarityTitle='Triple Alignment — Extraordinarily Rare';rarityDesc=`All three of your core numbers are ${lp}. This perfect alignment occurs in less than 0.3% of people.`;}
+  else if(masterCount===3){rarityTitle='Triple Master Numbers — Supremely Rare';rarityDesc='Carrying three Master Numbers is an exceptionally rare and spiritually demanding configuration.';}
+  else if(masterCount===2){rarityTitle='Double Master Numbers — Very Rare';rarityDesc='Two Master Numbers in your core profile carry an intensified spiritual frequency and responsibility.';}
+  else if(masterCount===1){rarityTitle='Master Number Detected';rarityDesc='A Master Number in your profile adds a higher-octave spiritual dimension to your blueprint.';}
+  else{rarityTitle=`Life Path ${lp} · Destiny ${dest} · Soul Urge ${soul}`;rarityDesc='Your exact three-number combination is uniquely yours — shaped by the precise moment and name of your birth.';}
+  document.getElementById('r-rarity-title').textContent=rarityTitle;
+  document.getElementById('r-rarity-desc').textContent=rarityDesc;
+
+  // Synthesis header
+  document.getElementById('r-synth-title').textContent=`${lpInfo[0]} × ${dInfo.title} × ${sInfo.title}`;
+  document.getElementById('r-synth-text').textContent=buildSynthesisShort(lp,dest,soul,lpInfo,dInfo,sInfo);
+
+  // Life Path tab
+  document.getElementById('lp-overview').textContent=lpInfo[1];
+  fillTraits('lp-strengths',lpInfo[2],'✦','var(--gold)');
+  fillTraits('lp-challenges',lpInfo[3],'◦','var(--text-soft)');
+  document.getElementById('lp-love').textContent=lpInfo[4];
+  fillCareers('lp-careers',lpInfo[5]);
+  document.getElementById('lp-famous-num').textContent=lp;
+  fillFamous('lp-famous',lpInfo[6]);
+  document.getElementById('lp-forecast').textContent=lpInfo[7];
+
+  // Destiny tab
+  document.getElementById('dest-diff').textContent=dInfo.difference_from_life_path;
+  document.getElementById('dest-overview').textContent=dInfo.overview;
+  fillTraits('dest-strengths',dInfo.strengths,'✦','var(--lav-deep)');
+  fillTraits('dest-challenges',dInfo.challenges,'◦','var(--text-soft)');
+  document.getElementById('dest-love').textContent=dInfo.love_style;
+  fillCareers('dest-careers',dInfo.ideal_careers);
+
+  // Soul Urge tab
+  document.getElementById('soul-diff').textContent=sInfo.difference_from_life_path;
+  document.getElementById('soul-overview').textContent=sInfo.overview;
+  fillTraits('soul-strengths',sInfo.strengths,'✦','#c87080');
+  fillTraits('soul-challenges',sInfo.challenges,'◦','var(--text-soft)');
+  document.getElementById('soul-love').textContent=sInfo.love_style;
+  fillCareers('soul-careers',sInfo.ideal_careers);
+
+  // Deep Synthesis tab
+  buildDeepSynthesis(lp,dest,soul,lpInfo,dInfo,sInfo);
+
+  // Save magic mirror
+  saveMirrorData(lp,d,m,y);
+
+  // Reset tabs
+  document.querySelectorAll('.tab-btn').forEach(b=>{b.className='tab-btn';});
+  document.getElementById('btn-lp').classList.add('active-lp');
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-lp').classList.add('active');
+
+  document.getElementById('result').className='show';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function setNum(id,num,isMaster,title){
+  document.getElementById(id).textContent=num;
+  document.getElementById(id).className='tn-num'+(isMaster?' master':'');
+  document.getElementById(id+'-title').textContent=title;
+  document.getElementById(id+'-master').style.display=isMaster?'inline-flex':'none';
+}
+function fillTraits(id,arr,bullet,color){
+  document.getElementById(id).innerHTML=arr.map(s=>`<div class="trait-item"><span style="color:${color};flex-shrink:0">${bullet}</span>${s}</div>`).join('');
+}
+function fillCareers(id,arr){
+  document.getElementById(id).innerHTML=arr.map(c=>`<span class="career-pill">${c}</span>`).join('');
+}
+function fillFamous(id,arr){
+  document.getElementById(id).innerHTML=arr.map(f=>`<div class="trait-item"><span style="color:var(--gold);flex-shrink:0">⭐</span><div><strong style="font-size:13px">${f.name}</strong> — <span style="font-size:12px;color:var(--text-soft)">${f.why}</span></div></div>`).join('');
+}
+
+function switchTab(name,btn,activeClass){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.className='tab-btn');
+  btn.classList.add(activeClass);
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+function buildSynthesisShort(lp,dest,soul,lpInfo,dInfo,sInfo){
+  if(lp===dest&&dest===soul){
+    return `You carry a rare triple alignment of ${lp} — every dimension of your numerology points in the same direction. Your life journey, your toolkit, and your inner soul desire are unified into a single, powerful frequency: ${lpInfo[0]}.`;
+  }
+  return `Your Life Path as ${lpInfo[0]} (${lp}) defines the terrain you must traverse. Your Destiny as ${dInfo.title} (${dest}) provides the specific toolkit you'll use — ${dInfo.overview.substring(0,80)}... Meanwhile your Soul Urge as ${sInfo.title} (${soul}) quietly drives everything from within: ${sInfo.overview.substring(0,80)}...`;
+}
+
+function buildDeepSynthesis(lp,dest,soul,lpInfo,dInfo,sInfo){
+  document.getElementById('synth-detail').textContent=
+    `Your Life Path ${lp} sets the fundamental direction — it is the road you are walking. Your Destiny ${dest} is the specific vehicle you arrived in: a psychological toolkit of ${dInfo.title.toLowerCase()} energy that colors everything you do externally. Your Soul Urge ${soul} is the fuel that drives the vehicle: a deep, often hidden craving for ${sInfo.title.toLowerCase()} energy that your soul will never fully suppress, regardless of external circumstances.`;
+
+  const harmonyText=lp===dest?`Your Life Path and Destiny share the same number (${lp}), meaning your karmic journey and your innate toolkit are perfectly aligned. What the universe asks of you and what you naturally do are the same thing — a profound gift.`:
+    lp===soul?`Your Life Path and Soul Urge share the same number (${lp}), meaning the road you are walking and your inner emotional needs are perfectly aligned. Your external journey will always feel internally satisfying.`:
+    dest===soul?`Your Destiny and Soul Urge share the same number (${dest}), meaning the way you operate in the world and your inner desires are in perfect harmony. Others see your authentic self, and you feel free to express it.`:
+    `Your three numbers are distinct, which gives you access to multiple intelligences. The ${lp} journey activates different qualities than your ${dest} toolkit, which serves different needs than your ${soul} inner drive — making you deeply multi-dimensional.`;
+  document.getElementById('synth-harmony').textContent=harmonyText;
+
+  const tensionText=lp===dest&&dest===soul?`With a triple alignment, the primary tension is internal intensity rather than directional conflict. The risk is over-identification with a single archetype, making it harder to adapt when life requires a different energy.`:
+    `The most common friction arises between your Destiny ${dest} (${dInfo.title}) and your Soul Urge ${soul} (${sInfo.title}). Your outer toolkit operates in ${dInfo.overview.substring(0,80).toLowerCase()}... while internally you crave ${sInfo.overview.substring(0,80).toLowerCase()}... When these feel contradictory, it creates tension between who you appear to be and who you feel you truly are.`;
+  document.getElementById('synth-tension').textContent=tensionText;
+
+  document.getElementById('synth-path').textContent=
+    `True fulfillment for you comes from using your ${dInfo.title} toolkit (Destiny ${dest}) in service of your ${sInfo.title} inner need (Soul Urge ${soul}), all while staying true to the ${lpInfo[0]} lessons of your Life Path ${lp}. The integration question to ask yourself is: "How can I apply my natural strengths (Destiny ${dest}) in ways that satisfy my deepest desires (Soul Urge ${soul})?" When your outer expression and inner motivation are aligned, you become unstoppable.`;
+}
+
+function shareResult(){
+  const lp=document.getElementById('r-lp').textContent;
+  const dest=document.getElementById('r-dest').textContent;
+  const soul=document.getElementById('r-soul').textContent;
+  const lt=document.getElementById('r-lp-title').textContent;
+  const text=`✦ My Complete Numerology Profile ✦\n\nLife Path ${lp} — ${lt}\nDestiny ${dest} — ${document.getElementById('r-dest-title').textContent}\nSoul Urge ${soul} — ${document.getElementById('r-soul-title').textContent}\n\nDiscover yours at luminanumbers.com/numerology-calculator/`;
+  if(navigator.share){navigator.share({title:'My Numerology Profile',text,url:'https://luminanumbers.com/numerology-calculator/'});}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Copied! Share your cosmic profile ✦'));}
+}
+
+// Magic Mirror save
+function saveMirrorData(lp,d,m,y){
+  try{localStorage.setItem('lumina_user',JSON.stringify({lp,birthdate:y+'-'+m+'-'+d,saved_at:Date.now()}));}catch(e){}
+}
+
+// ── Life Path Data ─────────────────────────────────────
+// Format: [title, overview, strengths[], challenges[], love, careers[], famous[], forecast]
+const LP_DATA = {
+  1:["The Pioneer","Governed by the radiant energy of the Sun, Life Path 1 individuals are natural-born leaders destined to forge unprecedented trails. They must learn to balance fierce independence with collaboration, acting as the spark that illuminates the path for others.",
+    ["Visionary and authoritative leadership","Unwavering self-reliance","Courageous entrepreneurial initiative","Creative problem-solving","Exceptional resilience"],
+    ["Unchecked egotism and stubbornness","Impatience with others' pace","Tendency to dominate relationships"],
+    "Fiercely passionate and highly protective, they seek a robust partner who respects their absolute need for autonomy. They naturally assume the dominant role and require a deeply passionate, non-restrictive bond.",
+    ["Entrepreneur","CEO / Executive","Creative Director","Tech Founder","Independent Consultant"],
+    [{name:"Steve Jobs",why:"Visionary who redefined personal computing"},{name:"Martin Luther King Jr.",why:"Fearless leader who forged a new path for civil rights"},{name:"Lady Gaga",why:"Constant artistic reinvention and unapologetic individuality"}],
+    "The universe has perfectly aligned your vibration with 2026 energy, promising massive breakthroughs, rapid career advancement, and a powerful shift into supreme leadership. Fortune strictly favors bold action this year."],
+  2:["The Diplomat","Resonating intimately with lunar energy, Life Path 2s are the ultimate harmonizers of the world, gifted with profound empathy and tactical diplomacy. Their core mission is to foster unity, though they must learn to assert their own boundaries.",
+    ["Exceptional empathic resonance","Masterful diplomatic negotiation","Meticulous detail-orientation","Profound intuitive understanding","Unshakable loyalty in partnerships"],
+    ["Tendency toward codependency","Chronic avoidance of conflict","Over-sensitivity to criticism"],
+    "Deeply devoted, highly romantic, and incredibly nurturing — they crave absolute emotional security and total spiritual union. They thrive in harmonious partnerships but must guard against losing their individual identity.",
+    ["Counselor / Therapist","Mediator","Human Resources Director","Diplomat","Support Specialist"],
+    [{name:"Barack Obama",why:"Diplomacy, dialogue, and unifying disparate groups"},{name:"Jennifer Aniston",why:"Deeply empathetic, loyal, and harmonious screen presence"},{name:"Kobe Bryant",why:"Deep dedication to team dynamics and mentorship"}],
+    "The 2026 energy calls you to break free from past limitations, take bold emotional risks, and establish your own independent voice. Long-standing misunderstandings will find closure and partnerships will deepen."],
+  3:["The Communicator","Infused with Jupiterian expansion, the Life Path 3 acts as a dynamic vessel for joy, unbounded creativity, and expressive art. They navigate existence as a vibrant canvas, utilizing natural charisma to uplift the collective.",
+    ["Magnetic and radiant charisma","Boundless creative imagination","Natural gift for all forms of expression","Infectious uplifting optimism","Exceptional social connection"],
+    ["Scattered energy and procrastination","Difficulty completing long-term projects","Sensitivity to criticism"],
+    "Playful, highly affectionate, and easily bored — they absolutely require a partner who is intellectually stimulating and appreciative of their vibrant social life. Honest, open communication is their non-negotiable.",
+    ["Writer / Author","Performer / Actor","Marketing Creative","Public Speaker","Content Creator"],
+    [{name:"David Bowie",why:"Ultimate chameleon of creative self-expression"},{name:"Christina Aguilera",why:"Powerful vocal expression communicating deep emotion"},{name:"Snoop Dogg",why:"Natural gift for language and social connectivity"}],
+    "An incredible influx of creative opportunities in 2026. Ideas that previously struggled will now find a receptive audience. Channel your immense energy into one meaningful goal."],
+  4:["The Builder","Deeply grounded and highly disciplined, the Life Path 4 is the supreme architect of the numerological spectrum. Their karmic path requires mastering the material realm through meticulous hard work, turning abstract ideas into lasting reality.",
+    ["Exceptional organizational discipline","Unwavering reliability and loyalty","Masterful long-term strategic planning","Superior financial prudence","Tireless work ethic"],
+    ["Rigid inflexibility and resistance to change","Pervasive pessimism under stress","Dangerous propensity for burnout"],
+    "They view romantic love as a vital stabilizing force and take commitment exceptionally seriously. Highly practical and fiercely protective, they express deep affection through acts of service.",
+    ["Architect / Engineer","Project Manager","Financial Analyst","Real Estate Professional","Legal Professional"],
+    [{name:"Elon Musk",why:"Building systemic foundations for a multi-planetary future"},{name:"Oprah Winfrey",why:"Methodically constructed a media empire from nothing"},{name:"Bill Gates",why:"Disciplined structured approach to building global systems"}],
+    "Your meticulous long-term hard work finally yields substantial rewards in 2026. The universe grants you cosmic permission to break the mold — unconventional new methodologies will open financial doors."],
+  5:["The Explorer","Intensely mercurial and constantly in kinetic motion, the Life Path 5 seeks absolute truth through lived experience, global travel, and varied sensory engagement. Their ultimate spiritual challenge is to find grounded discipline within their boundless freedom.",
+    ["Extremely high adaptability","Magnetic and persuasive charisma","Fearless and boundless curiosity","Exceptional resourcefulness in crisis","Highly persuasive quick communication"],
+    ["Chronic restlessness and inconsistency","A deep-seated avoidance of commitment","Highly impulsive risky decision-making"],
+    "Exciting, highly unpredictable, and deeply passionate — they possess a core fear of being trapped and absolutely require a lover who is simultaneously an adventurous best friend. Relationships must continually evolve.",
+    ["Travel Journalist","Digital Nomad Entrepreneur","Marketing Strategist","Sales Professional","Event Producer"],
+    [{name:"Angelina Jolie",why:"Fearless exploration of diverse roles, cultures, and causes"},{name:"Abraham Lincoln",why:"Resourceful adaptability in the face of massive societal change"},{name:"Mick Jagger",why:"Restless creative energy that refuses any form of containment"}],
+    "An exhilarating feast of unpredictable possibilities awaits you in 2026. Career prospects are incredibly favorable, particularly in digital and tech markets. The critical lesson is ruthless discernment."],
+  6:["The Nurturer","Bathed in Venusian harmony, the Life Path 6 is driven by an innate sense of duty, emotional healing, and the creation of aesthetic beauty. They are the cosmic parents of the world, learning to balance supporting others with maintaining their own energetic reserves.",
+    ["Profound and unwavering compassion","Natural talent for creating beauty and harmony","Exceptional conflict mediation skills","Deeply reliable responsibility","Magnetic community-building warmth"],
+    ["Crippling martyrdom complex","Intrusive perfectionism about others lives","Dangerous susceptibility to emotional exhaustion"],
+    "Fiercely devoted and highly romantic, they tirelessly seek the ultimate harmonious domestic haven. They offer unconditional boundless support but possess exceptionally high expectations for mutual commitment.",
+    ["Counselor / Social Worker","Interior Designer","Teacher / Educator","Healthcare Provider","Community Leader"],
+    [{name:"John Lennon",why:"Unwavering advocacy for universal love, harmony, and peace"},{name:"Michael Jackson",why:"Devoted artistic nurturing and humanitarian philanthropy"},{name:"Eleanor Roosevelt",why:"Tireless service as the ultimate community caretaker"}],
+    "Your immense power as a reliable emotional anchor is globally recognized in 2026. Tremendous good fortune in family and community dynamics is heralded. The greatest challenge is masterful boundary-setting."],
+  7:["The Seeker","Operating on a highly intellectual and intensely mystical frequency, the Life Path 7 relentlessly seeks the absolute truth hidden beneath the surface of reality. Their unique journey perfectly marries strict empirical analysis with deep esoteric spiritual intuition.",
+    ["Unmatched analytical genius","Profound highly accurate intuition","Advanced research proficiency","Immense philosophical depth","Keen penetrating observation skills"],
+    ["Chronic cynicism and skepticism","A tendency toward social isolation","Constantly over-intellectualizing emotions"],
+    "Intensely private and notoriously hard to truly know, they require a profoundly deep intellectual and spiritual connection before opening their hearts. They absolutely must have a partner who respects their need for extensive quiet solitude.",
+    ["Research Scientist","Philosopher / Academic","Spiritual Teacher","Investigative Journalist","Data Analyst"],
+    [{name:"Nikola Tesla",why:"Relentless intellectual pursuit of hidden universal truths"},{name:"Princess Diana",why:"Deep introspective empathy combined with intense spiritual seeking"},{name:"Stephen Hawking",why:"Unmatched analytical genius probing the fundamental laws of reality"}],
+    "A potent period of deep spiritual awakening in 2026 that demands you transform introspective wisdom into bold active leadership. Trust your highly refined intuition as an absolute infallible compass."],
+  8:["The Powerhouse","Driven strictly by heavy Saturnian discipline, the Life Path 8 is the undisputed master of the material realm, uniquely tasked with navigating the ethical balanced use of massive power and wealth. They manifest vast success through relentless endurance and highly strategic vision.",
+    ["Extraordinary executive authority","Unparalleled financial acumen","Relentless endurance under pressure","Superior strategic long-term vision","Commanding and highly magnetic presence"],
+    ["Destructive workaholism","Materialistic obsession","Dictatorial tendencies under stress"],
+    "Intense, highly demanding, and fiercely loyal, they approach romantic relationships with the exact same strategic seriousness as their corporate careers. They actively seek a powerful equal partner with whom they can build a formidable legacy.",
+    ["CEO / Business Owner","Investment Banker","Corporate Executive","Real Estate Developer","Financial Strategist"],
+    [{name:"Oprah Winfrey",why:"Built a formidable media empire through sheer Saturnian discipline"},{name:"Pablo Picasso",why:"Masterful disciplined accumulation of artistic power and legacy"},{name:"Nelson Mandela",why:"Extraordinary endurance and strategic vision under immense pressure"}],
+    "An incredibly strong karmic year for financial and career dominance in 2026. Business investments, massive promotions, and unprecedented breakthroughs are highly indicated. Remain strategically adaptable."],
+  9:["The Humanitarian","Embodying the absolute culmination of the human experience, the Life Path 9 operates on a highly elevated global consciousness, driven by raw martial energy to fight for the greater good. Their ultimate spiritual lesson involves mastering total forgiveness.",
+    ["Truly universal and expansive compassion","Profound philosophical and spiritual wisdom","Immense natural generosity","Powerful and inspiring global vision","Exceptional artistic and creative talent"],
+    ["Deep resentment of the past","Emotional naivety regarding others motives","Tendency to self-sacrifice to a destructive fault"],
+    "Deeply romantic, highly idealistic, and intensely giving — they love universally and occasionally struggle to focus their vast emotional energy solely on one person. They require a partner who shares their high idealism.",
+    ["Non-profit Leader","Artist / Musician","Humanitarian Worker","Spiritual Teacher","Social Activist"],
+    [{name:"Mahatma Gandhi",why:"Embodied pure universal compassion and tireless humanitarian sacrifice"},{name:"Jim Carrey",why:"Used creative brilliance to explore profound existential and spiritual themes"},{name:"Morgan Freeman",why:"Wise philosophical presence communicating universal human truths"}],
+    "A profound transformative period of karmic release and renewal in 2026. Old cycles will gracefully end. Once these heavy burdens are released, highly aligned new opportunities will flow in with startling ease."],
+  11:["The Spiritual Messenger","As the first Master Number, the 11 operates as a highly sensitive cosmic antenna, constantly receiving profound psychic and intuitive insights from higher realms. Their ultimate mission is to uplift humanity through visionary illumination.",
+    ["Extraordinary psychic-level intuition","Highly elevated spiritual awareness","Visionary illumination for humanity","Immense creative inspiration","Deep empathic resonance"],
+    ["Extreme nervous tension and severe anxiety","Crippling self-doubt","Frequent debilitating emotional overwhelm"],
+    "They desperately seek a transcendent soul-mate connection and feel love with agonizing consuming intensity. They require an incredibly patient, grounded partner who understands their sudden non-negotiable needs for complete isolation.",
+    ["Spiritual Teacher","Healer / Energy Worker","Visionary Artist","Psychologist","Inspirational Speaker"],
+    [{name:"Barack Obama",why:"Illuminating visionary leadership bridging diverse human experiences"},{name:"Edgar Allan Poe",why:"Profoundly psychic creative vision exploring the darkest human depths"},{name:"Wolfgang Amadeus Mozart",why:"Divine musical channeling that transcended ordinary human perception"}],
+    "Your heightened intuition is your absolute compass in 2026. Astrologically empowered to unite disparate forces and orchestrate profound visionary changes in your wider community."],
+  22:["The Master Builder","The Master Number 22 possesses the extraordinary ability to ground immense ethereal spiritual visions into lasting highly functional material empires. Tasked with building complex systemic legacies that will vastly outlast them.",
+    ["Unparalleled practical manifesting ability","Extraordinary large-scale visionary capacity","Supreme organizational and systemic mastery","Immense psychological endurance","Rare combination of idealism and pragmatism"],
+    ["Crippling fear of failure","Severe inflexibility with subordinates","Autocratic behavior under extreme stress"],
+    "Fiercely loyal and profoundly protective, they demonstrate romantic love by providing an unshakeable highly secure material foundation. Their partners absolutely must be highly self-sufficient.",
+    ["Visionary Architect","Global Non-Profit Leader","Tech Empire Founder","Political Reformer","Master Engineer"],
+    [{name:"Bill Gates",why:"Built a global empire that systemically transformed human access to technology"},{name:"Dalai Lama",why:"Masterfully builds bridges of compassionate global understanding"},{name:"Paul McCartney",why:"Constructed a vast enduring cultural legacy"}],
+    "A monumental foundational year in 2026 where groundwork of the past perfectly aligns. Lead with deep compassion rather than ruthless mechanical efficiency to unlock your full potential."],
+  33:["The Master Teacher","The extremely rare Master Number 33 vibrates with pure unconditional love and divine compassion, operating as an unwavering beacon of spiritual guidance for the masses. Their immense empathic burden requires mastering the art of radical self-preservation.",
+    ["Radiating unconditional divine love","Extraordinary selfless service capacity","Profound multi-generational healing wisdom","Natural beacon of spiritual guidance","Supreme compassionate empathy"],
+    ["Extreme highly destructive self-sacrifice","Chronic severe energetic depletion","Assuming inappropriate responsibility for others karma"],
+    "The ultimate selfless caregivers in romance, offering a love that is highly protective, deeply nurturing, and spiritually elevated. They must consciously avoid treating romantic partners as broken projects that need to be healed.",
+    ["Spiritual Healer","Master Teacher / Educator","Universal Compassion Activist","Holistic Health Practitioner","Global Humanitarian"],
+    [{name:"Albert Einstein",why:"Universal compassion through transformative contributions to collective human understanding"},{name:"Meryl Streep",why:"Profoundly empathetic artistic channeling of the full spectrum of human experience"},{name:"Francis of Assisi",why:"Embodied absolute selfless divine love and total compassionate sacrifice"}],
+    "Rigorous radical self-care is absolutely non-negotiable in 2026. Prevent burnout by fiercely prioritizing yourself first, ensuring you seize your own emerging powerful doors of opportunity."]
+};
+
+// ── Destiny Data ──────────────────────────────────────
+const DESTINY_DATA={
+  1:{title:"The Visionary Pioneer",overview:"Destiny Number 1 provides the individual with an innate toolkit defined by absolute independence, unyielding ambition, and natural executive leadership. These individuals are born pioneers who possess the unique ability to visualize novel concepts and confidently forge paths where none previously existed.",strengths:["Fierce independence and self-reliance","Natural executive and leadership ability","Unyielding ambition and pioneering drive","Courageous risk-taking capacity","Original, innovative thinking"],challenges:["Severe impatience with others pace","Ego-centric tendencies under pressure","Intolerance for mundane processes"],ideal_careers:["Entrepreneur","CEO / Executive","Creative Director","Military Officer","Independent Consultant"],love_style:"In romantic relationships, a Destiny 1 approaches love with passion and a desire to protect, but they maintain a fierce need for personal sovereignty. They require a confident partner who will not be eclipsed by their ambition.",difference_from_life_path:"While a Life Path 1 is a journey forcing the individual to learn how to stand alone, a Destiny 1 means the individual already possesses the innate tools, talents, and natural aggressive drive to lead from birth."},
+  2:{title:"The Diplomatic Peacemaker",overview:"Destiny Number 2 equips the individual with a highly refined psychological toolkit centered on emotional intelligence, diplomacy, and the cultivation of interpersonal harmony. They achieve their life's purpose not through aggressive force, but through patient, cooperative, and deeply empathetic collaboration.",strengths:["Profound emotional intelligence","Masterful diplomatic mediation","Near-psychic sensitivity to others","Exceptional patience and tact","Deep loyalty in partnerships"],challenges:["Extreme vulnerability to harsh energies","Tendency toward passive avoidance","Lack of personal boundaries"],ideal_careers:["Mediator / Negotiator","Counselor / Therapist","Human Resources Director","Diplomat","Collaborative Artist"],love_style:"A Destiny 2 utilizes their romantic relationships as their primary source of strength, approaching love with deep devotion, tenderness, and an intuitive understanding of their partner's needs.",difference_from_life_path:"A Life Path 2 dictates a life trajectory filled with forced lessons in cooperation, whereas a Destiny 2 indicates that the individual utilizes innate diplomacy and sensitivity as their primary tools for navigating any situation."},
+  3:{title:"The Charismatic Communicator",overview:"Destiny Number 3 endows the individual with a vibrant toolkit characterized by extraordinary communication skills, magnetic charisma, and boundless creative self-expression. They are natural performers and optimists who navigate life by inspiring, uplifting, and entertaining those around them.",strengths:["Exceptional verbal and written communication","Innate artistic and creative expression","Magnetic personal charisma","Infectious optimism and humor","Profound emotional sensitivity"],challenges:["Scattered focus and chronic procrastination","Inability to complete long-term projects","Dramatic emotional fluctuations"],ideal_careers:["Writer / Author","Performer / Actor","Marketing Creative","Public Speaker","Content Creator"],love_style:"In romance, a Destiny 3 utilizes their charm and wit to create relationships that are playful, passionate, and intellectually stimulating. They require a partner who will not stifle their need for constant social engagement.",difference_from_life_path:"While a Life Path 3 is a journey of learning to overcome self-doubt to find one's voice, a Destiny 3 indicates that the individual already possesses a brilliant toolkit of communication and artistry to achieve their goals."},
+  4:{title:"The Practical Architect",overview:"Destiny Number 4 provides a highly structured psychological toolkit built for practical execution, systemic organization, and enduring reliability. They achieve lasting success by embracing hard work, enforcing order upon chaos, and constructing solid foundations.",strengths:["Unmatched organizational discipline","Exceptional reliability and loyalty","Masterful step-by-step execution","Long-term strategic planning","Respects systems and structural integrity"],challenges:["Rigid inflexibility with change","Binary black-or-white thinking","Bossy demeanor in collaboration"],ideal_careers:["Architect / Engineer","Project Manager","Financial Analyst","Systems Analyst","Legal Professional"],love_style:"A Destiny 4 expresses romantic love through acts of service, practical provision, and unwavering loyalty. They build relationships that function like well-oiled partnerships.",difference_from_life_path:"A Life Path 4 involves enduring karmic lessons surrounding limitation and effort, whereas a Destiny 4 means the individual inherently utilizes logic, structure, and intense organization as their natural tools for success."},
+  5:{title:"The Dynamic Catalyst",overview:"Destiny Number 5 endows the individual with a highly kinetic toolkit defined by supreme adaptability, quick thinking, and a fearless embrace of change. They thrive in environments of rapid flux, utilizing their natural curiosity to break down outdated structures.",strengths:["Exceptional adaptability to rapid change","Progressive and open-minded thinking","High-speed cognitive processing","Magnetic adventurous energy","Thrives outside traditional constraints"],challenges:["Chronic restlessness and unreliability","Complete inability to commit long-term","Constant need for sensory input"],ideal_careers:["Travel Journalist","Digital Nomad Entrepreneur","Marketing Strategist","Event Producer","Sales Professional"],love_style:"In love, a Destiny 5 is passionate, unpredictable, and exciting, utilizing romance as another profound avenue for exploration. They require a highly independent partner who will not attempt to cage them.",difference_from_life_path:"While a Life Path 5 is an external journey of learning through sudden changes, a Destiny 5 indicates that the individual naturally utilizes versatility, speed, and constant reinvention to navigate their path."},
+  6:{title:"The Cosmic Nurturer",overview:"Destiny Number 6 provides a toolkit inherently focused on empathy, communal responsibility, and the cultivation of harmonious environments. They achieve their highest potential by utilizing their profound sense of duty and natural artistic flair.",strengths:["Profound unconditional compassion","Natural talent for creating beauty","Exceptional conflict harmonizing skills","Deeply reliable and responsible","Magnetic community-building warmth"],challenges:["Overbearing meddling when unbalanced","Intense perfectionism about others","Harsh judgment when standards unmet"],ideal_careers:["Counselor / Social Worker","Interior Designer","Teacher / Educator","Healthcare Provider","Community Leader"],love_style:"A Destiny 6 approaches love as a sacred duty, utilizing their deep nurturing instincts to create a deeply devoted, stable, and harmonious domestic life.",difference_from_life_path:"A Life Path 6 involves karmic lessons regarding the balance of responsibility, whereas a Destiny 6 indicates that the individual naturally utilizes healing, caregiving, and aesthetic creation as their primary life tools."},
+  7:{title:"The Analytical Mystic",overview:"Destiny Number 7 endows the individual with a highly specialized toolkit focused on intense analytical thought, deep introspection, and the uncovering of universal truths. They achieve success by utilizing their profound intellectual depth to master complex theories.",strengths:["Exceptional analytical reasoning","Profound intuition bordering on psychic awareness","Capacity for mastery in complex fields","Comfort and strength in solitude","Ability to see past superficialities"],challenges:["Profound social detachment","Emotional aloofness and unapproachability","Struggles with mundane physical world"],ideal_careers:["Research Scientist","Philosopher / Academic","Spiritual Teacher","Investigative Journalist","Data Analyst"],love_style:"In romance, a Destiny 7 utilizes their deep analytical mind to seek a partner who is their intellectual and spiritual equal. They express love quietly through loyalty and shared inquiry.",difference_from_life_path:"While a Life Path 7 is an external journey of developing faith through solitary experiences, a Destiny 7 means the individual already uses intense analysis and introspection as their primary tools for moving through the world."},
+  8:{title:"The Executive Powerhouse",overview:"Destiny Number 8 provides the individual with a commanding psychological toolkit engineered for executive leadership, financial mastery, and the acquisition of material power. They achieve their highest potential when they balance their immense ambition with ethical responsibility.",strengths:["Unmatched executive management skills","Inherent understanding of financial systems","Exceptional strategic foresight","Immense personal resilience","Natural commanding authority"],challenges:["Corruption of power when ungrounded","Cold calculating ruthlessness","Tyrannical use of control"],ideal_careers:["CEO / Business Owner","Investment Banker","Corporate Executive","Real Estate Developer","Financial Strategist"],love_style:"A Destiny 8 views romantic relationships as powerful partnerships, utilizing their resources to provide an exceptionally stable and opulent life for their mate.",difference_from_life_path:"A Life Path 8 involves profound karmic lessons surrounding the ethical use of power, whereas a Destiny 8 indicates the individual naturally utilizes business acumen, authority, and financial strategy as their default operational tools."},
+  9:{title:"The Humanitarian Visionary",overview:"Destiny Number 9 endows the individual with a profoundly expansive toolkit defined by universal compassion, idealistic vision, and selfless service. They achieve their ultimate destiny when they learn to love humanity unconditionally.",strengths:["Universal and expansive compassion","Profound philosophical depth","Immense natural generosity","Powerful global humanitarian vision","Exceptional artistic talent"],challenges:["Deep disillusionment with humanity","Projecting arrogance as defense mechanism","Sacrificing personal needs to fault"],ideal_careers:["Non-profit Leader","Artist / Musician","Humanitarian Worker","Spiritual Teacher","Social Activist"],love_style:"In romance, a Destiny 9 utilizes their deep spiritual awareness to seek a partner who is equally dedicated to global betterment. They are hopeless romantics who express love boundlessly.",difference_from_life_path:"While a Life Path 9 represents the karmic journey of learning to let go, a Destiny 9 indicates the individual naturally utilizes compassion, philanthropy, and artistic vision as their primary tools for success."},
+  11:{title:"The Intuitive Illuminator",overview:"Destiny Number 11 equips the individual with a highly charged, spiritual toolkit defined by prophetic intuition, visionary leadership, and profound energetic sensitivity. They fulfill their destiny by learning to balance their extraordinary spiritual gifts with the heavy demands of the material world.",strengths:["Extraordinary prophetic intuition","Visionary spiritual leadership","Amplified creative inspiration","Deep empathic resonance","Capacity to channel higher wisdom"],challenges:["Extreme nervous tension and anxiety","Crippling self-doubt","Overwhelming sensitivity to external energies"],ideal_careers:["Spiritual Teacher","Energy Healer","Visionary Artist","Psychologist","Inspirational Speaker"],love_style:"A Destiny 11 approaches love with a deep craving for soul-level connection, utilizing their intuition to understand their partner completely.",difference_from_life_path:"A Life Path 11 is an external journey fraught with tests of spiritual faith, whereas a Destiny 11 indicates the individual inherently utilizes prophetic intuition and visionary inspiration as their daily operational tools."},
+  22:{title:"The Master Builder",overview:"Destiny Number 22 provides the individual with the most potent manifestation toolkit in numerology, combining high-level spiritual vision with grounded, pragmatic execution. They achieve their highest destiny by assuming immense responsibility to create lasting institutions.",strengths:["Unparalleled large-scale manifesting ability","Synthesis of spiritual vision with practical execution","Supreme organizational mastery","Immense psychological endurance","Rare idealism combined with pragmatism"],challenges:["Crippling fear of failure and self-doubt","Retreat into lower 4 energy under stress","Autocratic tendencies"],ideal_careers:["Visionary Architect","Global NGO Leader","Tech Empire Founder","Political Reformer","Master Engineer"],love_style:"In romance, a Destiny 22 utilizes their immense drive to build an incredibly secure, legacy-focused partnership.",difference_from_life_path:"While a Life Path 22 is a karmic journey of learning how to build on a grand scale, a Destiny 22 means the individual naturally possesses the extraordinary practical and visionary tools required to alter reality."},
+  33:{title:"The Master Teacher",overview:"Destiny Number 33 equips the individual with an extraordinarily high-frequency toolkit centered on unconditional love, spiritual wisdom, and radical compassion. They fulfill their profound cosmic responsibility by utilizing their massive emotional intelligence to uplift marginalized groups.",strengths:["Radiating unconditional divine love","Extraordinary selfless service capacity","Profound multi-generational healing wisdom","Natural spiritual guidance beacon","Supreme compassionate empathy"],challenges:["Extreme self-sacrifice to destruction","Chronic severe energetic depletion","Assuming inappropriate karmic responsibility"],ideal_careers:["Spiritual Healer","Master Educator","Universal Compassion Activist","Holistic Health Practitioner","Global Humanitarian"],love_style:"A Destiny 33 utilizes their boundless compassion to create relationships that are deeply supportive, trusting, and spiritually fused.",difference_from_life_path:"A Life Path 33 is an external journey demanding the mastery of universal compassion, whereas a Destiny 33 indicates the individual inherently utilizes unconditional love and healing as their primary tools for moving through the world."}
+};
+
+// ── Soul Urge Data ────────────────────────────────────
+const SOUL_DATA={
+  1:{title:"The Independent Pioneer",overview:"Soul Urge Number 1 reveals a deep, internal desire for complete autonomy, leadership, and originality. Emotional fulfillment is achieved only when they are allowed to take the initiative, overcome obstacles independently, and stand out from the crowd.",strengths:["Burns with desire for self-directed living","Deeply motivated by original achievement","Inner drive to pioneer new territory","Craves recognition as innovator","Emotionally fueled by independence"],challenges:["Inner frustration when in subordinate roles","Emotional drought when taking orders","Tendency toward emotional arrogance"],ideal_careers:["Founder / Entrepreneur","Independent Artist","Freelance Strategist","Executive Leader","Creative Director"],love_style:"In relationships, a Soul Urge 1 requires a partner who deeply respects their absolute need for personal space and autonomy. They love fiercely and protectively but will quickly exit any dynamic that feels emotionally suffocating.",difference_from_life_path:"While a Life Path 1 is the external karmic journey of learning leadership, the Soul Urge 1 is the internal, emotional craving for independence, regardless of what the external life path demands."},
+  2:{title:"The Harmonious Partner",overview:"Soul Urge Number 2 is driven by a profound inner need for love, partnership, and environmental harmony. They achieve true internal satisfaction by resolving conflicts, supporting others behind the scenes, and creating spaces of tranquility and mutual respect.",strengths:["Deep craving for peaceful cooperation","Emotionally fulfilled by supporting others","Highly sensitive to environmental harmony","Inner drive for meaningful connection","Satisfaction in behind-the-scenes contribution"],challenges:["Extreme emotional need for validation","Inner distress in competitive environments","Tendency toward emotional dependency"],ideal_careers:["Counselor / Mediator","Collaborative Professional","Relationship Coach","Social Worker","Support Specialist"],love_style:"Romance is the absolute ultimate priority for a Soul Urge 2, desiring a deeply fused, affectionate, and completely harmonious partnership. They are incredibly giving but require constant verbal and physical reassurance to feel secure.",difference_from_life_path:"A Life Path 2 dictates that external life events will force the individual to learn cooperation, whereas a Soul Urge 2 indicates that the individual intrinsically wants and craves partnership to feel internally satisfied."},
+  3:{title:"The Joyful Creator",overview:"Soul Urge Number 3 indicates a soul that yearns deeply for creative expression, joy, and social connection. True emotional fulfillment comes from inspiring others, living a life rich in artistic endeavors, and maintaining a dynamic, celebratory social circle.",strengths:["Desperate inner hunger to be creatively heard","Emotionally fueled by artistic expression","Inner joy through social connection","Deep need to inspire and entertain","Soul satisfaction in authentic self-expression"],challenges:["Soul dims when creative voice is stifled","Bouts of depression when isolated","Desperate need for audience validation"],ideal_careers:["Artist / Performer","Writer / Blogger","Social Media Creator","Event Host","Creative Entrepreneur"],love_style:"A Soul Urge 3 desires a relationship that feels like a continuous, joyful adventure filled with laughter and social engagement. They crave a communicative partner who acts as an enthusiastic audience.",difference_from_life_path:"While a Life Path 3 is a journey forcing the individual to find their voice over time, the Soul Urge 3 means the individual possesses a desperate, innate hunger to be heard and to express themselves creatively from birth."},
+  4:{title:"The Stable Provider",overview:"Soul Urge Number 4 reveals a deep psychological need for structure, security, and predictability. They find profound emotional satisfaction in hard work, adherence to tradition, and the establishment of reliable systems.",strengths:["Inner craving for order and organization","Emotionally sated by disciplined hard work","Deep need for material security","Soul satisfaction in tangible achievement","Inner drive to protect loved ones"],challenges:["Emotional distress when life is unpredictable","Inner rigidity resisting necessary change","Soul anxiety about financial instability"],ideal_careers:["Financial Planner","Architect / Engineer","Operations Manager","Real Estate Professional","Government Administrator"],love_style:"For a Soul Urge 4, love equates directly to security, provision, and loyalty. They desire a traditional, stable partnership devoid of drama.",difference_from_life_path:"A Life Path 4 mandates that the individual must learn the value of hard work over time; a Soul Urge 4 indicates that the individual naturally craves work, order, and routine as their primary source of emotional comfort."},
+  5:{title:"The Adventurous Explorer",overview:"Soul Urge Number 5 is driven by an insatiable inner craving for absolute freedom, adventure, and sensory stimulation. True fulfillment for this soul is found in travel, unpredictability, and the constant breaking of boundaries.",strengths:["Insatiable inner hunger for freedom","Soul joy through new experiences","Emotionally alive in unpredictability","Deep desire to break conventions","Inner thrill of constant reinvention"],challenges:["Soul terror of being trapped or caged","Emotional sabotage of stable situations","Inner restlessness destroying contentment"],ideal_careers:["Travel Writer","Digital Nomad","Entrepreneur","Investigative Reporter","Adventure Guide"],love_style:"A Soul Urge 5 desires a lover who acts as an adventurous co-pilot, craving excitement and unpredictability in romance. They require a partner who allows them vast amounts of personal freedom.",difference_from_life_path:"While a Life Path 5 is an external journey of experiencing change, a Soul Urge 5 signifies that the individual needs change and freedom on a fundamental soul level in order to feel happy and alive."},
+  6:{title:"The Devoted Nurturer",overview:"Soul Urge Number 6 reveals a heart deeply motivated by love, domestic harmony, and the overwhelming need to nurture. They achieve ultimate emotional fulfillment by taking on responsibilities for others and cultivating environments rich in justice and aesthetic beauty.",strengths:["Deep soul satisfaction in nurturing others","Inner joy from domestic harmony","Emotionally fulfilled by being needed","Soul pleasure in creating beauty","Inner drive to protect the vulnerable"],challenges:["Emotional exhaustion when sacrifices unappreciated","Inner suffering when home is in discord","Soul wound when love is not reciprocated"],ideal_careers:["Family Counselor","Early Childhood Educator","Interior Architect","Veterinarian","Community Organizer"],love_style:"The Soul Urge 6 desires a romance that culminates in a stable, beautiful, and deeply connected family life. They are incredibly devoted, attentive partners who crave a home filled with warmth.",difference_from_life_path:"A Life Path 6 involves karmic lessons regarding the balance of responsibility, while a Soul Urge 6 indicates that the individual intrinsically wants to be responsible for others because nurturing brings them profound inner joy."},
+  7:{title:"The Introspective Mystic",overview:"Soul Urge Number 7 is characterized by an internal thirst for absolute truth, spiritual wisdom, and esoteric knowledge. Their soul craves solitude, quiet contemplation, and the opportunity to unravel the mysteries of the universe.",strengths:["Unquenchable inner thirst for truth","Soul peace found only in deep solitude","Emotionally nourished by esoteric study","Inner satisfaction in uncovering hidden truths","Deep need for philosophical depth"],challenges:["Profound sense of soul isolation","Inner inability to connect superficially","Emotional overwhelm in social noise"],ideal_careers:["Research Scientist","Philosopher / Academic","Spiritual Director","Psychologist","Investigative Journalist"],love_style:"A Soul Urge 7 desires a profound meeting of the minds, completely disinterested in superficial romance. They crave a deeply spiritual and intellectual bond with a partner who respects their sacred need for silence.",difference_from_life_path:"While a Life Path 7 dictates a life filled with external lessons requiring the development of faith, a Soul Urge 7 means the individual's deepest internal desire is to study, understand, and uncover the hidden truths of existence."},
+  8:{title:"The Material Strategist",overview:"Soul Urge Number 8 reveals a profound internal ambition for executive power, financial abundance, and massive societal influence. They find true emotional fulfillment when they are leading large organizations, managing vast resources, and achieving the highest possible levels of material success.",strengths:["Burning inner desire for material mastery","Soul satisfaction in executive authority","Emotionally driven by financial achievement","Deep need to leave tangible legacy","Inner craving for significant influence"],challenges:["Emotional obsession with control","Inner restlessness without power","Tendency for ambition to cross into tyranny"],ideal_careers:["CEO / Business Owner","Investment Strategist","Corporate Executive","Real Estate Developer","Financial Manager"],love_style:"A Soul Urge 8 desires a power couple dynamic, craving a partner who matches their ambition and understands their intense drive. They express their deep love by providing an opulent, secure, and highly structured life.",difference_from_life_path:"A Life Path 8 is an external journey of learning how to handle power ethically, whereas a Soul Urge 8 signifies that the individual has a deep, burning inner desire for power and wealth as their primary emotional motivator."},
+  9:{title:"The Universal Philanthropist",overview:"Soul Urge Number 9 is driven by an overarching, internal desire to serve humanity, relieve suffering, and elevate global consciousness. True emotional and spiritual fulfillment for a 9 comes only through selfless service and aligning their personal life with a higher, universal cause.",strengths:["Overarching desire to serve humanity","Soul fulfillment through selfless contribution","Emotionally driven by global idealism","Deep need to alleviate suffering","Inner satisfaction in universal love"],challenges:["Soul suffering observing global injustice","Emotional burden of humanity's pain","Difficulty forgiving humanity's flaws"],ideal_careers:["Non-profit Director","Global Humanitarian","Spiritual Teacher","Social Justice Activist","Healer / Therapist"],love_style:"The Soul Urge 9 desires an epic, soulmate-level romance, craving a partner who deeply shares their utopian ideals and philanthropic goals. They are incredibly giving, but must ensure their partner does not take advantage of their boundless generosity.",difference_from_life_path:"While a Life Path 9 represents the external karmic lesson of letting go, the Soul Urge 9 means the individual inherently craves to give back and feels emotionally empty if they are not contributing to the greater good."},
+  11:{title:"The Spiritual Catalyst",overview:"Soul Urge Number 11 is a Master Number that desires ultimate spiritual enlightenment, both for themselves and the world. Their true emotional fulfillment lies in inspiring others, pursuing esoteric truths, and utilizing their extreme emotional sensitivity.",strengths:["Yearning for divine spiritual enlightenment","Soul satisfaction in inspiring awakening","Emotionally fulfilled by esoteric exploration","Deep craving for soul-level connection","Inner drive to bridge physical and divine"],challenges:["Intense inner sensitivity causing overwhelm","Soul tension between ethereal ideals and reality","Emotional instability from spiritual hyperawareness"],ideal_careers:["Spiritual Guide","Energy Healer","Metaphysical Writer","Psychic Medium","Inspirational Speaker"],love_style:"A Soul Urge 11 desires a twin-flame connection, craving a relationship that is spiritually transcendent and deeply communicative.",difference_from_life_path:"A Life Path 11 is an external path filled with severe tests of faith, whereas a Soul Urge 11 is the profound, internal yearning to experience and share divine illumination, regardless of external circumstances."},
+  22:{title:"The Master Architect",overview:"Soul Urge Number 22 harbors an immense internal drive to leave a lasting, physical legacy that benefits humanity on a macro scale. Emotional satisfaction is achieved only when they are successfully managing large-scale projects and institutions that change society.",strengths:["Overwhelming inner need to build lasting legacy","Soul satisfaction in world-altering projects","Emotionally driven by practical grand visions","Deep craving for massive societal impact","Inner tension between comfort and greatness"],challenges:["Agonizing internal pressure of grand responsibility","Constant psychological tension between 4 and 22","Emotional torment when not building something massive"],ideal_careers:["Visionary Architect","Global Institution Founder","Master Engineer","Political Reformer","Legacy Entrepreneur"],love_style:"The Soul Urge 22 desires a partner who profoundly understands the magnitude of their internal calling. They crave a supportive, hyper-stable relationship that acts as a secure basecamp.",difference_from_life_path:"While a Life Path 22 involves learning to manifest on a grand scale through trial, a Soul Urge 22 means the individual is internally tormented if they are not building something massive; it is their core emotional craving."},
+  33:{title:"The Compassionate Healer",overview:"Soul Urge Number 33 is the rarest Master Number, driven by an overwhelming internal desire to offer unconditional love, joy, and healing to the world. True fulfillment is found in absolute, joyful service to humanity.",strengths:["Overwhelming inner desire to heal humanity","Soul joy found in selfless service","Emotionally fulfilled by unconditional giving","Deep craving to transmute collective suffering","Inner satisfaction in nurturing the world"],challenges:["Soul destruction through extreme self-sacrifice","Emotional fatigue from absorbing collective pain","Inner perfectionism leading to harsh self-judgment"],ideal_careers:["Universal Healer","Spiritual Teacher","Compassionate Activist","Holistic Health Director","Sacred Arts Creator"],love_style:"A Soul Urge 33 desires a love that is pure, unconditionally supportive, and spiritually aligned. They crave a partnership where both individuals are dedicated to serving others.",difference_from_life_path:"A Life Path 33 is a karmic journey requiring the mastery of compassion through hardship; a Soul Urge 33 means the individual possesses a desperate, innate need to heal and love others as their primary source of spiritual fulfillment."}
+};
+</script>
+</body>
+</html>
