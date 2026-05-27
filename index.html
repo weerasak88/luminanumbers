@@ -53,6 +53,170 @@ function calcTarot(){
   `;
 }
 
+
+// ── Magic Mirror ──────────────────────────────────────
+const MIRROR_KEY = 'lumina_user';
+
+const DAILY_ENERGY = {
+  1: [
+    "Your pioneering spirit is fully activated today. Trust your instincts and take the first bold step toward something you have been postponing.",
+    "The universe is clearing your path today. Lead without hesitation — others are ready to follow your vision.",
+    "Your independent energy is magnetic today. New doors are opening for those who are bold enough to knock.",
+    "Today calls for decisive action. You were born to initiate — begin something that only you can begin.",
+    "A new cycle is starting today in your life. Your courage is your greatest asset right now.",
+    "The energy of creation surrounds you today. Start that project. Make that call. Take that step.",
+    "Today you are aligned with pure manifestation energy. What you focus on, you will draw toward you."
+  ],
+  2: [
+    "Your natural gift for harmony is needed today. Listen more than you speak and watch what reveals itself.",
+    "The universe is asking you to trust the process today. What feels slow is actually building something beautiful.",
+    "A meaningful connection is highlighted today. Reach out to someone you have been thinking about.",
+    "Your sensitivity is a superpower today, not a weakness. Let it guide your decisions.",
+    "Balance is your theme today. Give where you can, and allow yourself to receive without guilt.",
+    "Today is perfect for healing conversations and mending bridges. Your diplomatic nature will shine.",
+    "Trust divine timing today. The right people and opportunities are already moving toward you."
+  ],
+  3: [
+    "Your creativity is at its peak today. Express something — write, create, speak, perform. The world needs your light.",
+    "Joy is your spiritual practice today. Do one thing that makes you genuinely happy and watch everything shift.",
+    "Today is for connection. Reach out, share your ideas, let your authentic voice be heard.",
+    "The universe wants you to play today. Laughter and lightness are not distractions — they are your power.",
+    "Your words carry extra weight today. Speak with intention and watch how people respond to your energy.",
+    "A creative breakthrough is available to you today. Stop editing yourself before you even begin.",
+    "Today your enthusiasm is contagious. Share your excitement with others and watch doors open."
+  ],
+  4: [
+    "Your foundation-building energy is strong today. Focus on the details that others overlook — they matter.",
+    "Today rewards discipline. Show up fully for what you have committed to and the universe will show up for you.",
+    "Steady progress is the theme today. One solid step forward is worth more than ten scattered attempts.",
+    "Your reliability is your greatest gift today. Someone is counting on you, and you will not let them down.",
+    "Today is excellent for organizing, planning, and putting systems in place that will serve you for months.",
+    "Trust your methodical approach today. The slow path you are taking is the right one.",
+    "Your hard work is accumulating into something significant. Keep building — the results are closer than they appear."
+  ],
+  5: [
+    "Embrace the unexpected today. The detour you did not plan for is actually the shortcut you needed.",
+    "Your energy is restless and electric today. Channel it into something adventurous — explore, experiment, move.",
+    "Today holds a surprise that will make sense in hindsight. Stay flexible and say yes to the unusual.",
+    "Freedom calls to you today. Release one thing that has been feeling like a cage.",
+    "Your adaptability is your greatest asset today. What looks like chaos is actually an invitation to evolve.",
+    "Today favors bold conversations and unconventional ideas. Your perspective is needed and valued.",
+    "Change is your natural habitat. Lean into the shift happening today — it is moving you forward."
+  ],
+  6: [
+    "Your nurturing energy is a healing force today. Someone in your circle needs exactly what you have to offer.",
+    "Today calls you home — to your values, your loved ones, and the things that make life genuinely beautiful.",
+    "Your ability to create harmony is needed today. Lead with love and watch conflict dissolve.",
+    "Beauty and care are your spiritual practices today. Tend to your space, your body, and your relationships.",
+    "Today is for giving and receiving love in equal measure. Open your heart fully in both directions.",
+    "Your sense of responsibility is admirable, but remember: you cannot pour from an empty cup. Rest is sacred today.",
+    "The people you love feel your energy even when you say nothing. Let them feel your warmth today."
+  ],
+  7: [
+    "Your intuition is razor-sharp today. Trust the quiet knowing that surfaces before logic catches up.",
+    "Today is made for deep thinking, solitude, and insight. Give yourself permission to withdraw and reflect.",
+    "A truth you have been searching for is closer than you think. Quiet your mind and let it surface naturally.",
+    "Your analytical gifts are at their strongest today. A complex problem is about to become beautifully clear.",
+    "The universe is sending you subtle signals today. Pay attention to patterns, repetitions, and coincidences.",
+    "Today favors research, reading, and going deeper into what fascinates you. Follow the thread.",
+    "Your wisdom is your greatest gift. Someone today will benefit enormously from your perspective."
+  ],
+  8: [
+    "Your power is undeniable today. Step into leadership without apology — you have earned this authority.",
+    "Financial clarity is available to you today. Review your goals, assess your resources, and make a bold decision.",
+    "Today is for claiming what is rightfully yours — recognition, reward, or a role you have long deserved.",
+    "Your ambition is aligned with the universe today. Push further than feels comfortable. You are ready.",
+    "A cycle of abundance is opening for you. Release the fear of receiving and allow prosperity to flow in.",
+    "Today rewards strategic thinking. Make the move that serves your long-term vision, not just the immediate moment.",
+    "Your strength inspires others even when you are not aware of it. Lead by example today."
+  ],
+  9: [
+    "Your compassion is your superpower today. Extend it generously — beginning with yourself.",
+    "A chapter is completing. Honour what it taught you, release what it cost you, and step forward lighter.",
+    "Today your perspective is elevated. You can see the bigger picture that others cannot yet see.",
+    "Forgiveness is available to you today — of others, of circumstances, and most importantly, of yourself.",
+    "Your calling to serve is activated today. Even the smallest act of kindness creates a profound ripple.",
+    "Something old is ending to make space for something extraordinary. Trust the completion.",
+    "Today you are a beacon. Your presence alone raises the energy of every room you enter."
+  ],
+  11: [
+    "Your psychic antenna is fully extended today. Write down every intuitive flash — they are messages.",
+    "Today you are a bridge between worlds. Your insight can illuminate what others cannot yet see.",
+    "Heightened sensitivity is your gift today, not your burden. Your empathy is needed and extraordinary.",
+    "The veil is thin today. Pay attention to dreams, synchronicities, and the thoughts that arrive unbidden.",
+    "Your spiritual gifts are amplified today. Meditation, journaling, or stillness will unlock profound clarity.",
+    "Today you are reminded of your purpose. You are here to inspire — do not shrink from that calling.",
+    "Trust the visions that arise today. Your higher self is communicating clearly — listen deeply."
+  ],
+  22: [
+    "Your ability to build the impossible is activated today. Think bigger than feels reasonable.",
+    "Today you can see the blueprint that others cannot. Trust your grand vision — it is meant to become real.",
+    "The universe is supporting your most ambitious project today. One focused hour of work shifts everything.",
+    "Your power to manifest large-scale change is unparalleled. What you commit to today will outlast you.",
+    "Today calls for practical mysticism — dream enormously, then take one very concrete step.",
+    "You are building a legacy, not just a life. Every disciplined choice today is a brick in that foundation.",
+    "The world needs what only you can build. Begin, or continue, with complete confidence today."
+  ],
+  33: [
+    "Your capacity for unconditional love is your greatest power today. Let it flow without condition or expectation.",
+    "Today you are called to teach through being, not doing. Your presence itself is a healing force.",
+    "The world feels your light even before you speak. Walk into today knowing you are already enough.",
+    "Your compassion has the power to transform someone's entire day today. Give it freely.",
+    "Today is for deep self-care. You cannot sustain your extraordinary giving without radical replenishment.",
+    "A soul is watching you today and learning from how you move through difficulty with grace.",
+    "Your love is the rarest frequency on earth. Share it today — not because you must, but because it is who you are."
+  ]
+};
+
+const MONTHS_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function getDailyEnergy(lp) {
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  const msgs = DAILY_ENERGY[lp] || DAILY_ENERGY[1];
+  return msgs[dayOfYear % msgs.length];
+}
+
+function initMirror() {
+  try {
+    const raw = localStorage.getItem(MIRROR_KEY);
+    if (!raw) return;
+    const u = JSON.parse(raw);
+    if (!u || !u.lp) return;
+
+    const lp = u.lp;
+    const title = (LP_DESC[lp] || ['Seeker'])[0].replace(' ✦','');
+    const energy = getDailyEnergy(lp);
+    const today = new Date();
+    const dateStr = MONTHS_FULL[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
+
+    document.getElementById('m-title').textContent = title;
+    document.getElementById('m-lp').textContent = lp;
+    document.getElementById('m-energy').textContent = energy;
+    document.getElementById('m-link').href = '/life-path-' + lp + '-meaning/';
+    document.getElementById('m-date').textContent = '✦ ' + dateStr;
+
+    document.getElementById('mirrorHero').classList.add('show');
+    document.getElementById('defaultHero').style.display = 'none';
+  } catch(e) {}
+}
+
+function resetMirror() {
+  localStorage.removeItem(MIRROR_KEY);
+  document.getElementById('mirrorHero').classList.remove('show');
+  document.getElementById('defaultHero').style.display = 'block';
+}
+
+function saveMirrorData(lp, d, m, y) {
+  try {
+    const data = { lp, birthdate: y + '-' + m + '-' + d, saved_at: Date.now() };
+    localStorage.setItem(MIRROR_KEY, JSON.stringify(data));
+  } catch(e) {}
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', initMirror);
+
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1004,6 +1168,101 @@ footer {
 @media(max-width:900px){ .explore-grid { grid-template-columns: repeat(4,1fr); } }
 @media(max-width:480px){ .explore-grid { grid-template-columns: repeat(3,1fr); } }
 
+
+/* ─── MAGIC MIRROR ─── */
+#mirrorHero { display:none; }
+#mirrorHero.show { display:block; }
+.mirror-wrap {
+  background: linear-gradient(135deg, rgba(212,191,232,.35), rgba(245,196,168,.25));
+  border: 1px solid rgba(155,107,191,.25);
+  border-radius: 24px;
+  padding: 28px 28px 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.mirror-wrap::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155,107,191,.2), transparent 70%);
+}
+.mirror-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: #9b6bbf;
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 14px;
+}
+.mirror-eyebrow::before { content: '✦'; font-size: 9px; }
+.mirror-greeting {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 36px); font-weight: 600;
+  color: var(--text-dark); line-height: 1.2;
+  margin-bottom: 6px;
+}
+.mirror-greeting em {
+  font-style: italic;
+  background: linear-gradient(135deg, #c4a0e0, #9b6bbf);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.mirror-lp-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(155,107,191,.12);
+  border: 1px solid rgba(155,107,191,.25);
+  border-radius: 99px; padding: 4px 14px;
+  font-size: 12px; color: #9b6bbf; font-weight: 500;
+  margin-bottom: 16px;
+}
+.mirror-energy-card {
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(201,169,110,.2);
+  border-radius: 16px; padding: 16px;
+  margin-bottom: 16px;
+}
+.mirror-energy-label {
+  font-size: 10px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-soft);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
+}
+.mirror-energy-text {
+  font-size: 14px; color: var(--text-mid); line-height: 1.7;
+  font-style: italic;
+}
+.mirror-actions {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.btn-mirror-primary {
+  flex: 1; min-width: 140px; padding: 12px 16px;
+  background: linear-gradient(135deg, #c4a0e0, #9b6bbf);
+  border: none; border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px; font-weight: 500; color: white;
+  cursor: pointer; text-decoration: none;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  box-shadow: 0 4px 14px rgba(155,107,191,.35);
+  transition: transform .15s;
+}
+.btn-mirror-primary:hover { transform: translateY(-1px); }
+.btn-mirror-reset {
+  padding: 12px 16px;
+  background: transparent;
+  border: 1.5px solid rgba(155,107,191,.3);
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; color: var(--text-soft);
+  cursor: pointer; transition: all .15s;
+}
+.btn-mirror-reset:hover {
+  border-color: var(--rose); color: var(--rose);
+}
+.mirror-date-str {
+  font-size: 12px; color: var(--text-soft);
+  margin-top: 12px; text-align: center;
+}
+
 </style>
 </head>
 <body>
@@ -1041,6 +1300,28 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
+  <!-- MAGIC MIRROR — shown when returning user -->
+<div id="mirrorHero">
+  <div class="mirror-wrap">
+    <div class="mirror-eyebrow">Welcome Back</div>
+    <div class="mirror-greeting">Hello, <em id="m-title">Seeker</em> ✦</div>
+    <div class="mirror-lp-badge">Life Path <span id="m-lp">7</span></div>
+    <div class="mirror-energy-card">
+      <div class="mirror-energy-label">🌟 Your Energy Today</div>
+      <div class="mirror-energy-text" id="m-energy">Loading your daily energy...</div>
+    </div>
+    <div class="mirror-actions">
+      <a id="m-link" href="/life-path-7-meaning/" class="btn-mirror-primary">
+        ✦ View My Full Reading →
+      </a>
+      <button class="btn-mirror-reset" onclick="resetMirror()">↺ Not you?</button>
+    </div>
+    <div class="mirror-date-str" id="m-date"></div>
+  </div>
+</div>
+
+  <!-- DEFAULT HERO -->
+  <div id="defaultHero">
   <div class="hero-left">
     <div class="hero-badge">Numerology & Angel Number Calculator</div>
     <h1>Decode the Numbers.<br><em>Discover Your Purpose.</em></h1>
@@ -1115,6 +1396,8 @@ footer {
       </div>
     </div>
   </div>
+
+  </div><!-- /defaultHero -->
 
   <div class="hero-right">
     <div class="phone-mockup">
@@ -1564,25 +1847,10 @@ function calculate() {
   if (!d || !m || !y) { alert('Please select your full birth date.'); return; }
 
   const lp = lifePathFromDate(d, m, y);
-  const info = LP_DESC[lp] || ["Unknown",""];
-  const angel = ANGEL_BY_LP[lp] || 111;
-  const angelMsg = ANGEL_MSG[angel] || "";
-
-  document.getElementById('r-name').textContent = 'Life Path ' + lp;
-  document.getElementById('r-sub').textContent = info[0];
-  document.getElementById('r-lp').textContent = lp;
-  document.getElementById('r-dest').textContent = reduce(d + m);
-  document.getElementById('r-soul').textContent = reduce(m + y % 100);
-  document.getElementById('r-pers').textContent = reduce(d + y % 100);
-  document.getElementById('r-desc').textContent = info[1];
-  document.getElementById('r-angel').textContent = angel;
-  document.getElementById('r-angel-msg').textContent = angelMsg;
-
-  const isMaster = [11,22,33].includes(lp);
-  document.getElementById('nc-lp').classList.toggle('master', isMaster);
-
-  document.getElementById('result-overlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
+  // Save for Magic Mirror before redirecting
+  saveMirrorData(lp, d, m, y);
+  // Redirect to full calculator page with date pre-filled
+  window.location.href = '/life-path-calculator/?d=' + d + '&m=' + m + '&y=' + y;
 }
 
 function closeResult(e) {
@@ -1654,6 +1922,170 @@ function calcTarot(){
     <a href="https://tarot.luminanumbers.com/cards/${card.name.toLowerCase().replace(/\s+/g,'-')}/" class="btn-tarot-explore" target="_blank">✦ Explore Full Tarot Reading →</a>
   `;
 }
+
+
+// ── Magic Mirror ──────────────────────────────────────
+const MIRROR_KEY = 'lumina_user';
+
+const DAILY_ENERGY = {
+  1: [
+    "Your pioneering spirit is fully activated today. Trust your instincts and take the first bold step toward something you have been postponing.",
+    "The universe is clearing your path today. Lead without hesitation — others are ready to follow your vision.",
+    "Your independent energy is magnetic today. New doors are opening for those who are bold enough to knock.",
+    "Today calls for decisive action. You were born to initiate — begin something that only you can begin.",
+    "A new cycle is starting today in your life. Your courage is your greatest asset right now.",
+    "The energy of creation surrounds you today. Start that project. Make that call. Take that step.",
+    "Today you are aligned with pure manifestation energy. What you focus on, you will draw toward you."
+  ],
+  2: [
+    "Your natural gift for harmony is needed today. Listen more than you speak and watch what reveals itself.",
+    "The universe is asking you to trust the process today. What feels slow is actually building something beautiful.",
+    "A meaningful connection is highlighted today. Reach out to someone you have been thinking about.",
+    "Your sensitivity is a superpower today, not a weakness. Let it guide your decisions.",
+    "Balance is your theme today. Give where you can, and allow yourself to receive without guilt.",
+    "Today is perfect for healing conversations and mending bridges. Your diplomatic nature will shine.",
+    "Trust divine timing today. The right people and opportunities are already moving toward you."
+  ],
+  3: [
+    "Your creativity is at its peak today. Express something — write, create, speak, perform. The world needs your light.",
+    "Joy is your spiritual practice today. Do one thing that makes you genuinely happy and watch everything shift.",
+    "Today is for connection. Reach out, share your ideas, let your authentic voice be heard.",
+    "The universe wants you to play today. Laughter and lightness are not distractions — they are your power.",
+    "Your words carry extra weight today. Speak with intention and watch how people respond to your energy.",
+    "A creative breakthrough is available to you today. Stop editing yourself before you even begin.",
+    "Today your enthusiasm is contagious. Share your excitement with others and watch doors open."
+  ],
+  4: [
+    "Your foundation-building energy is strong today. Focus on the details that others overlook — they matter.",
+    "Today rewards discipline. Show up fully for what you have committed to and the universe will show up for you.",
+    "Steady progress is the theme today. One solid step forward is worth more than ten scattered attempts.",
+    "Your reliability is your greatest gift today. Someone is counting on you, and you will not let them down.",
+    "Today is excellent for organizing, planning, and putting systems in place that will serve you for months.",
+    "Trust your methodical approach today. The slow path you are taking is the right one.",
+    "Your hard work is accumulating into something significant. Keep building — the results are closer than they appear."
+  ],
+  5: [
+    "Embrace the unexpected today. The detour you did not plan for is actually the shortcut you needed.",
+    "Your energy is restless and electric today. Channel it into something adventurous — explore, experiment, move.",
+    "Today holds a surprise that will make sense in hindsight. Stay flexible and say yes to the unusual.",
+    "Freedom calls to you today. Release one thing that has been feeling like a cage.",
+    "Your adaptability is your greatest asset today. What looks like chaos is actually an invitation to evolve.",
+    "Today favors bold conversations and unconventional ideas. Your perspective is needed and valued.",
+    "Change is your natural habitat. Lean into the shift happening today — it is moving you forward."
+  ],
+  6: [
+    "Your nurturing energy is a healing force today. Someone in your circle needs exactly what you have to offer.",
+    "Today calls you home — to your values, your loved ones, and the things that make life genuinely beautiful.",
+    "Your ability to create harmony is needed today. Lead with love and watch conflict dissolve.",
+    "Beauty and care are your spiritual practices today. Tend to your space, your body, and your relationships.",
+    "Today is for giving and receiving love in equal measure. Open your heart fully in both directions.",
+    "Your sense of responsibility is admirable, but remember: you cannot pour from an empty cup. Rest is sacred today.",
+    "The people you love feel your energy even when you say nothing. Let them feel your warmth today."
+  ],
+  7: [
+    "Your intuition is razor-sharp today. Trust the quiet knowing that surfaces before logic catches up.",
+    "Today is made for deep thinking, solitude, and insight. Give yourself permission to withdraw and reflect.",
+    "A truth you have been searching for is closer than you think. Quiet your mind and let it surface naturally.",
+    "Your analytical gifts are at their strongest today. A complex problem is about to become beautifully clear.",
+    "The universe is sending you subtle signals today. Pay attention to patterns, repetitions, and coincidences.",
+    "Today favors research, reading, and going deeper into what fascinates you. Follow the thread.",
+    "Your wisdom is your greatest gift. Someone today will benefit enormously from your perspective."
+  ],
+  8: [
+    "Your power is undeniable today. Step into leadership without apology — you have earned this authority.",
+    "Financial clarity is available to you today. Review your goals, assess your resources, and make a bold decision.",
+    "Today is for claiming what is rightfully yours — recognition, reward, or a role you have long deserved.",
+    "Your ambition is aligned with the universe today. Push further than feels comfortable. You are ready.",
+    "A cycle of abundance is opening for you. Release the fear of receiving and allow prosperity to flow in.",
+    "Today rewards strategic thinking. Make the move that serves your long-term vision, not just the immediate moment.",
+    "Your strength inspires others even when you are not aware of it. Lead by example today."
+  ],
+  9: [
+    "Your compassion is your superpower today. Extend it generously — beginning with yourself.",
+    "A chapter is completing. Honour what it taught you, release what it cost you, and step forward lighter.",
+    "Today your perspective is elevated. You can see the bigger picture that others cannot yet see.",
+    "Forgiveness is available to you today — of others, of circumstances, and most importantly, of yourself.",
+    "Your calling to serve is activated today. Even the smallest act of kindness creates a profound ripple.",
+    "Something old is ending to make space for something extraordinary. Trust the completion.",
+    "Today you are a beacon. Your presence alone raises the energy of every room you enter."
+  ],
+  11: [
+    "Your psychic antenna is fully extended today. Write down every intuitive flash — they are messages.",
+    "Today you are a bridge between worlds. Your insight can illuminate what others cannot yet see.",
+    "Heightened sensitivity is your gift today, not your burden. Your empathy is needed and extraordinary.",
+    "The veil is thin today. Pay attention to dreams, synchronicities, and the thoughts that arrive unbidden.",
+    "Your spiritual gifts are amplified today. Meditation, journaling, or stillness will unlock profound clarity.",
+    "Today you are reminded of your purpose. You are here to inspire — do not shrink from that calling.",
+    "Trust the visions that arise today. Your higher self is communicating clearly — listen deeply."
+  ],
+  22: [
+    "Your ability to build the impossible is activated today. Think bigger than feels reasonable.",
+    "Today you can see the blueprint that others cannot. Trust your grand vision — it is meant to become real.",
+    "The universe is supporting your most ambitious project today. One focused hour of work shifts everything.",
+    "Your power to manifest large-scale change is unparalleled. What you commit to today will outlast you.",
+    "Today calls for practical mysticism — dream enormously, then take one very concrete step.",
+    "You are building a legacy, not just a life. Every disciplined choice today is a brick in that foundation.",
+    "The world needs what only you can build. Begin, or continue, with complete confidence today."
+  ],
+  33: [
+    "Your capacity for unconditional love is your greatest power today. Let it flow without condition or expectation.",
+    "Today you are called to teach through being, not doing. Your presence itself is a healing force.",
+    "The world feels your light even before you speak. Walk into today knowing you are already enough.",
+    "Your compassion has the power to transform someone's entire day today. Give it freely.",
+    "Today is for deep self-care. You cannot sustain your extraordinary giving without radical replenishment.",
+    "A soul is watching you today and learning from how you move through difficulty with grace.",
+    "Your love is the rarest frequency on earth. Share it today — not because you must, but because it is who you are."
+  ]
+};
+
+const MONTHS_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function getDailyEnergy(lp) {
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  const msgs = DAILY_ENERGY[lp] || DAILY_ENERGY[1];
+  return msgs[dayOfYear % msgs.length];
+}
+
+function initMirror() {
+  try {
+    const raw = localStorage.getItem(MIRROR_KEY);
+    if (!raw) return;
+    const u = JSON.parse(raw);
+    if (!u || !u.lp) return;
+
+    const lp = u.lp;
+    const title = (LP_DESC[lp] || ['Seeker'])[0].replace(' ✦','');
+    const energy = getDailyEnergy(lp);
+    const today = new Date();
+    const dateStr = MONTHS_FULL[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
+
+    document.getElementById('m-title').textContent = title;
+    document.getElementById('m-lp').textContent = lp;
+    document.getElementById('m-energy').textContent = energy;
+    document.getElementById('m-link').href = '/life-path-' + lp + '-meaning/';
+    document.getElementById('m-date').textContent = '✦ ' + dateStr;
+
+    document.getElementById('mirrorHero').classList.add('show');
+    document.getElementById('defaultHero').style.display = 'none';
+  } catch(e) {}
+}
+
+function resetMirror() {
+  localStorage.removeItem(MIRROR_KEY);
+  document.getElementById('mirrorHero').classList.remove('show');
+  document.getElementById('defaultHero').style.display = 'block';
+}
+
+function saveMirrorData(lp, d, m, y) {
+  try {
+    const data = { lp, birthdate: y + '-' + m + '-' + d, saved_at: Date.now() };
+    localStorage.setItem(MIRROR_KEY, JSON.stringify(data));
+  } catch(e) {}
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', initMirror);
 
 </script>
 </body>

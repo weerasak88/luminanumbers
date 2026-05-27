@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="/js/cookie-consent.js" data-ga="G-LSCWW3E9XV"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life Path Number Calculator — Lumina Numbers</title>
@@ -718,6 +717,41 @@ function quickView(n){
   const info=DATA[n];
   alert(`Life Path ${n} — ${info.title}\n\n${info.overview.substring(0,200)}...\n\nEnter a birth date above to get your full reading.`);
 }
+
+// ── Auto-fill from URL params (from homepage redirect) ──
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const d = params.get('d');
+  const m = params.get('m');
+  const y = params.get('y');
+  if(!d || !m || !y) return;
+
+  // Wait for selects to be populated
+  function tryFill() {
+    const dd = document.getElementById('dd');
+    const mm = document.getElementById('mm');
+    const yy = document.getElementById('yy');
+    if(!dd || !mm || !yy) { setTimeout(tryFill, 50); return; }
+    if(dd.options.length < 2) { setTimeout(tryFill, 50); return; }
+
+    dd.value = d;
+    mm.value = m;
+    yy.value = y;
+
+    // Trigger preview to show component breakdown
+    if(typeof preview === 'function') preview();
+
+    // Scroll to calculator
+    dd.closest('.calc-card')?.scrollIntoView({behavior:'smooth', block:'start'});
+
+    // Auto-calculate after brief pause so user sees the animation
+    setTimeout(()=>{
+      if(typeof calculate === 'function') calculate();
+    }, 600);
+  }
+  tryFill();
+})();
+
 </script>
 </body>
 </html>
