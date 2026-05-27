@@ -601,6 +601,16 @@ function decode(forceNum){
     : `<span style="color:${fc}">●</span> ${d.frequency}`;
   document.getElementById('r-freq').innerHTML = freqLabel;
   document.getElementById('r-freq').style.color = d.is_fallback ? '#9b6bbf' : fc;
+  // Update full page link
+  const fpLink = document.getElementById('r-fullpage');
+  if(fpLink){
+    if(d.is_fallback){
+      fpLink.style.display = 'none'; // fallback numbers don't have dedicated pages
+    } else {
+      fpLink.style.display = 'inline-flex';
+      fpLink.href = '/angel-number-' + n + '/';
+    }
+  }
   document.getElementById('r-action').textContent = d.action;
   document.getElementById('r-general').textContent = d.general;
   document.getElementById('r-love').textContent = d.love;
