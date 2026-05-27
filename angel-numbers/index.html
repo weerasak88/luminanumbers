@@ -474,7 +474,7 @@ h1 em{font-style:italic;background:linear-gradient(135deg,var(--lavender),#9b6bb
 <!-- ALL NUMBERS -->
 <div class="all-section" id="allSection" style="margin-top:40px">
   <div class="all-title">All Angel Numbers</div>
-  <div class="all-sub">Tap any number to decode its meaning instantly</div>
+  <div class="all-sub">Tap any number to explore its full dedicated meaning page</div>
   <div class="all-grid" id="allGrid"></div>
 </div>
 
@@ -555,8 +555,7 @@ let currentNum = null;
     const d = DATA[n];
     const chip = document.createElement('a');
     chip.className = 'all-chip';
-    chip.href = '#';
-    chip.onclick = (e)=>{ e.preventDefault(); document.getElementById('numInput').value=n; decode(+n); };
+    chip.href = '/angel-number-' + n + '/';
     chip.innerHTML = `<div class="ac-num">${n}</div><div class="ac-title"><span class="freq-dot ${FREQ_DOT[d.frequency]}"></span>${d.title.split(' ').slice(0,2).join(' ')}</div>`;
     g.appendChild(chip);
   });
